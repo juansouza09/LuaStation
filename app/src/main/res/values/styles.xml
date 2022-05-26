@@ -24,4 +24,13 @@
         <item name="itemTextAppearanceActive">?attr/textAppearanceCaption</item>
         <item name="itemTextColor">@color/mtrl_navigation_bar_colored_item_tint</item>
     </style>
+
+    <style name="Widget.App.CheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.RadioButton</item>
+    </style>
+
+    <style name="ThemeOverlay.App.RadioButton" parent="">
+        <item name="colorOnSurface">@color/roxo</item>
+        <item name="colorSecondary">#5A189A</item>
+    </style>
 </resources>

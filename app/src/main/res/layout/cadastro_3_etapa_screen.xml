@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pattern_dark">
+
+    <TextView
+        android:id="@+id/h1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Selecione com o que mais se\n identificar!"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/button_finalizar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_login"
+        app:layout_constraintBottom_toTopOf="@id/btn_cancelar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btn_cancelar"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/poppins_medium"
+        android:letterSpacing="0"
+        android:text="Cancelar"
+        android:textAllCaps="false"
+        android:textColor="#7C7C7C"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/button_login_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Finalizar"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_finalizar"
+        app:layout_constraintEnd_toEndOf="@+id/button_finalizar"
+        app:layout_constraintStart_toStartOf="@+id/button_finalizar"
+        app:layout_constraintTop_toTopOf="@+id/button_finalizar" />
+
+    <ImageView
+        android:id="@+id/ic_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back" />
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_finalizar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/h1"
+        app:srcCompat="@drawable/shape_branco" />
+
+
+    <LinearLayout
+        android:id="@+id/linear_baixa"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/imageView4"
+        app:layout_constraintStart_toStartOf="@id/imageView4"
+        app:layout_constraintTop_toTopOf="@id/imageView4">
+
+
+        <CheckBox
+            android:id="@+id/check_baixa_renda"
+            style="@style/Widget.App.CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <ImageView
+            android:id="@+id/img_renda"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            app:srcCompat="@drawable/ic_renda" />
+
+        <TextView
+            android:id="@+id/text_renda"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/abeezee"
+            android:text="Baixa renda"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_lgbt"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/imageView4"
+        app:layout_constraintStart_toStartOf="@id/imageView4"
+        app:layout_constraintTop_toBottomOf="@id/linear_baixa">
+
+
+        <CheckBox
+            android:id="@+id/check_lgbt"
+            style="@style/Widget.App.CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <ImageView
+            android:id="@+id/img_lgbt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            app:srcCompat="@drawable/bandeira_lgbtqia" />
+
+        <TextView
+            android:id="@+id/text_lgbt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/abeezee"
+            android:text="LGBTQIA+"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_preto"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/imageView4"
+        app:layout_constraintStart_toStartOf="@id/imageView4"
+        app:layout_constraintTop_toBottomOf="@id/linear_lgbt">
+
+
+        <CheckBox
+            android:id="@+id/check_preto"
+            style="@style/Widget.App.CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <ImageView
+            android:id="@+id/img_preto"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            app:srcCompat="@drawable/ic_preto" />
+
+        <TextView
+            android:id="@+id/text_preto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/abeezee"
+            android:text="Preto(a)"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_mulher"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/imageView4"
+        app:layout_constraintStart_toStartOf="@id/imageView4"
+        app:layout_constraintTop_toBottomOf="@id/linear_preto">
+
+
+        <CheckBox
+            android:id="@+id/check_mulher"
+            style="@style/Widget.App.CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <ImageView
+            android:id="@+id/img_mulher"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            app:srcCompat="@drawable/ic_mulher" />
+
+        <TextView
+            android:id="@+id/text_mulher"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/abeezee"
+            android:text="Mulher"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
