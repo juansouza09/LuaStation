@@ -34,8 +34,7 @@
             style="@style/AppTabLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabGravity="center"
-            app:tabMode="fixed">
+            app:tabGravity="center">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -50,6 +49,7 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/AppTabTextAppearance2"
                 android:text="Meus Freelas" />
         </com.google.android.material.tabs.TabLayout>
 
