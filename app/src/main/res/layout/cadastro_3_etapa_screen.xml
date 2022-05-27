@@ -13,7 +13,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Selecione com o que mais se\n identificar!"
+        android:text="Selecione os que você mais se\n identifica!"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="22sp"
@@ -80,7 +80,7 @@
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="300dp"
-        android:layout_height="350dp"
+        android:layout_height="320dp"
         app:layout_constraintBottom_toTopOf="@+id/button_finalizar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
