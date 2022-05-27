@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black">
+    android:layout_width="wrap_content"
+    android:layout_margin="10dp"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -79,7 +79,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ver mais"
+        android:text="ver mais"
         android:fontFamily="@font/abeezee"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/button_finalizar"
@@ -87,4 +87,14 @@
         app:layout_constraintStart_toStartOf="@+id/button_finalizar"
         app:layout_constraintTop_toTopOf="@+id/button_finalizar" />
 
+    <TextView
+        android:id="@+id/nivel_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_extrabold"
+        android:text="16"
+        android:textColor="@color/roxo"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@id/img_person"
+        app:layout_constraintTop_toTopOf="@id/img_person" />
 </androidx.constraintlayout.widget.ConstraintLayout>

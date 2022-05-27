@@ -63,7 +63,7 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@id/imageView3"
         app:layout_constraintTop_toTopOf="@id/imageView3"
-        app:srcCompat="@drawable/ic_heart"
+        app:srcCompat="@drawable/ic_favoritado"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
