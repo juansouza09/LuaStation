@@ -12,6 +12,25 @@
         <activity
             android:name=".HomeActivity"
             android:exported="true" />
+
+        <activity android:name=".LoginActivity"
+            android:exported="true"/>
+
+        <activity android:name=".cadastro.EscolhaActivity"
+            android:exported="true"/>
+
+        <activity android:name=".cadastro.Etapa1Activity"
+            android:exported="true"/>
+
+        <activity android:name=".cadastro.Etapa2Activity"
+            android:exported="true"/>
+
+        <activity android:name=".cadastro.Etapa2EmpresaActivity"
+            android:exported="true"/>
+
+        <activity android:name=".cadastro.Etapa3Activity"
+            android:exported="true"/>
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">
