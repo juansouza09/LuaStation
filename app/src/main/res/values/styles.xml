@@ -27,6 +27,10 @@
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.RadioButton</item>
     </style>
 
+    <style name="Widget.App.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.RadioButton</item>
+    </style>
+
     <style name="ThemeOverlay.App.RadioButton" parent="">
         <item name="colorOnSurface">@color/roxo_escuro</item>
         <item name="colorSecondary">@color/roxo</item>

@@ -22,6 +22,9 @@
         <activity android:name=".cadastro.Etapa1Activity"
             android:exported="true"/>
 
+        <activity android:name=".cadastro.Etapa1EmpresaActivity"
+            android:exported="true"/>
+
         <activity android:name=".cadastro.Etapa2Activity"
             android:exported="true"/>
 
@@ -29,6 +32,24 @@
             android:exported="true"/>
 
         <activity android:name=".cadastro.Etapa3Activity"
+            android:exported="true"/>
+
+        <activity android:name=".menusuperior.MenuActivity"
+            android:exported="true"/>
+
+        <activity android:name=".menusuperior.SegurancaActivity"
+            android:exported="true"/>
+
+        <activity android:name=".menusuperior.CriarProjetoActivity"
+            android:exported="true"/>
+
+        <activity android:name=".menusuperior.CriarProjeto2Activity"
+            android:exported="true"/>
+
+        <activity android:name=".menusuperior.PagamentoProjetoActivity"
+            android:exported="true"/>
+
+        <activity android:name=".menusuperior.ProjetoAdicionadoActivity"
             android:exported="true"/>
 
         <activity

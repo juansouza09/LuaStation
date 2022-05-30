@@ -7,7 +7,7 @@ import com.example.luastation.LoginActivity
 import com.example.luastation.R
 import com.example.luastation.databinding.CadastroScreenBinding
 
-class Etapa1Activity : AppCompatActivity() {
+class Etapa1EmpresaActivity : AppCompatActivity() {
     private lateinit var binding: CadastroScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,13 +23,13 @@ class Etapa1Activity : AppCompatActivity() {
         }
     }
 
-    fun proximo() {
-        val freelancer = Intent(this, Etapa2Activity::class.java)
+    fun proximo(){
+        val freelancer = Intent(this, Etapa2EmpresaActivity::class.java)
         startActivity(freelancer)
         finish()
     }
 
-    fun cancelar() {
+    fun cancelar(){
         val login = Intent(this, LoginActivity::class.java)
         startActivity(login)
         finish()
