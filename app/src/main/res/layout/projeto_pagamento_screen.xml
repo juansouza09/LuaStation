@@ -113,6 +113,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
                 android:layout_marginTop="20dp"
                 android:text="Cartão de Crédito" />
 
@@ -122,6 +123,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
                 android:layout_marginTop="20dp"
                 android:text="Cartão de Débito" />
 
@@ -129,6 +131,7 @@
                 android:id="@+id/radio_button_money"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textColor="@color/black"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="20dp"

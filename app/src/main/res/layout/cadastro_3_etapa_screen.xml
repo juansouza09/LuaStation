@@ -226,10 +226,9 @@
 
         <ImageView
             android:id="@+id/img_mulher"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.2"
-            app:srcCompat="@drawable/ic_mulher" />
+            android:src="@drawable/ic_mulher" />
 
         <TextView
             android:id="@+id/text_mulher"

@@ -9,13 +9,14 @@
         <entry key="app/src/main/res/drawable/button_login.xml" value="0.217" />
         <entry key="app/src/main/res/drawable/ic_favorite.xml" value="0.217" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/ic_mulher.xml" value="0.131" />
         <entry key="app/src/main/res/drawable/shape_branco.xml" value="0.217" />
         <entry key="app/src/main/res/drawable/shape_notificacao.xml" value="0.217" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.31666666666666665" />
         <entry key="app/src/main/res/layout/cadastro_2_etapa_empresa_screen.xml" value="0.5" />
         <entry key="app/src/main/res/layout/cadastro_2_etapa_screen.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/cadastro_3_etapa_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/cadastro_3_etapa_screen.xml" value="0.67" />
         <entry key="app/src/main/res/layout/cadastro_escolha_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/cadastro_screen.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/layout/criar_projeto_2_screen.xml" value="0.2632034632034632" />
