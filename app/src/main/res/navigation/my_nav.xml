@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.luastation.HomeFragment"
-        android:label="HomeFragment" />
+        android:name="com.example.luastation.fragments.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"
+        />
+    <fragment
+        android:id="@+id/favoritosFragment"
+        android:name="com.example.luastation.fragments.FavoritosFragment"
+        android:label="FavoritosFragment"
+        tools:layout="@layout/fragment_favoritos"
+        />
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.luastation.fragments.PerfilFragment"
+        android:label="PerfilFragment"
+        tools:layout="@layout/fragment_perfil"/>
+    <fragment
+        android:id="@+id/notificacaoFragment"
+        android:name="com.example.luastation.fragments.NotificacaoFragment"
+        android:label="NotificacaoFragment"
+        tools:layout="@layout/fragment_notificacoes"/>
 </navigation>

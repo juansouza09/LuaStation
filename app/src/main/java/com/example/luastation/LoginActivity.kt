@@ -42,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
             )
             if (sucesso) {
                 startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                finish()
             }
             else {
                 Toast.makeText(this@LoginActivity, "Falha no login! Os dados estão incorretos!", Toast.LENGTH_LONG).show()
