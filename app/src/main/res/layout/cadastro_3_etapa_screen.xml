@@ -197,10 +197,10 @@
             android:id="@+id/text_preto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/abeezee"
-            android:text="Preto(a)"
+            android:text="Preto/Pardo/Indigena"
             android:textColor="@color/black"
             android:textSize="16sp" />
 

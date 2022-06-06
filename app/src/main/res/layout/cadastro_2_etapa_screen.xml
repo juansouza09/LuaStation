@@ -21,6 +21,7 @@
         app:layout_constraintTop_toBottomOf="@id/img_person">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number" />
@@ -42,6 +43,7 @@
         app:layout_constraintTop_toBottomOf="@id/cpf_input">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date" />
@@ -100,7 +102,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ic_back"
-        app:srcCompat="@drawable/img_person" />
+        app:srcCompat="@drawable/logo" />
 
     <ImageButton
         android:id="@+id/ic_back"

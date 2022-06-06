@@ -33,6 +33,7 @@
         app:layout_constraintTop_toBottomOf="@id/btn_menu">
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
             style="@style/AppTabLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

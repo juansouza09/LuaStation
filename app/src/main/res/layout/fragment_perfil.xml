@@ -22,6 +22,7 @@
         app:layout_constraintTop_toBottomOf="@id/img_person">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" />
@@ -43,6 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/nome_input">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
@@ -64,6 +66,7 @@
         app:layout_constraintTop_toBottomOf="@id/data_nasc_input">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number" />
@@ -85,6 +88,7 @@
         app:layout_constraintTop_toBottomOf="@id/email_input">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date" />
@@ -126,7 +130,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_person" />
+        app:srcCompat="@drawable/logo" />
 
     <ImageView
         android:id="@+id/imageView5"

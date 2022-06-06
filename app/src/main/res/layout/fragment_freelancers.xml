@@ -7,7 +7,7 @@
     android:background="@drawable/pattern_dark">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_servicos"
+        android:id="@+id/recycler_freelancers"
         tools:listitem="@layout/item_freelancers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

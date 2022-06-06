@@ -36,6 +36,7 @@
         app:layout_constraintTop_toBottomOf="@id/h1">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" />
@@ -57,6 +58,7 @@
         app:layout_constraintTop_toBottomOf="@id/nome_input">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" />
@@ -77,6 +79,7 @@
         app:layout_constraintTop_toBottomOf="@id/nome_social_input">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
@@ -99,6 +102,7 @@
         app:layout_constraintTop_toBottomOf="@id/email_input">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />

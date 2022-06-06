@@ -9,14 +9,14 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="135dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/shape_branco" />
 
     <TextView
-        android:id="@+id/title_fav_text"
+        android:id="@+id/title_text_freela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -25,7 +25,7 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@id/btn_favoritar"
-        app:layout_constraintStart_toEndOf="@+id/img_dificuldade_fav"
+        app:layout_constraintStart_toEndOf="@+id/img_dificuldade"
         app:layout_constraintTop_toTopOf="@id/imageView3" />
 
     <TextView
@@ -39,11 +39,11 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@id/imageView3"
-        app:layout_constraintStart_toEndOf="@id/img_dificuldade_fav"
-        app:layout_constraintTop_toBottomOf="@id/title_fav_text" />
+        app:layout_constraintStart_toEndOf="@id/img_dificuldade"
+        app:layout_constraintTop_toBottomOf="@id/title_text_freela" />
 
     <ImageView
-        android:id="@+id/img_dificuldade_fav"
+        android:id="@+id/img_dificuldade"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="10dp"
@@ -63,7 +63,7 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@id/imageView3"
         app:layout_constraintTop_toTopOf="@id/imageView3"
-        app:srcCompat="@drawable/ic_favoritado"
+        app:srcCompat="@drawable/ic_heart"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -77,10 +77,10 @@
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintStart_toEndOf="@+id/img_dificuldade_fav" />
+        app:layout_constraintStart_toEndOf="@+id/img_dificuldade" />
 
     <TextView
-        android:id="@+id/price_fav_text"
+        android:id="@+id/price_text_freela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -89,11 +89,11 @@
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toStartOf="@+id/prazo_text"
+        app:layout_constraintEnd_toStartOf="@+id/time_text"
         app:layout_constraintStart_toEndOf="@+id/plataforma_text" />
 
     <TextView
-        android:id="@+id/prazo_text"
+        android:id="@+id/time_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
