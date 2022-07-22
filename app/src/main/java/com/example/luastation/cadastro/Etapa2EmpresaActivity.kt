@@ -3,6 +3,7 @@ package com.example.luastation.cadastro
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.luastation.HomeActivity
 import com.example.luastation.LoginActivity
 import com.example.luastation.R
@@ -28,10 +29,29 @@ class Etapa2EmpresaActivity : AppCompatActivity() {
         }
     }
 
+    fun isValidProfileData(
+        cpf: String,
+        data: String
+    ): Boolean {
+        return when {
+            cpf.isEmpty() ||
+                    data.isEmpty() -> false
+            else -> true
+        }
+    }
+
     fun finalizar() {
-        val finalizar = Intent(this, HomeActivity::class.java)
-        startActivity(finalizar)
-        finish()
+        if (isValidProfileData(
+                binding.cnpjInput.editText?.text.toString(),
+                binding.categoriaInput.editText?.text.toString()
+            )) {
+            val freelancer = Intent(this, HomeActivity::class.java)
+            startActivity(freelancer)
+            finish()
+        }
+        else {
+            Toast.makeText(this, "Preencha todos os dados corretamente", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun voltar() {

@@ -44,7 +44,7 @@ class Etapa1Activity : AppCompatActivity() {
                 startActivity(freelancer)
                 finish()
             } else {
-                Toast.makeText(this, "Preencha todos os dados corretamente", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Preencha todos os dados corretamente", Toast.LENGTH_SHORT).show()
             }
         }
 

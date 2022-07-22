@@ -40,11 +40,11 @@ class Etapa1EmpresaActivity : AppCompatActivity() {
                     binding.emailInput.editText?.text.toString(),
                     binding.passwordInput.editText?.text.toString()
                 )
-                val freelancer = Intent(this, Etapa2Activity::class.java)
+                val freelancer = Intent(this, Etapa2EmpresaActivity::class.java)
                 startActivity(freelancer)
                 finish()
             } else {
-                Toast.makeText(this, "Preencha todos os dados corretamente", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Preencha todos os dados corretamente", Toast.LENGTH_SHORT).show()
             }
         }
 
