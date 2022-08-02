@@ -3,16 +3,13 @@ package com.example.luastation.tabHome.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.R
 import com.example.luastation.fragments.FavoritosFragment
-import com.example.luastation.tabHome.tabs.FreelancersFragment
-import com.squareup.picasso.Picasso
 
-class FavoritosAdapter(private val favorito: List<FavoritosFragment.Favoritos>)
-: RecyclerView.Adapter<FavoritosAdapter.FavoritosViewHolder>() {
+class FavoritosAdapter(private val favorito: List<FavoritosFragment.Favoritos>) :
+    RecyclerView.Adapter<FavoritosAdapter.FavoritosViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritosViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.item_favoritos, parent, false)
@@ -27,10 +24,10 @@ class FavoritosAdapter(private val favorito: List<FavoritosFragment.Favoritos>)
         return favorito.size
     }
 
-    class FavoritosViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    class FavoritosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(data: FavoritosFragment.Favoritos){
-            with(itemView){
+        fun bind(data: FavoritosFragment.Favoritos) {
+            with(itemView) {
                 val txtInitial = findViewById<TextView>(R.id.title_fav_text)
                 val txtValor = findViewById<TextView>(R.id.price_fav_text)
 
@@ -39,5 +36,4 @@ class FavoritosAdapter(private val favorito: List<FavoritosFragment.Favoritos>)
             }
         }
     }
-
 }

@@ -7,7 +7,7 @@ interface UserRepository {
 
     suspend fun createUser(registrationViewParams: RegistrationViewParams)
 
-    suspend fun getUser(id: Long) : User?
+    suspend fun getUser(id: Long): User?
 
-    suspend fun login (username: String, password: String): Long?
+    suspend fun login(username: String, password: String): Long?
 }

@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.R
 import com.example.luastation.fragments.NotificacaoFragment
 
-class NotificationAdapter(private val notification: List<NotificacaoFragment.Notification>)
-: RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
+class NotificationAdapter(private val notification: List<NotificacaoFragment.Notification>) :
+    RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.item_notificacao, parent, false)
@@ -24,15 +24,14 @@ class NotificationAdapter(private val notification: List<NotificacaoFragment.Not
         return notification.size
     }
 
-    class NotificationViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(data: NotificacaoFragment.Notification){
-            with(itemView){
+        fun bind(data: NotificacaoFragment.Notification) {
+            with(itemView) {
                 val txtInitial = findViewById<TextView>(R.id.title_notification_text)
 
                 txtInitial.text = data.description
             }
         }
     }
-
 }

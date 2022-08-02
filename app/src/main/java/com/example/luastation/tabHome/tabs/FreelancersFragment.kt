@@ -1,17 +1,15 @@
 package com.example.luastation.tabHome.tabs
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.databinding.FragmentFreelancersBinding
-import com.example.luastation.tabHome.adapters.FavoritosAdapter
 import com.example.luastation.tabHome.adapters.FreelancersAdapter
-
 
 class FreelancersFragment : Fragment() {
 
@@ -21,7 +19,8 @@ class FreelancersFragment : Fragment() {
     var layoutManager: LinearLayoutManager? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFreelancersBinding.inflate(inflater, container, false)
@@ -33,7 +32,6 @@ class FreelancersFragment : Fragment() {
         setRecyclerView()
     }
 
-
     private fun setRecyclerView() {
         recyclerView = binding?.recyclerFreelancers
         recyclerView!!.setHasFixedSize(true)
@@ -41,7 +39,6 @@ class FreelancersFragment : Fragment() {
         recyclerView!!.layoutManager = layoutManager
         adapter = FreelancersAdapter(getFreelancers())
         recyclerView!!.adapter = adapter
-
     }
 
     private fun getFreelancers(): List<Freelancer> {

@@ -1,16 +1,16 @@
 package com.example.luastation.cadastro
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.example.luastation.LoginActivity
+import com.example.luastation.databinding.CadastroScreenBinding
 import com.example.luastation.db.AppDatabase
 import com.example.luastation.db.registration.RegistrationViewModel
 import com.example.luastation.db.repository.UserDbDataSource
 import com.example.luastation.db.repository.UserRepository
-import com.example.luastation.LoginActivity
-import com.example.luastation.databinding.CadastroScreenBinding
 
 class Etapa1Activity : AppCompatActivity() {
     private lateinit var binding: CadastroScreenBinding
@@ -44,7 +44,8 @@ class Etapa1Activity : AppCompatActivity() {
                 startActivity(freelancer)
                 finish()
             } else {
-                Toast.makeText(this, "Preencha todos os dados corretamente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Preencha todos os dados corretamente", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -52,8 +53,6 @@ class Etapa1Activity : AppCompatActivity() {
             cancelar()
         }
     }
-
-
 
     fun cancelar() {
         val login = Intent(this, LoginActivity::class.java)

@@ -6,10 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.luastation.db.repository.UserRepository
 import kotlinx.coroutines.launch
 
-class RegistrationViewModel (
-    val userRepository : UserRepository
-        ): ViewModel() {
-
+class RegistrationViewModel(
+    val userRepository: UserRepository
+) : ViewModel() {
 
     class RegistrationViewModelFactory(private val userRepository: UserRepository) :
         ViewModelProvider.Factory {
@@ -32,18 +31,18 @@ class RegistrationViewModel (
         }
     }
 
-        fun isValidProfileData(
-            social_name: String,
-            email: String,
-            username: String,
-            password: String
-        ): Boolean {
-            return when {
-                social_name.isEmpty() ||
-                        email.isEmpty() ||
-                        username.isEmpty() ||
-                        password.isEmpty() -> false
-                else -> true
-            }
+    fun isValidProfileData(
+        social_name: String,
+        email: String,
+        username: String,
+        password: String
+    ): Boolean {
+        return when {
+            social_name.isEmpty() ||
+                email.isEmpty() ||
+                username.isEmpty() ||
+                password.isEmpty() -> false
+            else -> true
         }
+    }
 }

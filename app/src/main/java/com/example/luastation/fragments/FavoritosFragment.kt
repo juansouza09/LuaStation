@@ -18,7 +18,8 @@ class FavoritosFragment : Fragment() {
     var layoutManager: LinearLayoutManager? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFavoritosBinding.inflate(inflater, container, false)
@@ -30,7 +31,6 @@ class FavoritosFragment : Fragment() {
         setRecyclerView()
     }
 
-
     private fun setRecyclerView() {
         recyclerView = binding?.recyclerFavoritos
         recyclerView!!.setHasFixedSize(true)
@@ -38,7 +38,6 @@ class FavoritosFragment : Fragment() {
         recyclerView!!.layoutManager = layoutManager
         adapter = FavoritosAdapter(getFavoritos())
         recyclerView!!.adapter = adapter
-
     }
 
     private fun getFavoritos(): List<Favoritos> {

@@ -1,9 +1,8 @@
 package com.example.luastation
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.SplashActivityBinding
 
 class SplashActivity : AppCompatActivity() {

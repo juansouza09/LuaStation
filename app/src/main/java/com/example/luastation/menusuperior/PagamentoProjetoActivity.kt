@@ -1,13 +1,9 @@
 package com.example.luastation.menusuperior
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.luastation.HomeActivity
-import com.example.luastation.databinding.CriarProjeto2ScreenBinding
-import com.example.luastation.databinding.CriarProjetoScreenBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.ProjetoPagamentoScreenBinding
-import com.example.luastation.databinding.SegurancaScreenBinding
 
 class PagamentoProjetoActivity : AppCompatActivity() {
     private lateinit var binding: ProjetoPagamentoScreenBinding

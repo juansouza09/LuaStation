@@ -7,7 +7,7 @@ import com.example.luastation.db.toUser
 import com.example.luastation.db.toUserEntity
 
 class UserDbDataSource(
-    private val userDao : UserDao
+    private val userDao: UserDao
 ) : UserRepository {
     override suspend fun createUser(registrationViewParams: RegistrationViewParams) {
         val userEntity = registrationViewParams.toUserEntity()

@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.luastation.db.repository.UserRepository
 
-class LoginViewModel (
+class LoginViewModel(
     val userRepository: UserRepository
-        ) : ViewModel(){
+) : ViewModel() {
 
     class LoginViewModelFactory(private val userRepository: UserRepository) :
         ViewModelProvider.Factory {
@@ -16,9 +16,8 @@ class LoginViewModel (
         }
     }
 
-    suspend fun login(username: String, password: String) : Boolean{
-            val userId = userRepository.login(username, password)
+    suspend fun login(username: String, password: String): Boolean {
+        val userId = userRepository.login(username, password)
         return userId != null
     }
-
 }

@@ -1,12 +1,11 @@
 package com.example.luastation.cadastro
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.HomeActivity
 import com.example.luastation.LoginActivity
-import com.example.luastation.R
 import com.example.luastation.databinding.Cadastro2EtapaEmpresaScreenBinding
 
 class Etapa2EmpresaActivity : AppCompatActivity() {
@@ -35,7 +34,7 @@ class Etapa2EmpresaActivity : AppCompatActivity() {
     ): Boolean {
         return when {
             cpf.isEmpty() ||
-                    data.isEmpty() -> false
+                data.isEmpty() -> false
             else -> true
         }
     }
@@ -44,12 +43,12 @@ class Etapa2EmpresaActivity : AppCompatActivity() {
         if (isValidProfileData(
                 binding.cnpjInput.editText?.text.toString(),
                 binding.categoriaInput.editText?.text.toString()
-            )) {
+            )
+        ) {
             val freelancer = Intent(this, HomeActivity::class.java)
             startActivity(freelancer)
             finish()
-        }
-        else {
+        } else {
             Toast.makeText(this, "Preencha todos os dados corretamente", Toast.LENGTH_SHORT).show()
         }
     }

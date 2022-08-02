@@ -1,10 +1,10 @@
 package com.example.luastation
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.luastation.cadastro.EscolhaActivity
 import com.example.luastation.databinding.LoginScreenBinding
@@ -15,11 +15,12 @@ import com.example.luastation.db.repository.UserRepository
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: LoginScreenBinding
-    private val viewModel : LoginViewModel by viewModels {
+    private val viewModel: LoginViewModel by viewModels {
         val dataBase = AppDatabase.getDatabase(this)
         val userRepository: UserRepository = UserDbDataSource(dataBase.userDao())
         LoginViewModel.LoginViewModelFactory(userRepository)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LoginScreenBinding.inflate(layoutInflater)
@@ -34,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun abrirHome(){
+    fun abrirHome() {
         lifecycleScope.launchWhenStarted {
             val sucesso = viewModel.login(
                 binding.emailInput.editText?.text.toString(),
@@ -43,14 +44,17 @@ class LoginActivity : AppCompatActivity() {
             if (sucesso) {
                 startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                 finish()
-            }
-            else {
-                Toast.makeText(this@LoginActivity, "Falha no login! Os dados estão incorretos!", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Falha no login! Os dados estão incorretos!",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
 
-    fun abrirCadastro(){
+    fun abrirCadastro() {
         val cadastro = Intent(this, EscolhaActivity::class.java)
         startActivity(cadastro)
         finish()

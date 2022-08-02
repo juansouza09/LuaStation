@@ -15,7 +15,7 @@ class TabFragPageAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle)
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when(position){
+        return when (position) {
             0 -> ServicosFragment()
             1 -> FreelancersFragment()
             2 -> MeusFreelasFragment()

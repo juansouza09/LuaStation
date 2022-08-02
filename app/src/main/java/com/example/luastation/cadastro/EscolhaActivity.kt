@@ -1,11 +1,9 @@
 package com.example.luastation.cadastro
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.luastation.HomeActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.LoginActivity
-import com.example.luastation.R
 import com.example.luastation.databinding.CadastroEscolhaScreenBinding
 
 class EscolhaActivity : AppCompatActivity() {
@@ -28,19 +26,19 @@ class EscolhaActivity : AppCompatActivity() {
         }
     }
 
-    fun empresa(){
+    fun empresa() {
         val empresa = Intent(this, Etapa1EmpresaActivity::class.java)
         startActivity(empresa)
         finish()
     }
 
-    fun freelancer(){
+    fun freelancer() {
         val freelancer = Intent(this, Etapa1Activity::class.java)
         startActivity(freelancer)
         finish()
     }
 
-    fun cancelar(){
+    fun cancelar() {
         val login = Intent(this, LoginActivity::class.java)
         startActivity(login)
         finish()
