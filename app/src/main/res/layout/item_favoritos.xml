@@ -3,54 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_margin="10dp"
+    android:layout_marginVertical="5dp"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/item_container"
         android:layout_width="match_parent"
         android:layout_height="125dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shape_branco" />
+        app:srcCompat="@drawable/shape_fav_branco" />
 
     <TextView
         android:id="@+id/title_fav_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="5dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Aplicativo Delivery"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@id/btn_favoritar"
         app:layout_constraintStart_toEndOf="@+id/img_dificuldade_fav"
-        app:layout_constraintTop_toTopOf="@id/imageView3" />
+        app:layout_constraintTop_toTopOf="@id/item_container" />
 
     <TextView
         android:id="@+id/description_text"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:textAlignment="center"
         android:fontFamily="@font/poppins"
         android:lines="2"
         android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
         android:textColor="@color/black"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/imageView3"
+        app:layout_constraintEnd_toStartOf="@id/btn_favoritar"
         app:layout_constraintStart_toEndOf="@id/img_dificuldade_fav"
         app:layout_constraintTop_toBottomOf="@id/title_fav_text" />
 
     <ImageView
         android:id="@+id/img_dificuldade_fav"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
-        android:src="@drawable/img_meteoro" />
+        android:src="@drawable/img_meteoro"
+        app:layout_constraintBottom_toBottomOf="@+id/item_container"
+        app:layout_constraintEnd_toStartOf="@id/description_text"
+        app:layout_constraintStart_toStartOf="@+id/item_container"
+        app:layout_constraintTop_toTopOf="@+id/item_container" />
 
     <ImageButton
         android:id="@+id/btn_favoritar"
@@ -61,8 +65,8 @@
         android:background="@android:color/transparent"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@id/imageView3"
-        app:layout_constraintTop_toTopOf="@id/imageView3"
+        app:layout_constraintEnd_toEndOf="@id/item_container"
+        app:layout_constraintTop_toTopOf="@id/item_container"
         app:srcCompat="@drawable/ic_favoritado"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -76,7 +80,7 @@
         android:text="Android"
         android:textColor="@color/black"
         android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@+id/item_container"
         app:layout_constraintStart_toEndOf="@+id/img_dificuldade_fav" />
 
     <TextView
@@ -88,7 +92,7 @@
         android:text="R$ 00,00"
         android:textColor="@color/black"
         android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@+id/item_container"
         app:layout_constraintEnd_toStartOf="@+id/prazo_text"
         app:layout_constraintStart_toEndOf="@+id/plataforma_text" />
 
@@ -102,6 +106,6 @@
         android:text="3 dias"
         android:textColor="@color/black"
         android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@+id/item_container"
         app:layout_constraintEnd_toEndOf="@id/btn_favoritar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
