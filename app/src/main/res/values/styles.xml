@@ -35,4 +35,13 @@
         <item name="colorOnSurface">@color/roxo_escuro</item>
         <item name="colorSecondary">@color/roxo</item>
     </style>
+
+    //////////////Buttons
+    <style name="buttonLogin">
+        <item name="android:background">@drawable/button_login</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
 </resources>

@@ -30,7 +30,6 @@ class HomeFragment : Fragment() {
         binding.btnMenu.setOnClickListener {
             requireActivity().run {
                 startActivity(Intent(this, MenuActivity::class.java))
-                finish()
             }
         }
 
