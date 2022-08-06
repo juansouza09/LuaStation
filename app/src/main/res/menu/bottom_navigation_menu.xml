@@ -11,14 +11,14 @@
         android:icon="@drawable/ic_favorite"
         android:title="Favoritos"/>
     <item
-        android:id="@+id/perfilFragment"
-        android:enabled="true"
-        android:icon="@drawable/ic_perfil"
-        android:title="Perfil"/>
-    <item
         android:id="@+id/notificacaoFragment"
         android:enabled="true"
         android:icon="@drawable/ic_notificacao"
         android:title="Notificações"/>
+    <item
+        android:id="@+id/perfilFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_perfil"
+        android:title="Perfil"/>
 
 </menu>

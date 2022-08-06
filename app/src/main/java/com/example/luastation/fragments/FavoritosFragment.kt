@@ -1,5 +1,6 @@
 package com.example.luastation.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.luastation.DetalhesActivity
+import com.example.luastation.PerfilContratanteActivity
 import com.example.luastation.databinding.FragmentFavoritosBinding
 import com.example.luastation.tabHome.adapters.FavoritosAdapter
+import com.example.luastation.tabHome.adapters.FreelancersAdapter
 
 class FavoritosFragment : Fragment() {
 
@@ -37,6 +41,12 @@ class FavoritosFragment : Fragment() {
         layoutManager = LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
         recyclerView!!.layoutManager = layoutManager
         adapter = FavoritosAdapter(getFavoritos())
+        adapter!!.setOnItemClickListener(object : FavoritosAdapter.onItemClickListener {
+            override fun onItemClick() {
+                val intent = Intent(requireContext(), DetalhesActivity::class.java)
+                startActivity(intent)
+            }
+        })
         recyclerView!!.adapter = adapter
     }
 

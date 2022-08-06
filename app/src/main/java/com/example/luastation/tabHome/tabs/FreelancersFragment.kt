@@ -1,5 +1,6 @@
 package com.example.luastation.tabHome.tabs
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.luastation.PerfilContratanteActivity
 import com.example.luastation.databinding.FragmentFreelancersBinding
 import com.example.luastation.tabHome.adapters.FreelancersAdapter
 
@@ -38,21 +40,32 @@ class FreelancersFragment : Fragment() {
         layoutManager = GridLayoutManager(this.requireContext(), 2)
         recyclerView!!.layoutManager = layoutManager
         adapter = FreelancersAdapter(getFreelancers())
+        adapter!!.setOnItemClickListener(object : FreelancersAdapter.onItemClickListener {
+            override fun onItemClick() {
+                val intent = Intent(requireContext(), PerfilContratanteActivity::class.java)
+                startActivity(intent)
+            }
+        })
         recyclerView!!.adapter = adapter
     }
 
     private fun getFreelancers(): List<Freelancer> {
         return arrayListOf(
             Freelancer("Maxsuel Souza", "maxsouza@email.com"),
+            Freelancer("Juan Pablo", "juan.souza@email.com"),
+            Freelancer("Fe Sottili", "fesottili@email.com"),
+            Freelancer("Newana Vitoria", "newana@email.com"),
+            Freelancer("Guilherme", "guilherme@email.com"),
             Freelancer("Maxsuel Souza", "maxsouza@email.com"),
+            Freelancer("Juan Pablo", "juan.souza@email.com"),
+            Freelancer("Fe Sottili", "fesottili@email.com"),
+            Freelancer("Newana Vitoria", "newana@email.com"),
+            Freelancer("Guilherme", "guilherme@email.com"),
             Freelancer("Maxsuel Souza", "maxsouza@email.com"),
-            Freelancer("Maxsuel Souza", "maxsouza@email.com"),
-            Freelancer("Maxsuel Souza", "maxsouza@email.com"),
-            Freelancer("Maxsuel Souza", "maxsouza@email.com"),
-            Freelancer("Maxsuel Souza", "maxsouza@email.com"),
-            Freelancer("Maxsuel Souza", "maxsouza@email.com"),
-            Freelancer("Maxsuel Souza", "maxsouza@email.com"),
-            Freelancer("Maxsuel Souza", "maxsouza@email.com")
+            Freelancer("Juan Pablo", "juan.souza@email.com"),
+            Freelancer("Fe Sottili", "fesottili@email.com"),
+            Freelancer("Newana Vitoria", "newana@email.com"),
+            Freelancer("Guilherme", "guilherme@email.com")
         ).toList()
     }
 

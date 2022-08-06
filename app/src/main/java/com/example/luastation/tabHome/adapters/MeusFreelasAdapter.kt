@@ -10,10 +10,21 @@ import com.example.luastation.tabHome.tabs.MeusFreelasFragment
 
 class MeusFreelasAdapter(private val freelas: List<MeusFreelasFragment.Freelas>) :
     RecyclerView.Adapter<MeusFreelasAdapter.FreelasViewHolder>() {
+
+    private lateinit var mListener: onItemClickListener
+
+    interface onItemClickListener {
+        fun onItemClick()
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener) {
+        mListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FreelasViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.item_freelas, parent, false)
-        return FreelasViewHolder(view)
+        return FreelasViewHolder(view, mListener)
     }
 
     override fun onBindViewHolder(holder: FreelasViewHolder, position: Int) {
@@ -24,7 +35,8 @@ class MeusFreelasAdapter(private val freelas: List<MeusFreelasFragment.Freelas>)
         return freelas.size
     }
 
-    class FreelasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class FreelasViewHolder(itemView: View, listener: onItemClickListener) :
+        RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: MeusFreelasFragment.Freelas) {
             with(itemView) {
@@ -33,6 +45,12 @@ class MeusFreelasAdapter(private val freelas: List<MeusFreelasFragment.Freelas>)
 
                 txtInitial.text = data.title
                 txtValor.text = data.price
+            }
+        }
+
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick()
             }
         }
     }

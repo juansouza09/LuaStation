@@ -10,10 +10,21 @@ import com.example.luastation.tabHome.tabs.FreelancersFragment
 
 class FreelancersAdapter(private val freelancer: List<FreelancersFragment.Freelancer>) :
     RecyclerView.Adapter<FreelancersAdapter.FreelancersViewHolder>() {
+
+    private lateinit var mListener: onItemClickListener
+
+    interface onItemClickListener {
+        fun onItemClick()
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener) {
+        mListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FreelancersViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.item_freelancers, parent, false)
-        return FreelancersViewHolder(view)
+        return FreelancersViewHolder(view, mListener)
     }
 
     override fun onBindViewHolder(holder: FreelancersViewHolder, position: Int) {
@@ -24,7 +35,8 @@ class FreelancersAdapter(private val freelancer: List<FreelancersFragment.Freela
         return freelancer.size
     }
 
-    class FreelancersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class FreelancersViewHolder(itemView: View, listener: onItemClickListener) :
+        RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: FreelancersFragment.Freelancer) {
             with(itemView) {
@@ -33,6 +45,12 @@ class FreelancersAdapter(private val freelancer: List<FreelancersFragment.Freela
 
                 txtInitial.text = data.name
                 txtEmail.text = data.email
+            }
+        }
+
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick()
             }
         }
     }

@@ -10,10 +10,21 @@ import com.example.luastation.fragments.FavoritosFragment
 
 class FavoritosAdapter(private val favorito: List<FavoritosFragment.Favoritos>) :
     RecyclerView.Adapter<FavoritosAdapter.FavoritosViewHolder>() {
+
+    private lateinit var mListener: onItemClickListener
+
+    interface onItemClickListener {
+        fun onItemClick()
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener) {
+        mListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritosViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.item_favoritos, parent, false)
-        return FavoritosViewHolder(view)
+        return FavoritosViewHolder(view, mListener)
     }
 
     override fun onBindViewHolder(holder: FavoritosViewHolder, position: Int) {
@@ -24,7 +35,7 @@ class FavoritosAdapter(private val favorito: List<FavoritosFragment.Favoritos>) 
         return favorito.size
     }
 
-    class FavoritosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class FavoritosViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: FavoritosFragment.Favoritos) {
             with(itemView) {
@@ -33,6 +44,12 @@ class FavoritosAdapter(private val favorito: List<FavoritosFragment.Favoritos>) 
 
                 txtInitial.text = data.title
                 txtValor.text = data.price
+            }
+        }
+
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick()
             }
         }
     }

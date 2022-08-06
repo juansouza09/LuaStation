@@ -20,8 +20,8 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.31666666666666665" />
         <entry key="app/src/main/res/layout/activity_menu_seperior.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_perfil_usuario.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_servico_detalhes.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_perfil_usuario.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_servico_detalhes.xml" value="0.13165266106442577" />
         <entry key="app/src/main/res/layout/cadastro_2_etapa_empresa_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/cadastro_2_etapa_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/cadastro_3_etapa_screen.xml" value="0.5" />
@@ -44,7 +44,7 @@
         <entry key="app/src/main/res/layout/item_freelas.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_notificacao.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/item_servicos.xml" value="0.31601731601731603" />
-        <entry key="app/src/main/res/layout/login_screen.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/login_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/projeto_adicionado_screen.xml" value="0.2632034632034632" />
         <entry key="app/src/main/res/layout/projeto_pagamento_screen.xml" value="0.33" />
         <entry key="app/src/main/res/layout/seguranca_screen.xml" value="0.26666666666666666" />

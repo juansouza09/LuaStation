@@ -47,7 +47,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="15dp"
-        android:src="@drawable/img_person"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="@+id/item_container"
         app:layout_constraintStart_toStartOf="@+id/item_container"
         app:layout_constraintTop_toTopOf="@+id/item_container" />

@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.DetalhesActivity
-import com.example.luastation.LoginActivity
 import com.example.luastation.databinding.FragmentServicosBinding
 import com.example.luastation.tabHome.adapters.ServicosAdapter
 
@@ -52,6 +50,16 @@ class ServicosFragment : Fragment() {
 
     private fun getServicos(): List<Servicos> {
         return arrayListOf(
+            Servicos("Aplicativo Delivery", "R$5000,00"),
+            Servicos("Landing page restaurante", "R$600,00"),
+            Servicos("Rede social", "R$4600,00"),
+            Servicos("Aplicativo Delivery", "R$1320,00"),
+            Servicos("Aplicativo lista de tarefas", "R$200,00"),
+            Servicos("Aplicativo financeiro", "R$5000,00"),
+            Servicos("Landing page restaurante", "R$600,00"),
+            Servicos("Rede social", "R$4600,00"),
+            Servicos("Aplicativo Delivery", "R$1320,00"),
+            Servicos("Aplicativo lista de tarefas", "R$200,00"),
             Servicos("Aplicativo financeiro", "R$5000,00"),
             Servicos("Landing page restaurante", "R$600,00"),
             Servicos("Rede social", "R$4600,00"),
