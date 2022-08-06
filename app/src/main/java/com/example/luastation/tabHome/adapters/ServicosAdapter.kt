@@ -10,10 +10,21 @@ import com.example.luastation.tabHome.tabs.ServicosFragment
 
 class ServicosAdapter(private val servico: List<ServicosFragment.Servicos>) :
     RecyclerView.Adapter<ServicosAdapter.ServicosViewHolder>() {
+
+    private lateinit var mListener: onItemClickListener
+
+    interface onItemClickListener{
+        fun onItemClick()
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicosViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.item_servicos, parent, false)
-        return ServicosViewHolder(view)
+        return ServicosViewHolder(view, mListener)
     }
 
     override fun onBindViewHolder(holder: ServicosViewHolder, position: Int) {
@@ -24,7 +35,7 @@ class ServicosAdapter(private val servico: List<ServicosFragment.Servicos>) :
         return servico.size
     }
 
-    class ServicosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ServicosViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: ServicosFragment.Servicos) {
             with(itemView) {
@@ -34,6 +45,13 @@ class ServicosAdapter(private val servico: List<ServicosFragment.Servicos>) :
                 txtInitial.text = data.title
                 txtValor.text = data.price
             }
+        }
+
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick()
+            }
+
         }
     }
 }

@@ -1,12 +1,16 @@
 package com.example.luastation.tabHome.tabs
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.luastation.DetalhesActivity
+import com.example.luastation.LoginActivity
 import com.example.luastation.databinding.FragmentServicosBinding
 import com.example.luastation.tabHome.adapters.ServicosAdapter
 
@@ -37,6 +41,12 @@ class ServicosFragment : Fragment() {
         layoutManager = LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
         recyclerview!!.layoutManager = layoutManager
         adapter = ServicosAdapter(getServicos())
+        adapter!!.setOnItemClickListener(object : ServicosAdapter.onItemClickListener {
+            override fun onItemClick() {
+                val intent = Intent(requireContext(), DetalhesActivity::class.java)
+                startActivity(intent)
+            }
+        })
         recyclerview!!.adapter = adapter
     }
 

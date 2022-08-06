@@ -52,6 +52,9 @@
         <activity android:name=".menusuperior.ProjetoAdicionadoActivity"
             android:exported="true"/>
 
+        <activity android:name=".DetalhesActivity"
+            android:exported="true"/>
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">
