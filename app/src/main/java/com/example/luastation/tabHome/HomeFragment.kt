@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.luastation.ZoomOutPageTransformer
 import com.example.luastation.databinding.FragmentHomeBinding
 import com.example.luastation.menusuperior.MenuActivity
 import com.example.luastation.tabHome.adapters.TabFragPageAdapter
@@ -32,6 +33,7 @@ class HomeFragment : Fragment() {
                 startActivity(Intent(this, MenuActivity::class.java))
             }
         }
+        binding.viewPagerHome.setPageTransformer(ZoomOutPageTransformer())
 
         setTabs()
         addTabsToPageIndicator()

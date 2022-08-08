@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/activity_home.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/activity_menu_seperior.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/activity_perfil_usuario.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/activity_servico_detalhes.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/cadastro_2_etapa_empresa_screen.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/cadastro_2_etapa_screen.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/cadastro_escolha_screen.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/cadastro_screen.xml" value="0.5" />
+        <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/fragment_freelancers.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/item_freelancers.xml" value="0.67" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1265" />
         <entry key="app/src/main/res/drawable/bottom_navigation.xml" value="0.217" />
         <entry key="app/src/main/res/drawable/button_cinza.xml" value="0.217" />
