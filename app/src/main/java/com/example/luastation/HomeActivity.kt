@@ -14,12 +14,18 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        bottomNavigation()
+    }
 
+    private fun bottomNavigation() {
         val bottomNavigation = binding.bottomNavigation
-        bottomNavigation.setOnNavigationItemSelectedListener { item ->
-            navController.navigate(item.itemId)
-            true
+
+        bottomNavigation?.let {
+            it.setOnNavigationItemSelectedListener { item ->
+                navController.navigate(item.itemId)
+                true
+            }
+            bottomNavigation.setupWithNavController(navController)
         }
-        bottomNavigation.setupWithNavController(navController)
     }
 }

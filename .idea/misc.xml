@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Juan/Documents/ls/LuaStation/app/src/main/res/layout/activity_home.xml" value="0.11330049261083744" />
+        <entry key="..\:/Users/Juan/Documents/ls/LuaStation/app/src/main/res/layout/activity_perfil_usuario.xml" value="0.34148550724637683" />
+        <entry key="..\:/Users/Juan/Documents/ls/LuaStation/app/src/main/res/layout/activity_servico_detalhes.xml" value="0.34148550724637683" />
+        <entry key="..\:/Users/Juan/Documents/ls/LuaStation/app/src/main/res/layout/fragment_fav_main.xml" value="0.18819655521783182" />
+        <entry key="..\:/Users/Juan/Documents/ls/LuaStation/app/src/main/res/layout/fragment_favoritos.xml" value="0.18819655521783182" />
+        <entry key="..\:/Users/Juan/Documents/ls/LuaStation/app/src/main/res/layout/fragment_home.xml" value="0.18819655521783182" />
+        <entry key="..\:/Users/Juan/Documents/ls/LuaStation/app/src/main/res/layout/fragment_perfil.xml" value="0.33" />
+        <entry key="..\:/Users/Juan/Documents/ls/LuaStation/app/src/main/res/layout/item_detalhes_perfil.xml" value="0.34148550724637683" />
+        <entry key="..\:/Users/Juan/Documents/ls/LuaStation/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.12568306010928962" />
         <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/activity_home.xml" value="0.18085106382978725" />
         <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/activity_menu_seperior.xml" value="0.18085106382978725" />
         <entry key="..\:/Users/discente/AndroidStudioProjects/LuaStation/app/src/main/res/layout/activity_perfil_usuario.xml" value="0.18085106382978725" />
