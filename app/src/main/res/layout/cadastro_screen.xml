@@ -10,7 +10,7 @@
         android:id="@+id/h1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/poppins_bold"
         android:text="EMBARQUE EM NOSSO FOGUETE!"

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.R
-import com.example.luastation.fragments.FavoritosFragment
+import com.example.luastation.fragments.fav.FavoritosFragment
 
 class FavoritosAdapter(private val favorito: List<FavoritosFragment.Favoritos>) :
     RecyclerView.Adapter<FavoritosAdapter.FavoritosViewHolder>() {

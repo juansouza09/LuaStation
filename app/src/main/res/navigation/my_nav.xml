@@ -13,9 +13,9 @@
         />
     <fragment
         android:id="@+id/favoritosFragment"
-        android:name="com.example.luastation.fragments.FavoritosFragment"
+        android:name="com.example.luastation.fragments.fav.FavMainFragment"
         android:label="FavoritosFragment"
-        tools:layout="@layout/fragment_favoritos"
+        tools:layout="@layout/fragment_fav_main"
         />
     <fragment
         android:id="@+id/perfilFragment"

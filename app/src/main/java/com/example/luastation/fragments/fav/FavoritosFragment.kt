@@ -1,4 +1,4 @@
-package com.example.luastation.fragments
+package com.example.luastation.fragments.fav
 
 import android.content.Intent
 import android.os.Bundle
