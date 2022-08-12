@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "500462177220",
+    "firebase_url": "https://lua-station-default-rtdb.firebaseio.com",
+    "project_id": "lua-station",
+    "storage_bucket": "lua-station.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500462177220:android:a7fee864aca5753effb291",
+        "android_client_info": {
+          "package_name": "com.example.luastation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500462177220-u7gajivb3h0747pli7s3jrf6q4l525ak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYMNDqXFNGmUx_nGS2XpjmctucYe4lE_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500462177220-u7gajivb3h0747pli7s3jrf6q4l525ak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

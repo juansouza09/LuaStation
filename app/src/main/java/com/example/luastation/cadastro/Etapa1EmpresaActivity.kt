@@ -10,6 +10,7 @@ import com.example.luastation.databinding.CadastroEmpresaScreenBinding
 class Etapa1EmpresaActivity : AppCompatActivity() {
     private lateinit var binding: CadastroEmpresaScreenBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = CadastroEmpresaScreenBinding.inflate(layoutInflater)
