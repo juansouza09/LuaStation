@@ -33,7 +33,7 @@ class EscolhaActivity : AppCompatActivity() {
     }
 
     fun freelancer() {
-        val freelancer = Intent(this, Etapa1Activity::class.java)
+        val freelancer = Intent(this, Etapa3Activity::class.java)
         startActivity(freelancer)
         finish()
     }

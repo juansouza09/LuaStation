@@ -57,7 +57,7 @@
         app:lineHeight="23dp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nome_social_input"
+        android:id="@+id/cpf_input"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginStart="10dp"
