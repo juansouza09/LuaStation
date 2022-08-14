@@ -1,9 +1,9 @@
-package com.example.luastation.cadastro
+package com.example.luastation.firebase.cadastro
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.luastation.LoginActivity
+import com.example.luastation.firebase.login.LoginActivity
 import com.example.luastation.databinding.Cadastro3EtapaScreenBinding
 
 class Etapa3Activity : AppCompatActivity() {

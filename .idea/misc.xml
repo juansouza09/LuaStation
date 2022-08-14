@@ -47,8 +47,9 @@
         <entry key="app/src/main/res/layout/cadastro_2_etapa_empresa_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/cadastro_2_etapa_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/cadastro_3_etapa_screen.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/cadastro_empresa_screen.xml" value="0.2761904761904762" />
         <entry key="app/src/main/res/layout/cadastro_escolha_screen.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/cadastro_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/cadastro_screen.xml" value="0.33" />
         <entry key="app/src/main/res/layout/criar_projeto_2_screen.xml" value="0.2632034632034632" />
         <entry key="app/src/main/res/layout/criar_projeto_screen.xml" value="0.26666666666666666" />
         <entry key="app/src/main/res/layout/fragment_favoritos.xml" value="0.27982456140350875" />
