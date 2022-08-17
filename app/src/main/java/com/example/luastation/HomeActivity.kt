@@ -38,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
     private fun bottomNavigation() {
         val bottomNavigation = binding.bottomNavigation
 
-        bottomNavigation?.let {
+        bottomNavigation.let {
             it.setOnNavigationItemSelectedListener { item ->
                 navController.navigate(item.itemId)
                 true

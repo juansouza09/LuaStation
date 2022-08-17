@@ -17,7 +17,7 @@ class MenuActivity : AppCompatActivity() {
         setContentView(binding.root)
         firebaseAuth = FirebaseAuth.getInstance()
 
-        binding.linearProfileMenu.setOnClickListener {
+        binding.linearHomeMenu.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }

@@ -13,11 +13,12 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = SplashActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.root.alpha = 0f
-        binding.root.animate().setDuration(1000).alpha(1f).withEndAction {
-            val i = Intent(this, LoginActivity::class.java)
-            startActivity(i)
-            finish()
+
+        binding.buttonEntrar.let {
+            it.setOnClickListener {
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
         }
     }
 }
