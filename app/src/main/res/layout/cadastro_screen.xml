@@ -32,7 +32,7 @@
         android:hint="Nome:"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/cpf_input"
+        app:layout_constraintBottom_toTopOf="@id/cpf_cnpj_input"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/h1">
 
@@ -40,19 +40,19 @@
             android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
+            android:inputType="textCapSentences" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/cpf_input"
+        android:id="@+id/cpf_cnpj_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:hint="CPF:"
+        android:hint="CPF/CNPJ:"
         android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@id/email_input"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/data_nasc_input"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cpf_input">
+        app:layout_constraintTop_toBottomOf="@id/cpf_cnpj_input">
 
         <com.google.android.material.textfield.TextInputEditText
             android:textColor="@color/white"
@@ -132,7 +132,7 @@
             android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textCapSentences" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

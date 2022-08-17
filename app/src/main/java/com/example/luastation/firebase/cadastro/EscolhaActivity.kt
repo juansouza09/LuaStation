@@ -27,7 +27,7 @@ class EscolhaActivity : AppCompatActivity() {
     }
 
     fun empresa() {
-        val empresa = Intent(this, Etapa1EmpresaActivity::class.java)
+        val empresa = Intent(this, Etapa1Activity::class.java)
         startActivity(empresa)
         finish()
     }

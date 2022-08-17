@@ -9,7 +9,6 @@ import android.util.Patterns
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import com.example.luastation.HomeActivity
 import com.example.luastation.databinding.CadastroScreenBinding
 import com.example.luastation.firebase.login.LoginActivity
@@ -24,7 +23,7 @@ class Etapa1Activity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private var email = ""
     private var password = ""
-    private var cpf = ""
+    private var cpf_cnpj = ""
     private var name = ""
     private var dataNasc = ""
 
@@ -33,13 +32,13 @@ class Etapa1Activity : AppCompatActivity() {
         binding = CadastroScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val cpf = binding.cpfInput.editText
+        val cpf = binding.cpfCnpjInput.editText
         cpf?.addTextChangedListener(MaskEditUtil.mask(cpf))
 
         val date = binding.dataNascInput.editText
         DateInputMask(date).listen()
 
-        database = FirebaseDatabase.getInstance().getReference("Users").child("Freelancers")
+        database = FirebaseDatabase.getInstance().getReference("Users")
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.buttonProximo.setOnClickListener {
@@ -54,16 +53,16 @@ class Etapa1Activity : AppCompatActivity() {
     private fun validateData() {
         email = binding.emailInput.editText?.text.toString().trim()
         password = binding.passwordInput.editText?.text.toString().trim()
-        cpf = binding.cpfInput.editText?.text.toString().trim()
+        cpf_cnpj = binding.cpfCnpjInput.editText?.text.toString().trim()
         name = binding.nomeInput.editText?.text.toString().trim()
         dataNasc = binding.dataNascInput.editText?.text.toString().trim()
 
         if (TextUtils.isEmpty(name)) {
             binding.nomeInput.error = "Por favor, insira o Nome!"
-        } else if (TextUtils.isEmpty(cpf)) {
-            binding.cpfInput.error = "Por favor, insira o CPF!"
-        } else if (cpf.length < 11) {
-            binding.cpfInput.error = "Por favor, insira o CPF corretamente!"
+        } else if (TextUtils.isEmpty(cpf_cnpj)) {
+            binding.cpfCnpjInput.error = "Por favor, insira o dado!"
+        } else if (cpf_cnpj.length < 11) {
+            binding.cpfCnpjInput.error = "Por favor, insira o dado corretamente!"
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.emailInput.error = "E-mail inválido!"
         } else if (TextUtils.isEmpty(dataNasc)) {
@@ -89,7 +88,7 @@ class Etapa1Activity : AppCompatActivity() {
                 currentUserDb.child("name").setValue(binding.nomeInput.editText?.text.toString())
                 currentUserDb.child("dataNasc")
                     .setValue(binding.dataNascInput.editText?.text.toString())
-                currentUserDb.child("cpf").setValue(binding.cpfInput.editText?.text.toString())
+                currentUserDb.child("cpf/cnpj").setValue(binding.cpfCnpjInput.editText?.text.toString())
 
                 startActivity(Intent(this, HomeActivity::class.java))
                 finish()
@@ -128,7 +127,7 @@ class Etapa1Activity : AppCompatActivity() {
                     var mascara = ""
                     when (str.length) {
                         in 0..11 -> mask = "###.###.###-##"
-                        else -> mask = "###.###.###-##"
+                        else -> mask = "##.###.###/####-##"
                     }
                     if (isUpdating) {
                         old = str

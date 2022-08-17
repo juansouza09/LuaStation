@@ -157,7 +157,7 @@
             app:layout_constraintTop_toBottomOf="@+id/perfil_nasc_text" />
 
         <TextView
-            android:id="@+id/perfil_cpf_text"
+            android:id="@+id/perfil_cpf_cnpj_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
