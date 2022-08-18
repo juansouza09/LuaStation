@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.DetalhesActivity
-import com.example.luastation.Services
+import com.example.luastation.firebase.models.Services
 import com.example.luastation.databinding.FragmentServicosBinding
 import com.example.luastation.tabHome.adapters.ServicosAdapter
 import com.google.firebase.database.*
@@ -42,7 +42,6 @@ class ServicosFragment : Fragment() {
         database = FirebaseDatabase.getInstance().getReference("Services")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                servicesArrayList.clear()
                 if (snapshot.exists()) {
                     for (serviceSnapshot in snapshot.children) {
                         val service = serviceSnapshot.getValue(Services::class.java)
@@ -54,6 +53,8 @@ class ServicosFragment : Fragment() {
                             startActivity(intent)
                         }
                     })
+                    recyclerview.visibility = View.VISIBLE
+                    binding.progressBar2.visibility = View.GONE
                     myAdapter.notifyDataSetChanged()
                 }
             }

@@ -43,7 +43,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/cpf_cnpj_input"
+        android:id="@+id/cpf_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cpf_cnpj_input">
+        app:layout_constraintTop_toBottomOf="@id/cpf_input">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

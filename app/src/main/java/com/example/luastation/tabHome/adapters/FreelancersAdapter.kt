@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.luastation.firebase.models.Freelancers
 import com.example.luastation.R
-import com.example.luastation.tabHome.tabs.FreelancersFragment
 
-class FreelancersAdapter(private val freelancer: List<FreelancersFragment.Freelancer>) :
+class FreelancersAdapter(private val freelancer: List<Freelancers>) :
     RecyclerView.Adapter<FreelancersAdapter.FreelancersViewHolder>() {
 
     private lateinit var mListener: onItemClickListener
@@ -38,7 +38,7 @@ class FreelancersAdapter(private val freelancer: List<FreelancersFragment.Freela
     class FreelancersViewHolder(itemView: View, listener: onItemClickListener) :
         RecyclerView.ViewHolder(itemView) {
 
-        fun bind(data: FreelancersFragment.Freelancer) {
+        fun bind(data: Freelancers) {
             with(itemView) {
                 val txtInitial = findViewById<TextView>(R.id.title_name_text)
                 val txtEmail = findViewById<TextView>(R.id.email_text)

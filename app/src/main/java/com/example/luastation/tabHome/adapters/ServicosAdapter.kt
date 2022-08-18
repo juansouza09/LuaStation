@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.R
-import com.example.luastation.Services
-import com.example.luastation.tabHome.tabs.ServicosFragment
+import com.example.luastation.firebase.models.Services
 
 class ServicosAdapter(private val serviceList: ArrayList<Services>) :
     RecyclerView.Adapter<ServicosAdapter.ServicosViewHolder>() {

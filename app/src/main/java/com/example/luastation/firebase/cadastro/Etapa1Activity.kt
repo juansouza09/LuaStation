@@ -90,9 +90,9 @@ class Etapa1Activity : AppCompatActivity() {
 
                 val currentUserDb = database.child((firebaseUser.uid))
                 currentUserDb.child("name").setValue(binding.nomeInput.editText?.text.toString())
-                currentUserDb.child("dataNasc")
-                    .setValue(binding.dataNascInput.editText?.text.toString())
-                currentUserDb.child("cpf/cnpj").setValue(binding.cpfCnpjInput.editText?.text.toString())
+                currentUserDb.child("dataNasc").setValue(binding.dataNascInput.editText?.text.toString())
+                currentUserDb.child("email").setValue(binding.emailInput.editText?.text.toString())
+                currentUserDb.child("cpf-cnpj").setValue(binding.cpfCnpjInput.editText?.text.toString())
 
                 startActivity(Intent(this, HomeActivity::class.java))
                 finish()

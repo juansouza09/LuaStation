@@ -1,4 +1,4 @@
-package com.example.luastation
+package com.example.luastation.firebase.models
 
 data class Services(
     var name: String? = null,

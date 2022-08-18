@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/item_container"
-        android:layout_width="175dp"
+        android:layout_width="185dp"
         android:layout_height="235dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="Maxsuel Souza"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="@id/item_container"
@@ -34,20 +34,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="5dp"
+        android:ellipsize="end"
         android:fontFamily="@font/poppins_medium"
-        android:text="max.souza@email.com"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/item_container"
-        app:layout_constraintStart_toStartOf="@id/item_container"
+        app:layout_constraintEnd_toEndOf="@id/title_name_text"
+        app:layout_constraintStart_toStartOf="@id/title_name_text"
         app:layout_constraintTop_toBottomOf="@id/title_name_text" />
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/img_person"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="15dp"
-        android:src="@drawable/logo"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/astronaut_profile"
         app:layout_constraintEnd_toEndOf="@+id/item_container"
         app:layout_constraintStart_toStartOf="@+id/item_container"
         app:layout_constraintTop_toTopOf="@+id/item_container" />

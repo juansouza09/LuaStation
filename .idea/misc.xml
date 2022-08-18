@@ -48,9 +48,9 @@
         <entry key="app/src/main/res/layout/cadastro_2_etapa_empresa_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/cadastro_2_etapa_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/cadastro_3_etapa_screen.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/cadastro_empresa_screen.xml" value="0.2761904761904762" />
+        <entry key="app/src/main/res/layout/cadastro_empresa_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/cadastro_escolha_screen.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/cadastro_screen.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/cadastro_screen.xml" value="0.22" />
         <entry key="app/src/main/res/layout/criar_projeto_2_screen.xml" value="0.2632034632034632" />
         <entry key="app/src/main/res/layout/criar_projeto_screen.xml" value="0.26666666666666666" />
         <entry key="app/src/main/res/layout/fragment_favoritos.xml" value="0.27982456140350875" />
@@ -59,8 +59,8 @@
         <entry key="app/src/main/res/layout/fragment_menu_seperior.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/layout/fragment_meus_freelas.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/layout/fragment_notificacoes.xml" value="0.27982456140350875" />
-        <entry key="app/src/main/res/layout/fragment_perfil.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_servicos.xml" value="0.27982456140350875" />
+        <entry key="app/src/main/res/layout/fragment_perfil.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_servicos.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_serviços.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/layout/item_detalhes_perfil.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_favoritos.xml" value="0.27982456140350875" />
