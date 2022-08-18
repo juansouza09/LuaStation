@@ -9,15 +9,18 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.DetalhesActivity
+import com.example.luastation.Services
 import com.example.luastation.databinding.FragmentServicosBinding
 import com.example.luastation.tabHome.adapters.ServicosAdapter
+import com.google.firebase.database.*
 
 class ServicosFragment : Fragment() {
 
-    var recyclerview: RecyclerView? = null
-    var layoutManager: LinearLayoutManager? = null
-    var binding: FragmentServicosBinding? = null
-    var adapter: ServicosAdapter? = null
+    private lateinit var recyclerview: RecyclerView
+    private lateinit var binding: FragmentServicosBinding
+    private lateinit var servicesArrayList: ArrayList<Services>
+    private lateinit var database: DatabaseReference
+    private lateinit var myAdapter: ServicosAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,48 +28,39 @@ class ServicosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentServicosBinding.inflate(inflater, container, false)
-        return binding?.root
+        recyclerview = binding.recyclerServicos
+        recyclerview.layoutManager = LinearLayoutManager(requireContext())
+        recyclerview.setHasFixedSize(true)
+        servicesArrayList = arrayListOf<Services>()
+        myAdapter = ServicosAdapter(servicesArrayList)
+        recyclerview.adapter = myAdapter
+        getServiceData()
+        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setRecyclerView()
-    }
+    private fun getServiceData() {
+        database = FirebaseDatabase.getInstance().getReference("Services")
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                servicesArrayList.clear()
+                if (snapshot.exists()) {
+                    for (serviceSnapshot in snapshot.children) {
+                        val service = serviceSnapshot.getValue(Services::class.java)
+                        servicesArrayList.add(service!!)
+                    }
+                    myAdapter.setOnItemClickListener(object : ServicosAdapter.onItemClickListener {
+                        override fun onItemClick() {
+                            val intent = Intent(requireContext(), DetalhesActivity::class.java)
+                            startActivity(intent)
+                        }
+                    })
+                    myAdapter.notifyDataSetChanged()
+                }
+            }
 
-    private fun setRecyclerView() {
-        recyclerview = binding?.recyclerServicos
-        recyclerview!!.setHasFixedSize(true)
-        layoutManager = LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
-        recyclerview!!.layoutManager = layoutManager
-        adapter = ServicosAdapter(getServicos())
-        adapter!!.setOnItemClickListener(object : ServicosAdapter.onItemClickListener {
-            override fun onItemClick() {
-                val intent = Intent(requireContext(), DetalhesActivity::class.java)
-                startActivity(intent)
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
             }
         })
-        recyclerview!!.adapter = adapter
     }
-
-    private fun getServicos(): List<Servicos> {
-        return arrayListOf(
-            Servicos("Aplicativo Delivery", "R$5000,00"),
-            Servicos("Landing page restaurante", "R$600,00"),
-            Servicos("Rede social", "R$4600,00"),
-            Servicos("Aplicativo Delivery", "R$1320,00"),
-            Servicos("Aplicativo lista de tarefas", "R$200,00"),
-            Servicos("Aplicativo financeiro", "R$5000,00"),
-            Servicos("Landing page restaurante", "R$600,00"),
-            Servicos("Rede social", "R$4600,00"),
-            Servicos("Aplicativo Delivery", "R$1320,00"),
-            Servicos("Aplicativo lista de tarefas", "R$200,00"),
-            Servicos("Aplicativo financeiro", "R$5000,00"),
-            Servicos("Landing page restaurante", "R$600,00"),
-            Servicos("Rede social", "R$4600,00"),
-            Servicos("Aplicativo Delivery", "R$1320,00"),
-            Servicos("Aplicativo lista de tarefas", "R$200,00")
-        ).toList()
-    }
-
-    data class Servicos(val title: String, val price: String)
 }

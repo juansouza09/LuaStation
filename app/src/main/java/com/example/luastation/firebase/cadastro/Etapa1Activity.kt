@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Patterns
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -81,6 +82,9 @@ class Etapa1Activity : AppCompatActivity() {
     private fun firebaseSignUp() {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {
+
+                binding.progressBar.visibility = View.VISIBLE
+
                 val firebaseUser = firebaseAuth.currentUser
                 val email = firebaseUser!!.email
 

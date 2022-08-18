@@ -6,18 +6,37 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.R
+import com.example.luastation.Services
 import com.example.luastation.tabHome.tabs.ServicosFragment
 
-class ServicosAdapter(private val servico: List<ServicosFragment.Servicos>) :
+class ServicosAdapter(private val serviceList: ArrayList<Services>) :
     RecyclerView.Adapter<ServicosAdapter.ServicosViewHolder>() {
+    inner class ServicosViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
+
+        var name: TextView
+        var price: TextView
+        var plataform: TextView
+        var days: TextView
+
+
+        init {
+            name = itemView.findViewById<TextView>(R.id.title_text)
+            price = itemView.findViewById<TextView>(R.id.price_text)
+            plataform = itemView.findViewById<TextView>(R.id.plataforma_text)
+            days = itemView.findViewById<TextView>(R.id.time_text)
+            itemView.setOnClickListener {
+                listener.onItemClick()
+            }
+        }
+    }
 
     private lateinit var mListener: onItemClickListener
 
-    interface onItemClickListener{
+    interface onItemClickListener {
         fun onItemClick()
     }
 
-    fun setOnItemClickListener(listener: onItemClickListener){
+    fun setOnItemClickListener(listener: onItemClickListener) {
         mListener = listener
     }
 
@@ -28,30 +47,13 @@ class ServicosAdapter(private val servico: List<ServicosFragment.Servicos>) :
     }
 
     override fun onBindViewHolder(holder: ServicosViewHolder, position: Int) {
-        holder.bind(servico[position])
+        holder.name.text = serviceList[position].name
+        holder.price.text = serviceList[position].price
+        holder.days.text = serviceList[position].days
+        holder.plataform.text = serviceList[position].plataform
     }
 
     override fun getItemCount(): Int {
-        return servico.size
-    }
-
-    class ServicosViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
-
-        fun bind(data: ServicosFragment.Servicos) {
-            with(itemView) {
-                val txtInitial = findViewById<TextView>(R.id.title_text)
-                val txtValor = findViewById<TextView>(R.id.price_text)
-
-                txtInitial.text = data.title
-                txtValor.text = data.price
-            }
-        }
-
-        init {
-            itemView.setOnClickListener {
-                listener.onItemClick()
-            }
-
-        }
+        return serviceList.size
     }
 }
