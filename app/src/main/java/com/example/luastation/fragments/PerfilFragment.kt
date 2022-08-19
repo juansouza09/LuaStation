@@ -35,7 +35,7 @@ class PerfilFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 binding.perfilNameText.text = snapshot.child("name").value.toString()
                 binding.textNameContratante.text = snapshot.child("name").value.toString()
-                binding.perfilCpfCnpjText.text = snapshot.child("cpf/cnpj").value.toString()
+                binding.perfilCpfCnpjText.text = snapshot.child("cpf-cnpj").value.toString()
                 binding.perfilNascText.text = snapshot.child("dataNasc").value.toString()
             }
 

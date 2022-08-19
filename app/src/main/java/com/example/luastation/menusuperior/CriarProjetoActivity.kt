@@ -2,6 +2,7 @@ package com.example.luastation.menusuperior
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.CriarProjetoScreenBinding
 
@@ -20,6 +21,10 @@ class CriarProjetoActivity : AppCompatActivity() {
         binding.btnCancelar.setOnClickListener {
             startActivity(Intent(this, MenuActivity::class.java))
             finish()
+        }
+
+        binding.btnAnexo.setOnClickListener {
+            Toast.makeText(this, "O documento foi adicionado!", Toast.LENGTH_SHORT).show()
         }
     }
 }

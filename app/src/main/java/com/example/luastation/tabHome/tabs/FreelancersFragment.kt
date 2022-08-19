@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luastation.DetalhesActivity
-import com.example.luastation.firebase.models.Freelancers
+import com.example.luastation.PerfilContratanteActivity
 import com.example.luastation.databinding.FragmentFreelancersBinding
+import com.example.luastation.firebase.models.Freelancers
+import com.example.luastation.firebase.models.Services
 import com.example.luastation.tabHome.adapters.FreelancersAdapter
 import com.google.firebase.database.*
 
@@ -18,7 +19,6 @@ class FreelancersFragment : Fragment() {
 
     private lateinit var binding: FragmentFreelancersBinding
     private lateinit var recyclerView: RecyclerView
-    private lateinit var freelancersArrayList: ArrayList<Freelancers>
     private lateinit var database: DatabaseReference
     private lateinit var myAdapter: FreelancersAdapter
 
@@ -29,34 +29,36 @@ class FreelancersFragment : Fragment() {
     ): View? {
         binding = FragmentFreelancersBinding.inflate(inflater, container, false)
         recyclerView = binding.recyclerFreelancers
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.setHasFixedSize(true)
-        freelancersArrayList = arrayListOf<Freelancers>()
-        myAdapter = FreelancersAdapter(freelancersArrayList)
+        myAdapter = FreelancersAdapter()
         recyclerView.adapter = myAdapter
         getFreelancersData()
+        refreshFragment()
         return binding.root
+    }
+
+    private fun refreshFragment() {
+        val swipe = binding.swipeToRefresh
+        swipe.setOnRefreshListener {
+            getFreelancersData()
+            swipe.isRefreshing = false
+        }
     }
 
     private fun getFreelancersData() {
         database = FirebaseDatabase.getInstance().getReference("Users")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val freelancersArrayList = mutableListOf<Freelancers>()
                 if (snapshot.exists()) {
                     for (freelancerSnapshot in snapshot.children) {
                         val freelancer = freelancerSnapshot.getValue(Freelancers::class.java)
                         freelancersArrayList.add(freelancer!!)
                     }
-                    myAdapter.setOnItemClickListener(object :
-                            FreelancersAdapter.onItemClickListener {
-                            override fun onItemClick() {
-                                val intent = Intent(requireContext(), DetalhesActivity::class.java)
-                                startActivity(intent)
-                            }
-                        })
+                    myAdapter.submitList(freelancersArrayList)
                     recyclerView.visibility = View.VISIBLE
                     binding.progressBar2.visibility = View.GONE
-                    myAdapter.notifyDataSetChanged()
                 }
             }
 

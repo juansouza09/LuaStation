@@ -22,28 +22,28 @@
         app:lineHeight="23dp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nome_input"
+        android:id="@+id/prazo_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
-        android:hint="Prazo:"
+        android:hint="Prazo em dias:"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/h1">
+        app:layout_constraintTop_toBottomOf="@id/nome_projeto_input">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
+            android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/cpf_input"
+        android:id="@+id/price_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,16 +54,16 @@
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nome_input">
+        app:layout_constraintTop_toBottomOf="@id/prazo_input">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email_input"
+        android:id="@+id/plataforma_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,12 +74,12 @@
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cpf_input">
+        app:layout_constraintTop_toBottomOf="@id/price_input">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:inputType="textCapSentences" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,32 +87,14 @@
         android:id="@+id/button_proximo"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/button_login"
-        app:layout_constraintBottom_toTopOf="@id/btn_cancelar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/btn_cancelar"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="40dp"
-        android:fontFamily="@font/poppins_medium"
-        android:letterSpacing="0"
-        android:text="Cancelar"
-        android:textAllCaps="false"
-        android:textColor="#7C7C7C"
-        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc_input"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/button_login_text"
@@ -142,45 +124,58 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
 
-    <ImageButton
-        android:id="@+id/btn_anexo"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nome_projeto_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/button_cinza"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Nome:"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_input"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@id/h1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapSentences" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/button_anexo_text"
+        android:id="@+id/desc_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="Anexar documento"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_anexo"
-        app:layout_constraintEnd_toEndOf="@+id/btn_anexo"
-        app:layout_constraintStart_toStartOf="@+id/btn_anexo"
-        app:layout_constraintTop_toTopOf="@+id/btn_anexo" />
-
-
-    <TextView
-        android:id="@+id/h4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Todas as informações do projeto\n precisam estar aqui."
+        android:text="Descrição curta:"
         android:textColor="@color/white"
         android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/desc_input"
+        app:layout_constraintStart_toStartOf="@+id/desc_input"
+        app:layout_constraintTop_toBottomOf="@id/plataforma_input" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/desc_input"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_anexo"
-        app:lineHeight="23dp" />
+        app:layout_constraintTop_toBottomOf="@id/desc_title_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textCapSentences"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
