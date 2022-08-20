@@ -57,13 +57,27 @@
 
     <CheckBox
         android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:button="@drawable/selector_favorite_item"
+        android:checked="false"
         app:layout_constraintEnd_toEndOf="@+id/item_container"
         app:layout_constraintTop_toTopOf="@+id/item_container" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/favorite_animation"
+        android:layout_width="52dp"
+        android:layout_height="54dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/icon"
+        app:layout_constraintEnd_toEndOf="@+id/icon"
+        app:layout_constraintStart_toStartOf="@id/icon"
+        app:layout_constraintTop_toTopOf="@+id/icon"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/favorited" />
 
     <TextView
         android:id="@+id/plataforma_text"

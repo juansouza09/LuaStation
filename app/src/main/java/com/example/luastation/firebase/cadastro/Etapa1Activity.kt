@@ -44,6 +44,7 @@ class Etapa1Activity : AppCompatActivity() {
 
         binding.buttonProximo.setOnClickListener {
             validateData()
+            it.isClickable = false
         }
 
         binding.btnCancelar.setOnClickListener {

@@ -40,10 +40,29 @@ class CriarProjeto2Activity : AppCompatActivity() {
 
         binding.buttonProximo.setOnClickListener {
             saveServiceData()
+            it.isClickable = false
         }
     }
 
     private fun saveServiceData() {
+
+        val meteoro = "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/meteoro%201%20(2).png?alt=media&token=cb0ec932-e953-4bed-9ced-13e350205855"
+        val estrela = "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/estrela%202.png?alt=media&token=36d1bd5f-4969-4a3a-ad70-0d7a297214fc"
+        val lua = "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/lua-cheia%20(1)%202%20(1).png?alt=media&token=9d385251-b5b4-421f-ad5c-7b4adcaf2a8c"
+
+        var serviceImg = ""
+
+        serviceImg = when {
+            days.text.toString().toIntOrNull()!! <= 7 -> {
+                meteoro
+            }
+            days.text.toString().toIntOrNull() in 7..14 -> {
+                estrela
+            }
+            else -> {
+                lua
+            }
+        }
 
         val serviceName = name.text.toString()
         val servicePrice = "R$" + price.text.toString()
@@ -55,8 +74,10 @@ class CriarProjeto2Activity : AppCompatActivity() {
             name.error = "Coloque o nome corretamente, por favor!"
         } else if (servicePrice.isEmpty()) {
             price.error = "Coloque o preço corretamente, por favor!"
-        } else if (serviceDays.isEmpty() || days.text.length > 2) {
+        } else if (serviceDays.isEmpty()) {
             days.error = "Coloque o prazo corretamente, por favor!"
+        } else if (days.text.toString().toIntOrNull()!! > 30) {
+            days.error = "O prazo máximo é de 30 dias!"
         } else if (serviceDesc.isEmpty()) {
             desc.error = "Coloque a descrição corretamente, por favor!"
         } else if (servicePlataform.isEmpty()) {
@@ -67,6 +88,7 @@ class CriarProjeto2Activity : AppCompatActivity() {
             val service = Services(
                 serviceId,
                 serviceName,
+                serviceImg,
                 servicePrice,
                 serviceDays,
                 serviceDesc,

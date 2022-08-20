@@ -3,20 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pattern_dark"
-    >
+    android:background="@drawable/pattern_dark">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/img_perfil"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        app:lottie_rawRes="@raw/astronaut_profile"
-        app:lottie_loop="true"
-        app:lottie_autoPlay="true"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/astronaut_profile" />
 
     <TextView
         android:id="@+id/text_name_contratante"
@@ -37,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:background="#3C096C"
         app:layout_constraintEnd_toEndOf="parent"
@@ -201,8 +200,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/img_lua"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/img_estrela" />
 
@@ -211,9 +210,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@id/img_meteoro"
             app:layout_constraintStart_toEndOf="@+id/img_estrela"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/img_meteoro"
             app:srcCompat="@drawable/img_lua" />
 
         <ImageView
@@ -230,42 +229,42 @@
             android:id="@+id/item_count_estrela"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
             android:layout_marginVertical="5dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="0"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:fontFamily="@font/poppins_medium"
             app:layout_constraintBottom_toBottomOf="@id/view2"
-            app:layout_constraintStart_toStartOf="@id/img_estrela"
             app:layout_constraintEnd_toEndOf="@id/img_estrela"
+            app:layout_constraintStart_toStartOf="@id/img_estrela"
             app:layout_constraintTop_toBottomOf="@+id/img_estrela" />
 
         <TextView
             android:id="@+id/item_count_lua"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
             android:layout_marginVertical="5dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="0"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:fontFamily="@font/poppins_medium"
             app:layout_constraintBottom_toBottomOf="@id/view2"
-            app:layout_constraintStart_toStartOf="@id/img_lua"
             app:layout_constraintEnd_toEndOf="@id/img_lua"
+            app:layout_constraintStart_toStartOf="@id/img_lua"
             app:layout_constraintTop_toBottomOf="@+id/img_lua" />
 
         <TextView
             android:id="@+id/item_count_meteoro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4"
             android:layout_marginVertical="10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="0"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:fontFamily="@font/poppins_medium"
             app:layout_constraintBottom_toBottomOf="@id/view2"
-            app:layout_constraintStart_toStartOf="@id/img_meteoro"
             app:layout_constraintEnd_toEndOf="@id/img_meteoro"
+            app:layout_constraintStart_toStartOf="@id/img_meteoro"
             app:layout_constraintTop_toBottomOf="@+id/img_meteoro" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

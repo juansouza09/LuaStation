@@ -1,6 +1,7 @@
 package com.example.luastation.tabHome.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -8,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.databinding.ItemFreelancersBinding
 import com.example.luastation.firebase.models.Freelancers
 
-class FreelancersAdapter() : ListAdapter<Freelancers, FreelancersAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class FreelancersAdapter(
+    val click: () -> Unit
+) : ListAdapter<Freelancers, FreelancersAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Freelancers>() {
@@ -36,6 +39,13 @@ class FreelancersAdapter() : ListAdapter<Freelancers, FreelancersAdapter.MyViewH
         val freelancer = getItem(position)
         holder.binding.titleNameText.text = freelancer.name
         holder.binding.emailText.text = freelancer.email
+        holder.binding.icon.setOnClickListener {
+            holder.binding.favoriteAnimation.visibility = View.VISIBLE
+            if (!holder.binding.icon.isChecked) {
+                holder.binding.favoriteAnimation.visibility = View.GONE
+            }
+        }
+        holder.binding.buttonFinalizar.setOnClickListener { click() }
     }
 
     inner class MyViewHolder(val binding: ItemFreelancersBinding) :

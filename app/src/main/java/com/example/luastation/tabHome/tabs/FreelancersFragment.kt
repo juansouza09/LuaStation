@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.PerfilContratanteActivity
 import com.example.luastation.databinding.FragmentFreelancersBinding
 import com.example.luastation.firebase.models.Freelancers
-import com.example.luastation.firebase.models.Services
 import com.example.luastation.tabHome.adapters.FreelancersAdapter
 import com.google.firebase.database.*
 
@@ -29,13 +28,24 @@ class FreelancersFragment : Fragment() {
     ): View? {
         binding = FragmentFreelancersBinding.inflate(inflater, container, false)
         recyclerView = binding.recyclerFreelancers
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        recyclerView.setHasFixedSize(true)
-        myAdapter = FreelancersAdapter()
-        recyclerView.adapter = myAdapter
+        initAdapter()
         getFreelancersData()
         refreshFragment()
         return binding.root
+    }
+
+    private fun initAdapter() {
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        recyclerView.setHasFixedSize(true)
+        myAdapter = FreelancersAdapter() {
+            freelancerClick()
+        }
+        recyclerView.adapter = myAdapter
+    }
+
+    private fun freelancerClick() {
+        val intent = Intent(requireContext(), PerfilContratanteActivity::class.java)
+        startActivity(intent)
     }
 
     private fun refreshFragment() {
@@ -58,7 +68,6 @@ class FreelancersFragment : Fragment() {
                     }
                     myAdapter.submitList(freelancersArrayList)
                     recyclerView.visibility = View.VISIBLE
-                    binding.progressBar2.visibility = View.GONE
                 }
             }
 
