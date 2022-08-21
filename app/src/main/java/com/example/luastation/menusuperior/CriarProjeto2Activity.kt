@@ -40,15 +40,17 @@ class CriarProjeto2Activity : AppCompatActivity() {
 
         binding.buttonProximo.setOnClickListener {
             saveServiceData()
-            it.isClickable = false
         }
     }
 
     private fun saveServiceData() {
 
-        val meteoro = "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/meteoro%201%20(2).png?alt=media&token=cb0ec932-e953-4bed-9ced-13e350205855"
-        val estrela = "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/estrela%202.png?alt=media&token=36d1bd5f-4969-4a3a-ad70-0d7a297214fc"
-        val lua = "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/lua-cheia%20(1)%202%20(1).png?alt=media&token=9d385251-b5b4-421f-ad5c-7b4adcaf2a8c"
+        val meteoro =
+            "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/meteoro%201%20(2).png?alt=media&token=cb0ec932-e953-4bed-9ced-13e350205855"
+        val estrela =
+            "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/estrela%202.png?alt=media&token=36d1bd5f-4969-4a3a-ad70-0d7a297214fc"
+        val lua =
+            "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/lua-cheia%20(1)%202%20(1).png?alt=media&token=9d385251-b5b4-421f-ad5c-7b4adcaf2a8c"
 
         var serviceImg = ""
 
@@ -97,6 +99,7 @@ class CriarProjeto2Activity : AppCompatActivity() {
 
             dbRef.child(serviceId).setValue(service)
                 .addOnCompleteListener {
+                    binding.buttonProximo.isClickable = false
                     startActivity(Intent(this, PagamentoProjetoActivity::class.java))
                     finish()
                 }.addOnFailureListener { err ->
