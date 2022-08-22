@@ -37,15 +37,8 @@ class FreelancersFragment : Fragment() {
     private fun initAdapter() {
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.setHasFixedSize(true)
-        myAdapter = FreelancersAdapter() {
-            freelancerClick()
-        }
+        myAdapter = FreelancersAdapter()
         recyclerView.adapter = myAdapter
-    }
-
-    private fun freelancerClick() {
-        val intent = Intent(requireContext(), PerfilContratanteActivity::class.java)
-        startActivity(intent)
     }
 
     private fun refreshFragment() {

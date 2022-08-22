@@ -1,17 +1,19 @@
 package com.example.luastation.tabHome.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.luastation.DetalhesActivity
 import com.example.luastation.databinding.ItemServicosBinding
 import com.example.luastation.firebase.models.Services
 import com.squareup.picasso.Picasso
 
 class ServicosAdapter(
-    val click: () -> Unit
 ) : ListAdapter<Services, ServicosAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -39,6 +41,13 @@ class ServicosAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val service = getItem(position)
 
+        val name = service.name
+        val price = service.price
+        val days = service.days
+        val plataform = service.plataform
+        val desc = service.desc
+        val img = service.img
+
         Picasso.get().load(service.img).into(holder.binding.imgDificuldade)
         holder.binding.titleText.text = service.name
         holder.binding.priceText.text = service.price
@@ -53,7 +62,17 @@ class ServicosAdapter(
             }
         }
 
-        holder.itemView.setOnClickListener { click() }
+        holder.itemView.setOnClickListener {
+            val context: Context = holder.itemView.context
+            val intent = Intent(context, DetalhesActivity::class.java)
+            intent.putExtra("iTitle", name)
+            intent.putExtra("iPrice", price)
+            intent.putExtra("iDays", days)
+            intent.putExtra("iPlataform", plataform)
+            intent.putExtra("iDesc", desc)
+            intent.putExtra("iImg", img)
+            context.startActivity(intent)
+        }
     }
 
     inner class MyViewHolder(val binding: ItemServicosBinding) :

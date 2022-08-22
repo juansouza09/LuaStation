@@ -1,6 +1,6 @@
 package com.example.luastation.tabHome.tabs
 
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luastation.DetalhesActivity
 import com.example.luastation.databinding.FragmentServicosBinding
 import com.example.luastation.firebase.models.Services
 import com.example.luastation.tabHome.adapters.ServicosAdapter
@@ -37,15 +36,8 @@ class ServicosFragment : Fragment() {
     private fun initAdapter() {
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
         recyclerview.setHasFixedSize(true)
-        myAdapter = ServicosAdapter() {
-            serviceClick()
-        }
+        myAdapter = ServicosAdapter()
         recyclerview.adapter = myAdapter
-    }
-
-    private fun serviceClick() {
-        val intent = Intent(requireContext(), DetalhesActivity::class.java)
-        startActivity(intent)
     }
 
     private fun refreshFragment() {

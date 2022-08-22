@@ -94,7 +94,7 @@ class Etapa1Activity : AppCompatActivity() {
                 currentUserDb.child("dataNasc")
                     .setValue(binding.dataNascInput.editText?.text.toString())
                 currentUserDb.child("email").setValue(binding.emailInput.editText?.text.toString())
-                currentUserDb.child("cpf-cnpj")
+                currentUserDb.child("cpf_cnpj")
                     .setValue(binding.cpfCnpjInput.editText?.text.toString())
 
                 startActivity(Intent(this, HomeActivity::class.java))

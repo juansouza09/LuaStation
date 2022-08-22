@@ -11,7 +11,22 @@ class PerfilContratanteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPerfilUsuarioBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        dadosIntent()
         listeners()
+    }
+
+    private fun dadosIntent() {
+        var intent = intent
+        val aName = intent.getStringExtra("iName")
+        val aEmail = intent.getStringExtra("iEmail")
+        val aDataNasc = intent.getStringExtra("iDataNasc")
+        val aCpf = intent.getStringExtra("iCpf")
+
+        binding.perfilNameText.text = aName
+        binding.perfilEmailText.text = aEmail
+        binding.perfilNascText.text = aDataNasc
+        binding.perfilCpfCnpjText.text = aCpf
+        binding.textNameContratante.text = aName
     }
 
     private fun listeners() {

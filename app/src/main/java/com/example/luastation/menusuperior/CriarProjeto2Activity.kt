@@ -82,6 +82,8 @@ class CriarProjeto2Activity : AppCompatActivity() {
             days.error = "O prazo máximo é de 30 dias!"
         } else if (serviceDesc.isEmpty()) {
             desc.error = "Coloque a descrição corretamente, por favor!"
+        } else if (desc.text.length < 50) {
+            desc.error = "Coloque uma descrição maior, por favor!"
         } else if (servicePlataform.isEmpty()) {
             plataform.error = "Coloque a plataforma corretamente, por favor!"
         } else {
