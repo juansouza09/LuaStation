@@ -5,18 +5,23 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.DetalhesActivity
 import com.example.luastation.databinding.ItemServicosBinding
 import com.example.luastation.firebase.models.Services
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
-class ServicosAdapter(
-) : ListAdapter<Services, ServicosAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class ServicosAdapter() : ListAdapter<Services, ServicosAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
+        private lateinit var dbRef: DatabaseReference
+        private lateinit var firebaseAuth: FirebaseAuth
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Services>() {
             override fun areItemsTheSame(oldItem: Services, newItem: Services): Boolean {
                 return oldItem.id == newItem.id
@@ -25,6 +30,35 @@ class ServicosAdapter(
             override fun areContentsTheSame(oldItem: Services, newItem: Services): Boolean {
                 return oldItem == newItem
             }
+        }
+
+        fun favorite(
+            id: String?,
+            name: String?,
+            img: String?,
+            price: String?,
+            days: String?,
+            desc: String?,
+            plataform: String?
+        ) {
+            firebaseAuth = FirebaseAuth.getInstance()
+            dbRef = FirebaseDatabase.getInstance().getReference("Users")
+
+            val firebaseUser = firebaseAuth.currentUser
+            val servico = Services(id, name, img, price, days, desc, plataform)
+
+            dbRef.child((firebaseUser!!.uid)).child("ServicosFav").child(id!!).setValue(servico)
+        }
+
+        fun desfavoritar(
+            id: String?
+        ) {
+            firebaseAuth = FirebaseAuth.getInstance()
+            dbRef = FirebaseDatabase.getInstance().getReference("Users")
+
+            val firebaseUser = firebaseAuth.currentUser
+
+            dbRef.child((firebaseUser!!.uid)).child("ServicosFav").child(id!!).removeValue()
         }
     }
 
@@ -41,6 +75,7 @@ class ServicosAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val service = getItem(position)
 
+        val id = service.id
         val name = service.name
         val price = service.price
         val days = service.days
@@ -56,8 +91,13 @@ class ServicosAdapter(
         holder.binding.descriptionText.text = service.desc
 
         holder.binding.icon.setOnClickListener {
-            holder.binding.favoriteAnimation.visibility = View.VISIBLE
-            if (!holder.binding.icon.isChecked) {
+            if (holder.binding.icon.isChecked) {
+                holder.binding.favoriteAnimation.visibility = View.VISIBLE
+                favorite(id, name, img, price, days, desc, plataform)
+                Toast.makeText(holder.itemView.context, "Favoritado com sucesso!", Toast.LENGTH_SHORT).show()
+            } else {
+                desfavoritar(id)
+                Toast.makeText(holder.itemView.context, "Desfavoritado com sucesso!", Toast.LENGTH_SHORT).show()
                 holder.binding.favoriteAnimation.visibility = View.GONE
             }
         }

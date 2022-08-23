@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.DetalhesActivity
 import com.example.luastation.databinding.FragmentMeusFreelasBinding
 import com.example.luastation.tabHome.adapters.MeusFreelasAdapter
-import com.example.luastation.tabHome.adapters.ServicosAdapter
 
 class MeusFreelasFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.example.luastation.tabHome.tabs
+package com.example.luastation.fragments.fav
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,25 +7,29 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luastation.databinding.FragmentFreelancersBinding
+import com.example.luastation.databinding.FragmentFreelancersFavBinding
 import com.example.luastation.firebase.models.Freelancers
-import com.example.luastation.tabHome.adapters.FreelancersAdapter
+import com.example.luastation.tabHome.adapters.FreelancerFavAdapter
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
-class FreelancersFragment : Fragment() {
+class FreelancersFavFragment : Fragment() {
 
-    private lateinit var binding: FragmentFreelancersBinding
+    private lateinit var binding: FragmentFreelancersFavBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var database: DatabaseReference
-    private lateinit var myAdapter: FreelancersAdapter
+    private lateinit var firebaseAuth: FirebaseAuth
+
+    private lateinit var myAdapter: FreelancerFavAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFreelancersBinding.inflate(inflater, container, false)
+        binding = FragmentFreelancersFavBinding.inflate(inflater, container, false)
         recyclerView = binding.recyclerFreelancers
+        firebaseAuth = FirebaseAuth.getInstance()
         initAdapter()
         getFreelancersData()
         refreshFragment()
@@ -35,7 +39,7 @@ class FreelancersFragment : Fragment() {
     private fun initAdapter() {
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.setHasFixedSize(true)
-        myAdapter = FreelancersAdapter()
+        myAdapter = FreelancerFavAdapter()
         recyclerView.adapter = myAdapter
     }
 
@@ -48,10 +52,16 @@ class FreelancersFragment : Fragment() {
     }
 
     private fun getFreelancersData() {
-        database = FirebaseDatabase.getInstance().getReference("Users")
+        val firebaseUser = firebaseAuth.currentUser
+        database = FirebaseDatabase.getInstance().getReference("Users").child((firebaseUser!!.uid))
+            .child("FreelancerFav")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val freelancersArrayList = mutableListOf<Freelancers>()
+                freelancersArrayList.clear()
+                if (freelancersArrayList.isEmpty()) {
+                    binding.recyclerFreelancers.visibility = View.GONE
+                }
                 if (snapshot.exists()) {
                     for (freelancerSnapshot in snapshot.children) {
                         val freelancer = freelancerSnapshot.getValue(Freelancers::class.java)
@@ -63,7 +73,7 @@ class FreelancersFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                binding.recyclerFreelancers.visibility = View.GONE
             }
         })
     }

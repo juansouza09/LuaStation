@@ -90,6 +90,7 @@ class Etapa1Activity : AppCompatActivity() {
                 val email = firebaseUser!!.email
 
                 val currentUserDb = database.child((firebaseUser.uid))
+                currentUserDb.child("id").setValue((firebaseUser.uid))
                 currentUserDb.child("name").setValue(binding.nomeInput.editText?.text.toString())
                 currentUserDb.child("dataNasc")
                     .setValue(binding.dataNascInput.editText?.text.toString())

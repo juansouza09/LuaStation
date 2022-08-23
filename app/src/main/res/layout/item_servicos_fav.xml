@@ -8,14 +8,14 @@
     <ImageView
         android:id="@+id/item_container"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="135dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shape_fav_branco" />
+        app:srcCompat="@drawable/shape_branco" />
 
     <TextView
-        android:id="@+id/title_fav_text"
+        android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
@@ -25,7 +25,7 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@id/icon"
-        app:layout_constraintStart_toEndOf="@+id/img_dificuldade_fav"
+        app:layout_constraintStart_toEndOf="@+id/img_dificuldade"
         app:layout_constraintTop_toTopOf="@id/item_container" />
 
     <TextView
@@ -41,11 +41,11 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@id/icon"
-        app:layout_constraintStart_toEndOf="@id/img_dificuldade_fav"
-        app:layout_constraintTop_toBottomOf="@id/title_fav_text" />
+        app:layout_constraintStart_toEndOf="@id/img_dificuldade"
+        app:layout_constraintTop_toBottomOf="@id/title_text" />
 
     <ImageView
-        android:id="@+id/img_dificuldade_fav"
+        android:id="@+id/img_dificuldade"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
@@ -57,13 +57,27 @@
 
     <CheckBox
         android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:button="@drawable/selector_favorite_item"
+        android:checked="true"
         app:layout_constraintEnd_toEndOf="@+id/item_container"
         app:layout_constraintTop_toTopOf="@+id/item_container" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/favorite_animation"
+        android:layout_width="52dp"
+        android:layout_height="54dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/icon"
+        app:layout_constraintEnd_toEndOf="@+id/icon"
+        app:layout_constraintStart_toStartOf="@id/icon"
+        app:layout_constraintTop_toTopOf="@+id/icon"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/favorited" />
 
     <TextView
         android:id="@+id/plataforma_text"
@@ -76,10 +90,10 @@
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/item_container"
-        app:layout_constraintStart_toEndOf="@+id/img_dificuldade_fav" />
+        app:layout_constraintStart_toEndOf="@+id/img_dificuldade" />
 
     <TextView
-        android:id="@+id/price_fav_text"
+        android:id="@+id/price_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -88,19 +102,19 @@
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/item_container"
-        app:layout_constraintEnd_toStartOf="@+id/prazo_text"
+        app:layout_constraintEnd_toStartOf="@+id/time_text"
         app:layout_constraintStart_toEndOf="@+id/plataforma_text" />
 
     <TextView
-        android:id="@+id/prazo_text"
+        android:id="@+id/time_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/poppins_medium"
         android:text="3 dias"
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/item_container"
-        app:layout_constraintEnd_toEndOf="@id/icon" />
+        app:layout_constraintEnd_toEndOf="@id/item_container" />
 </androidx.constraintlayout.widget.ConstraintLayout>

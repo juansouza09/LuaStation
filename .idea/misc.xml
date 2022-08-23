@@ -55,21 +55,26 @@
         <entry key="app/src/main/res/layout/cadastro_screen.xml" value="0.22" />
         <entry key="app/src/main/res/layout/criar_projeto_2_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/criar_projeto_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_fav_main.xml" value="0.24259259259259258" />
         <entry key="app/src/main/res/layout/fragment_favoritos.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/layout/fragment_freelancers.xml" value="0.27982456140350875" />
+        <entry key="app/src/main/res/layout/fragment_freelancers_fav.xml" value="0.24259259259259258" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_menu_seperior.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/layout/fragment_meus_freelas.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/layout/fragment_notificacoes.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/layout/fragment_perfil.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_servicos.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_servicos_fav.xml" value="0.24259259259259258" />
         <entry key="app/src/main/res/layout/fragment_serviços.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/layout/item_detalhes_perfil.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_favoritos.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/layout/item_freelancers.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_freelancers_fav.xml" value="0.24259259259259258" />
         <entry key="app/src/main/res/layout/item_freelas.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_notificacao.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/item_servicos.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_servicos_fav.xml" value="0.24259259259259258" />
         <entry key="app/src/main/res/layout/login_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/projeto_adicionado_screen.xml" value="0.2632034632034632" />
         <entry key="app/src/main/res/layout/projeto_pagamento_screen.xml" value="0.33" />

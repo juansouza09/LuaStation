@@ -1,4 +1,4 @@
-package com.example.luastation.tabHome.tabs
+package com.example.luastation.fragments.fav
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,25 +7,28 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luastation.databinding.FragmentServicosBinding
+import com.example.luastation.databinding.FragmentServicosFavBinding
 import com.example.luastation.firebase.models.Services
-import com.example.luastation.tabHome.adapters.ServicosAdapter
+import com.example.luastation.tabHome.adapters.FavoritosAdapter
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
-class ServicosFragment : Fragment() {
+class ServicosFavFragment : Fragment() {
 
     private lateinit var recyclerview: RecyclerView
-    private lateinit var binding: FragmentServicosBinding
+    private lateinit var binding: FragmentServicosFavBinding
     private lateinit var database: DatabaseReference
-    private lateinit var myAdapter: ServicosAdapter
+    private lateinit var myAdapter: FavoritosAdapter
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentServicosBinding.inflate(inflater, container, false)
+        binding = FragmentServicosFavBinding.inflate(inflater, container, false)
         recyclerview = binding.recyclerServicos
+        firebaseAuth = FirebaseAuth.getInstance()
         initAdapter()
         getServiceData()
         refreshFragment()
@@ -35,7 +38,7 @@ class ServicosFragment : Fragment() {
     private fun initAdapter() {
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
         recyclerview.setHasFixedSize(true)
-        myAdapter = ServicosAdapter()
+        myAdapter = FavoritosAdapter()
         recyclerview.adapter = myAdapter
     }
 
@@ -48,10 +51,16 @@ class ServicosFragment : Fragment() {
     }
 
     private fun getServiceData() {
-        database = FirebaseDatabase.getInstance().getReference("Services")
+        val firebaseUser = firebaseAuth.currentUser
+        database = FirebaseDatabase.getInstance().getReference("Users").child((firebaseUser!!.uid))
+            .child("ServicosFav")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val servicesArrayList = mutableListOf<Services>()
+                servicesArrayList.clear()
+                if (servicesArrayList.isEmpty()) {
+                    binding.recyclerServicos.visibility = View.GONE
+                }
                 if (snapshot.exists()) {
                     for (serviceSnapshot in snapshot.children) {
                         val service = serviceSnapshot.getValue(Services::class.java)
@@ -63,7 +72,7 @@ class ServicosFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                binding.recyclerServicos.visibility = View.GONE
             }
         })
     }

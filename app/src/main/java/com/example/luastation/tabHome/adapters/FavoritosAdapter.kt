@@ -1,56 +1,98 @@
 package com.example.luastation.tabHome.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luastation.R
-import com.example.luastation.fragments.fav.FavoritosFragment
+import com.example.luastation.DetalhesActivity
+import com.example.luastation.databinding.ItemServicosFavBinding
+import com.example.luastation.firebase.models.Services
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.squareup.picasso.Picasso
 
-class FavoritosAdapter(private val favorito: List<FavoritosFragment.Favoritos>) :
-    RecyclerView.Adapter<FavoritosAdapter.FavoritosViewHolder>() {
+class FavoritosAdapter() : ListAdapter<Services, FavoritosAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-    private lateinit var mListener: onItemClickListener
+    companion object {
+        private lateinit var dbRef: DatabaseReference
+        private lateinit var firebaseAuth: FirebaseAuth
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Services>() {
+            override fun areItemsTheSame(oldItem: Services, newItem: Services): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-    interface onItemClickListener {
-        fun onItemClick()
-    }
-
-    fun setOnItemClickListener(listener: onItemClickListener) {
-        mListener = listener
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritosViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.item_favoritos, parent, false)
-        return FavoritosViewHolder(view, mListener)
-    }
-
-    override fun onBindViewHolder(holder: FavoritosViewHolder, position: Int) {
-        holder.bind(favorito[position])
-    }
-
-    override fun getItemCount(): Int {
-        return favorito.size
-    }
-
-    class FavoritosViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
-
-        fun bind(data: FavoritosFragment.Favoritos) {
-            with(itemView) {
-                val txtInitial = findViewById<TextView>(R.id.title_fav_text)
-                val txtValor = findViewById<TextView>(R.id.price_fav_text)
-
-                txtInitial.text = data.title
-                txtValor.text = data.price
+            override fun areContentsTheSame(oldItem: Services, newItem: Services): Boolean {
+                return oldItem == newItem
             }
         }
 
-        init {
-            itemView.setOnClickListener {
-                listener.onItemClick()
-            }
+        fun desfavoritar(
+            id: String?
+        ) {
+            firebaseAuth = FirebaseAuth.getInstance()
+            dbRef = FirebaseDatabase.getInstance().getReference("Users")
+
+            val firebaseUser = firebaseAuth.currentUser
+
+            dbRef.child((firebaseUser!!.uid)).child("ServicosFav").child(id!!).removeValue()
         }
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        return MyViewHolder(
+            ItemServicosFavBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val service = getItem(position)
+
+        val id = service.id
+        val name = service.name
+        val price = service.price
+        val days = service.days
+        val plataform = service.plataform
+        val desc = service.desc
+        val img = service.img
+
+        Picasso.get().load(service.img).into(holder.binding.imgDificuldade)
+        holder.binding.titleText.text = service.name
+        holder.binding.priceText.text = service.price
+        holder.binding.timeText.text = service.days
+        holder.binding.plataformaText.text = service.plataform
+        holder.binding.descriptionText.text = service.desc
+
+        holder.binding.icon.setOnClickListener {
+            if (!holder.binding.icon.isChecked) {
+                FavoritosAdapter.desfavoritar(id)
+                holder.binding.favoriteAnimation.visibility = View.GONE
+                Toast.makeText(holder.itemView.context, "Desfavoritado com sucesso!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        holder.itemView.setOnClickListener {
+            val context: Context = holder.itemView.context
+            val intent = Intent(context, DetalhesActivity::class.java)
+            intent.putExtra("iTitle", name)
+            intent.putExtra("iPrice", price)
+            intent.putExtra("iDays", days)
+            intent.putExtra("iPlataform", plataform)
+            intent.putExtra("iDesc", desc)
+            intent.putExtra("iImg", img)
+            context.startActivity(intent)
+        }
+    }
+
+    inner class MyViewHolder(val binding: ItemServicosFavBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }

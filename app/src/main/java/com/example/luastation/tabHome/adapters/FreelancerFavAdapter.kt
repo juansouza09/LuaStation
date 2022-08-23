@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.PerfilContratanteActivity
-import com.example.luastation.databinding.ItemFreelancersBinding
+import com.example.luastation.databinding.ItemFreelancersFavBinding
 import com.example.luastation.firebase.models.Freelancers
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class FreelancersAdapter() :
-    ListAdapter<Freelancers, FreelancersAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class FreelancerFavAdapter() :
+    ListAdapter<Freelancers, FreelancerFavAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private lateinit var dbRef: DatabaseReference
@@ -31,23 +31,6 @@ class FreelancersAdapter() :
             override fun areContentsTheSame(oldItem: Freelancers, newItem: Freelancers): Boolean {
                 return oldItem == newItem
             }
-        }
-
-        fun favorite(
-            id: String?,
-            name: String?,
-            email: String?,
-            dataNasc: String?,
-            cpf_cnpj: String?
-        ) {
-            firebaseAuth = FirebaseAuth.getInstance()
-            dbRef = FirebaseDatabase.getInstance().getReference("Users")
-
-            val firebaseUser = firebaseAuth.currentUser
-            val freelancer = Freelancers(id, name, email, dataNasc, cpf_cnpj)
-
-            dbRef.child((firebaseUser!!.uid)).child("FreelancerFav").child(id!!)
-                .setValue(freelancer)
         }
 
         fun desfavoritar(
@@ -64,7 +47,7 @@ class FreelancersAdapter() :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
-            ItemFreelancersBinding.inflate(
+            ItemFreelancersFavBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -84,22 +67,14 @@ class FreelancersAdapter() :
         holder.binding.titleNameText.text = name
 
         holder.binding.icon.setOnClickListener {
-            if (holder.binding.icon.isChecked) {
-                holder.binding.favoriteAnimation.visibility = View.VISIBLE
-                favorite(id, name, email, cpf_cnpj, dataNasc)
-                Toast.makeText(
-                    holder.itemView.context,
-                    "Favoritado com sucesso!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
+            if (!holder.binding.icon.isChecked) {
                 desfavoritar(id)
+                holder.binding.favoriteAnimation.visibility = View.GONE
                 Toast.makeText(
                     holder.itemView.context,
                     "Desfavoritado com sucesso!",
                     Toast.LENGTH_SHORT
                 ).show()
-                holder.binding.favoriteAnimation.visibility = View.GONE
             }
         }
 
@@ -114,6 +89,6 @@ class FreelancersAdapter() :
         }
     }
 
-    inner class MyViewHolder(val binding: ItemFreelancersBinding) :
+    inner class MyViewHolder(val binding: ItemFreelancersFavBinding) :
         RecyclerView.ViewHolder(binding.root)
 }
