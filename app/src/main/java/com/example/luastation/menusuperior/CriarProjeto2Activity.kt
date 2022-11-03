@@ -7,12 +7,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.CriarProjeto2ScreenBinding
 import com.example.luastation.firebase.models.Services
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class CriarProjeto2Activity : AppCompatActivity() {
     private lateinit var binding: CriarProjeto2ScreenBinding
     private lateinit var dbRef: DatabaseReference
+    private lateinit var firebaseAuth: FirebaseAuth
 
     private lateinit var name: EditText
     private lateinit var price: EditText
@@ -31,6 +33,7 @@ class CriarProjeto2Activity : AppCompatActivity() {
         desc = binding.descInput.editText!!
         plataform = binding.plataformaInput.editText!!
 
+        firebaseAuth = FirebaseAuth.getInstance()
         dbRef = FirebaseDatabase.getInstance().getReference("Services")
 
         binding.icBack.setOnClickListener {
@@ -52,9 +55,7 @@ class CriarProjeto2Activity : AppCompatActivity() {
         val lua =
             "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/lua-cheia%20(1)%202%20(1).png?alt=media&token=9d385251-b5b4-421f-ad5c-7b4adcaf2a8c"
 
-        var serviceImg = ""
-
-        serviceImg = when {
+        val serviceImg: String = when {
             days.text.toString().toIntOrNull()!! <= 7 -> {
                 meteoro
             }
@@ -66,6 +67,7 @@ class CriarProjeto2Activity : AppCompatActivity() {
             }
         }
 
+        val creatorId = firebaseAuth.currentUser?.uid
         val serviceName = name.text.toString()
         val servicePrice = "R$" + price.text.toString()
         val serviceDays = days.text.toString() + " dias"
@@ -96,7 +98,8 @@ class CriarProjeto2Activity : AppCompatActivity() {
                 servicePrice,
                 serviceDays,
                 serviceDesc,
-                servicePlataform
+                servicePlataform,
+                creatorId
             )
 
             dbRef.child(serviceId).setValue(service)
@@ -104,7 +107,7 @@ class CriarProjeto2Activity : AppCompatActivity() {
                     binding.buttonProximo.isClickable = false
                     startActivity(Intent(this, PagamentoProjetoActivity::class.java))
                     finish()
-                }.addOnFailureListener { err ->
+                }.addOnFailureListener {
                     Toast.makeText(
                         this,
                         "O projeto $serviceName não foi armazenado!",
