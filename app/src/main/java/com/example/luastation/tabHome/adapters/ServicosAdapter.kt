@@ -39,13 +39,14 @@ class ServicosAdapter() : ListAdapter<Services, ServicosAdapter.MyViewHolder>(DI
             price: String?,
             days: String?,
             desc: String?,
-            plataform: String?
+            plataform: String?,
+            creator: String?
         ) {
             firebaseAuth = FirebaseAuth.getInstance()
             dbRef = FirebaseDatabase.getInstance().getReference("Users")
 
             val firebaseUser = firebaseAuth.currentUser
-            val servico = Services(id, name, img, price, days, desc, plataform)
+            val servico = Services(id, name, img, price, days, desc, plataform, creator)
 
             dbRef.child((firebaseUser!!.uid)).child("ServicosFav").child(id!!).setValue(servico)
         }
@@ -82,6 +83,7 @@ class ServicosAdapter() : ListAdapter<Services, ServicosAdapter.MyViewHolder>(DI
         val plataform = service.plataform
         val desc = service.desc
         val img = service.img
+        val creator = service.creator
 
         Picasso.get().load(service.img).into(holder.binding.imgDificuldade)
         holder.binding.titleText.text = service.name
@@ -93,7 +95,7 @@ class ServicosAdapter() : ListAdapter<Services, ServicosAdapter.MyViewHolder>(DI
         holder.binding.icon.setOnClickListener {
             if (holder.binding.icon.isChecked) {
                 holder.binding.favoriteAnimation.visibility = View.VISIBLE
-                favorite(id, name, img, price, days, desc, plataform)
+                favorite(id, name, img, price, days, desc, plataform, creator)
                 Toast.makeText(holder.itemView.context, "Favoritado com sucesso!", Toast.LENGTH_SHORT).show()
             } else {
                 desfavoritar(id)
@@ -105,12 +107,14 @@ class ServicosAdapter() : ListAdapter<Services, ServicosAdapter.MyViewHolder>(DI
         holder.itemView.setOnClickListener {
             val context: Context = holder.itemView.context
             val intent = Intent(context, DetalhesActivity::class.java)
+            intent.putExtra("iId", id)
             intent.putExtra("iTitle", name)
             intent.putExtra("iPrice", price)
             intent.putExtra("iDays", days)
             intent.putExtra("iPlataform", plataform)
             intent.putExtra("iDesc", desc)
             intent.putExtra("iImg", img)
+            intent.putExtra("iCreator", creator)
             context.startActivity(intent)
         }
     }
