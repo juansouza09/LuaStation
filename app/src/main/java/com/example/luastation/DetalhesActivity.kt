@@ -58,6 +58,8 @@ class DetalhesActivity : AppCompatActivity() {
 
         binding.btnCanditadar.setOnClickListener {
             Toast.makeText(this, "Boa sorte, Astronauta!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, EfetuarProjetoActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -17,7 +17,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
-class ServicosAdapter() : ListAdapter<Services, ServicosAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class ServicosAdapter : ListAdapter<Services, ServicosAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private lateinit var dbRef: DatabaseReference
@@ -96,10 +96,18 @@ class ServicosAdapter() : ListAdapter<Services, ServicosAdapter.MyViewHolder>(DI
             if (holder.binding.icon.isChecked) {
                 holder.binding.favoriteAnimation.visibility = View.VISIBLE
                 favorite(id, name, img, price, days, desc, plataform, creator)
-                Toast.makeText(holder.itemView.context, "Favoritado com sucesso!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    holder.itemView.context,
+                    "Favoritado com sucesso!",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 desfavoritar(id)
-                Toast.makeText(holder.itemView.context, "Desfavoritado com sucesso!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    holder.itemView.context,
+                    "Desfavoritado com sucesso!",
+                    Toast.LENGTH_SHORT
+                ).show()
                 holder.binding.favoriteAnimation.visibility = View.GONE
             }
         }
