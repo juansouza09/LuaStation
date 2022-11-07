@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase
 class CriarProjeto2Activity : AppCompatActivity() {
     private lateinit var binding: CriarProjeto2ScreenBinding
     private lateinit var dbRef: DatabaseReference
+    private lateinit var dbRef2: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
 
     private lateinit var name: EditText
@@ -26,16 +27,24 @@ class CriarProjeto2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = CriarProjeto2ScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        getInstance()
+        initListeners()
 
         name = binding.nomeProjetoInput.editText!!
         price = binding.priceInput.editText!!
         days = binding.prazoInput.editText!!
         desc = binding.descInput.editText!!
         plataform = binding.plataformaInput.editText!!
+    }
 
+    private fun getInstance() {
         firebaseAuth = FirebaseAuth.getInstance()
         dbRef = FirebaseDatabase.getInstance().getReference("Services")
+        dbRef2 = FirebaseDatabase.getInstance().getReference("Users")
+            .child(firebaseAuth.currentUser!!.uid).child("Meus Projetos")
+    }
 
+    private fun initListeners() {
         binding.icBack.setOnClickListener {
             startActivity(Intent(this, CriarProjetoActivity::class.java))
             finish()
@@ -43,6 +52,7 @@ class CriarProjeto2Activity : AppCompatActivity() {
 
         binding.buttonProximo.setOnClickListener {
             saveServiceData()
+            finish()
         }
     }
 
@@ -107,6 +117,17 @@ class CriarProjeto2Activity : AppCompatActivity() {
                     binding.buttonProximo.isClickable = false
                     startActivity(Intent(this, PagamentoProjetoActivity::class.java))
                     finish()
+                }.addOnFailureListener {
+                    Toast.makeText(
+                        this,
+                        "O projeto $serviceName não foi armazenado!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            dbRef2.child(serviceId).setValue(service)
+                .addOnCompleteListener {
+
                 }.addOnFailureListener {
                     Toast.makeText(
                         this,

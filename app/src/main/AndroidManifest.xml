@@ -22,15 +22,6 @@
         <activity android:name="com.example.luastation.firebase.cadastro.Etapa1Activity"
             android:exported="true"/>
 
-        <activity android:name="com.example.luastation.firebase.cadastro.Etapa1EmpresaActivity"
-            android:exported="true"/>
-
-        <activity android:name="com.example.luastation.firebase.cadastro.Etapa2Activity"
-            android:exported="true"/>
-
-        <activity android:name="com.example.luastation.firebase.cadastro.Etapa2EmpresaActivity"
-            android:exported="true"/>
-
         <activity android:name="com.example.luastation.firebase.cadastro.Etapa3Activity"
             android:exported="true"/>
 
@@ -56,6 +47,12 @@
             android:exported="true"/>
 
         <activity android:name=".PerfilContratanteActivity"
+            android:exported="true"/>
+
+        <activity android:name=".EfetuarProjetoActivity"
+            android:exported="true"/>
+
+        <activity android:name=".NotificationActivity"
             android:exported="true"/>
 
         <activity
