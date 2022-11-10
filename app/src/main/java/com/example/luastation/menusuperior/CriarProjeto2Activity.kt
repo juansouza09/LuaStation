@@ -52,7 +52,6 @@ class CriarProjeto2Activity : AppCompatActivity() {
 
         binding.buttonProximo.setOnClickListener {
             saveServiceData()
-            finish()
         }
     }
 
@@ -134,6 +133,7 @@ class CriarProjeto2Activity : AppCompatActivity() {
                         "O projeto $serviceName não foi armazenado!",
                         Toast.LENGTH_SHORT
                     ).show()
+                    finish()
                 }
         }
     }

@@ -10,7 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.DetalhesActivity
 import com.example.luastation.databinding.FragmentMeusFreelasBinding
+import com.example.luastation.firebase.models.Notification
+import com.example.luastation.firebase.models.Services
 import com.example.luastation.tabHome.adapters.MeusFreelasAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class MeusFreelasFragment : Fragment() {
 
@@ -18,6 +22,8 @@ class MeusFreelasFragment : Fragment() {
     var layoutManager: LinearLayoutManager? = null
     var binding: FragmentMeusFreelasBinding? = null
     var adapter: MeusFreelasAdapter? = null
+    private lateinit var database: DatabaseReference
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,30 +37,39 @@ class MeusFreelasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setRecyclerView()
+        firebaseAuth = FirebaseAuth.getInstance()
+        getFreelasData()
     }
+
 
     private fun setRecyclerView() {
         recyclerview = binding?.recyclerFreelas
         recyclerview!!.setHasFixedSize(true)
         layoutManager = LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
         recyclerview!!.layoutManager = layoutManager
-        adapter = MeusFreelasAdapter(getFreelas())
-        adapter!!.setOnItemClickListener(object : MeusFreelasAdapter.onItemClickListener {
-            override fun onItemClick() {
-                val intent = Intent(requireContext(), DetalhesActivity::class.java)
-                startActivity(intent)
-            }
-        })
+        adapter = MeusFreelasAdapter()
         recyclerview!!.adapter = adapter
     }
 
-    private fun getFreelas(): List<Freelas> {
-        return arrayListOf(
-            Freelas("Aplicativo financeiro", "R$2100,00"),
-            Freelas("Landing page restaurante", "R$400,00"),
-            Freelas("Rede social", "R$2500,00")
-        ).toList()
-    }
+    private fun getFreelasData() {
+        database = FirebaseDatabase.getInstance().getReference("Users")
+            .child(firebaseAuth.currentUser!!.uid).child("Meus Projetos")
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val freelasArrayList = mutableListOf<Services>()
+                if (snapshot.exists()) {
+                    for (serviceSnapshot in snapshot.children) {
+                        val freela = serviceSnapshot.getValue(Services::class.java)
+                        freelasArrayList.add(freela!!)
+                    }
+                    adapter?.submitList(freelasArrayList)
+                    recyclerview?.visibility = View.VISIBLE
+                }
+            }
 
-    data class Freelas(val title: String, val price: String)
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
 }

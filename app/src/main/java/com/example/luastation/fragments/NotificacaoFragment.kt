@@ -41,7 +41,7 @@ class NotificacaoFragment : Fragment() {
         recyclerView?.adapter = myAdapter
     }
 
-    private fun getNotificationData() {
+    fun getNotificationData() {
         database = FirebaseDatabase.getInstance().getReference("Notification")
             .child(firebaseAuth.currentUser!!.uid)
         database.addValueEventListener(object : ValueEventListener {
