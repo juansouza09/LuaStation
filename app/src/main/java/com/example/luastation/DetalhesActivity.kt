@@ -65,7 +65,7 @@ class DetalhesActivity : AppCompatActivity() {
 
     private fun getServiceData() {
         val aCreator = intent.getStringExtra("iCreator")
-        database = FirebaseDatabase.getInstance().getReference("Users").child(aCreator!!)
+        database = FirebaseDatabase.getInstance().getReference("Users").child(aCreator.toString())
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 binding.textNameContratante.text = snapshot.child("name").value.toString()
