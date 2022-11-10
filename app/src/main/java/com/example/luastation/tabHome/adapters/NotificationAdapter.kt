@@ -1,37 +1,62 @@
 package com.example.luastation.tabHome.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luastation.R
-import com.example.luastation.fragments.NotificacaoFragment
+import com.example.luastation.DetalhesActivity
+import com.example.luastation.databinding.ItemNotificacaoBinding
+import com.example.luastation.firebase.models.Notification
 
-class NotificationAdapter(private val notification: List<NotificacaoFragment.Notification>) :
-    RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.item_notificacao, parent, false)
-        return NotificationViewHolder(view)
-    }
+class NotificationAdapter :
+    ListAdapter<Notification, NotificationAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
-        holder.bind(notification[position])
-    }
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Notification>() {
+            override fun areItemsTheSame(oldItem: Notification, newItem: Notification): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-    override fun getItemCount(): Int {
-        return notification.size
-    }
-
-    class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        fun bind(data: NotificacaoFragment.Notification) {
-            with(itemView) {
-                val txtInitial = findViewById<TextView>(R.id.title_notification_text)
-
-                txtInitial.text = data.description
+            override fun areContentsTheSame(oldItem: Notification, newItem: Notification): Boolean {
+                return oldItem == newItem
             }
         }
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        return MyViewHolder(
+            ItemNotificacaoBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val notification = getItem(position)
+
+        val id = notification.id
+        val title = notification.title
+        val desc = notification.description
+        val email = notification.email
+
+        holder.binding.titleNotificationText.text = notification.title
+
+        holder.itemView.setOnClickListener {
+            val context: Context = holder.itemView.context
+            val intent = Intent(context, DetalhesActivity::class.java)
+            intent.putExtra("iId", id)
+            intent.putExtra("iTitle", title)
+            intent.putExtra("iDesc", desc)
+            intent.putExtra("iEmail", email)
+            context.startActivity(intent)
+        }
+    }
+
+    inner class MyViewHolder(val binding: ItemNotificacaoBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }

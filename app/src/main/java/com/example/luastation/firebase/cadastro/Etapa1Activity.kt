@@ -22,6 +22,7 @@ class Etapa1Activity : AppCompatActivity() {
     private lateinit var binding: CadastroScreenBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
+    private lateinit var databaseNotification: DatabaseReference
     private var email = ""
     private var password = ""
     private var cpf_cnpj = ""
@@ -40,6 +41,7 @@ class Etapa1Activity : AppCompatActivity() {
         DateInputMask(date).listen()
 
         database = FirebaseDatabase.getInstance().getReference("Users")
+        databaseNotification = FirebaseDatabase.getInstance().getReference("Notification")
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.buttonProximo.setOnClickListener {
@@ -88,6 +90,10 @@ class Etapa1Activity : AppCompatActivity() {
 
                 val firebaseUser = firebaseAuth.currentUser
                 val email = firebaseUser!!.email
+
+                val currentUserNotificationDb = databaseNotification.child((firebaseUser.uid))
+                currentUserNotificationDb.child("id").setValue((firebaseUser.uid))
+
 
                 val currentUserDb = database.child((firebaseUser.uid))
                 currentUserDb.child("id").setValue((firebaseUser.uid))

@@ -8,45 +8,58 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.databinding.FragmentNotificacoesBinding
+import com.example.luastation.firebase.models.Notification
+import com.example.luastation.firebase.models.Services
 import com.example.luastation.tabHome.adapters.NotificationAdapter
+import com.example.luastation.tabHome.adapters.ServicosAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class NotificacaoFragment : Fragment() {
     private lateinit var binding: FragmentNotificacoesBinding
     var recyclerView: RecyclerView? = null
-    var adapter: NotificationAdapter? = null
-    var layoutManager: LinearLayoutManager? = null
+    private lateinit var database: DatabaseReference
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var myAdapter: NotificationAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNotificacoesBinding.inflate(inflater, container, false)
+        initAdapter()
+        firebaseAuth = FirebaseAuth.getInstance()
+        getNotificationData()
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setRecyclerView()
+    private fun initAdapter() {
+        recyclerView?.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView?.setHasFixedSize(true)
+        myAdapter = NotificationAdapter()
+        recyclerView?.adapter = myAdapter
     }
 
-    private fun setRecyclerView() {
-        recyclerView = binding?.recyclerServicos
-        recyclerView!!.setHasFixedSize(true)
-        layoutManager = LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
-        recyclerView!!.layoutManager = layoutManager
-        adapter = NotificationAdapter(getNotification())
-        recyclerView!!.adapter = adapter
-    }
+    fun getNotificationData() {
+        database = FirebaseDatabase.getInstance().getReference("Notification")
+            .child(firebaseAuth.currentUser!!.uid)
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val notificationsArrayList = mutableListOf<Notification>()
+                if (snapshot.exists()) {
+                    for (serviceSnapshot in snapshot.children) {
+                        val notification = serviceSnapshot.getValue(Notification::class.java)
+                        notificationsArrayList.add(notification!!)
+                    }
+                    myAdapter.submitList(notificationsArrayList)
+                    recyclerView?.visibility = View.VISIBLE
+                }
+            }
 
-    private fun getNotification(): List<Notification> {
-        return arrayListOf(
-            Notification("Serviço aceito!"),
-            Notification("Pagamento realizado!"),
-            Notification("Serviço aceito!"),
-            Notification("Solicitação recusada"),
-            Notification("Veja freelas disponíveis!")
-        ).toList()
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
-
-    data class Notification(val description: String)
 }
