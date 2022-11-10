@@ -13,50 +13,56 @@
             android:name=".HomeActivity"
             android:exported="true" />
 
-        <activity android:name="com.example.luastation.firebase.login.LoginActivity"
-            android:exported="true"/>
+        <activity
+            android:name="com.example.luastation.firebase.login.LoginActivity"
+            android:exported="true" />
 
-        <activity android:name="com.example.luastation.firebase.cadastro.EscolhaActivity"
-            android:exported="true"/>
+        <activity
+            android:name="com.example.luastation.firebase.cadastro.EscolhaActivity"
+            android:exported="true" />
 
-        <activity android:name="com.example.luastation.firebase.cadastro.Etapa1Activity"
-            android:exported="true"/>
+        <activity
+            android:name="com.example.luastation.firebase.cadastro.Etapa1Activity"
+            android:exported="true" />
 
-        <activity android:name="com.example.luastation.firebase.cadastro.Etapa1EmpresaActivity"
-            android:exported="true"/>
+        <activity
+            android:name="com.example.luastation.firebase.cadastro.Etapa3Activity"
+            android:exported="true" />
 
-        <activity android:name="com.example.luastation.firebase.cadastro.Etapa2Activity"
-            android:exported="true"/>
+        <activity
+            android:name=".menusuperior.MenuActivity"
+            android:exported="true" />
 
-        <activity android:name="com.example.luastation.firebase.cadastro.Etapa2EmpresaActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".menusuperior.SegurancaActivity"
+            android:exported="true" />
 
-        <activity android:name="com.example.luastation.firebase.cadastro.Etapa3Activity"
-            android:exported="true"/>
+        <activity
+            android:name=".menusuperior.CriarProjetoActivity"
+            android:exported="true" />
 
-        <activity android:name=".menusuperior.MenuActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".menusuperior.CriarProjeto2Activity"
+            android:exported="true" />
 
-        <activity android:name=".menusuperior.SegurancaActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".menusuperior.PagamentoProjetoActivity"
+            android:exported="true" />
 
-        <activity android:name=".menusuperior.CriarProjetoActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".menusuperior.ProjetoAdicionadoActivity"
+            android:exported="true" />
 
-        <activity android:name=".menusuperior.CriarProjeto2Activity"
-            android:exported="true"/>
+        <activity
+            android:name=".DetalhesActivity"
+            android:exported="true" />
 
-        <activity android:name=".menusuperior.PagamentoProjetoActivity"
-            android:exported="true"/>
-
-        <activity android:name=".menusuperior.ProjetoAdicionadoActivity"
-            android:exported="true"/>
-
-        <activity android:name=".DetalhesActivity"
-            android:exported="true"/>
-
-        <activity android:name=".PerfilContratanteActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".PerfilContratanteActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ErrorSignUpActivity"
+            android:exported="true" />
 
         <activity
             android:name=".SplashActivity"

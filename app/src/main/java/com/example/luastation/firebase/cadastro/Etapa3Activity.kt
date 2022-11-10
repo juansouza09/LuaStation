@@ -3,8 +3,9 @@ package com.example.luastation.firebase.cadastro
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.luastation.firebase.login.LoginActivity
+import com.example.luastation.ErrorSignUpActivity
 import com.example.luastation.databinding.Cadastro3EtapaScreenBinding
+import com.example.luastation.firebase.login.LoginActivity
 
 class Etapa3Activity : AppCompatActivity() {
     private lateinit var binding: Cadastro3EtapaScreenBinding
@@ -14,7 +15,7 @@ class Etapa3Activity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonFinalizar.setOnClickListener {
-            proximo()
+            validate()
         }
 
         binding.btnCancelar.setOnClickListener {
@@ -23,6 +24,15 @@ class Etapa3Activity : AppCompatActivity() {
 
         binding.icBack.setOnClickListener {
             voltar()
+        }
+    }
+
+    fun validate() {
+        if (!binding.checkBaixaRenda.isChecked && !binding.checkLgbt.isChecked && !binding.checkMulher.isChecked && !binding.checkPreto.isChecked) {
+            val intent = Intent(this, ErrorSignUpActivity::class.java)
+            startActivity(intent)
+        } else {
+            proximo()
         }
     }
 
