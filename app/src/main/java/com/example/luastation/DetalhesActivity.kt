@@ -2,30 +2,31 @@ package com.example.luastation
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.ActivityServicoDetalhesBinding
-import com.example.luastation.firebase.models.Services
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
 class DetalhesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityServicoDetalhesBinding
     private lateinit var database: DatabaseReference
+    var creator: String? = null
+    var serviceId: String? = null
+    var title: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityServicoDetalhesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         listeners()
         detalhesIntent()
-        getServiceData()
+        getContratanteData()
     }
 
-
-
     private fun detalhesIntent() {
-        var intent = intent
+        val intent = intent
+        val aServiceId = intent.getStringExtra("iId")
         val aTitle = intent.getStringExtra("iTitle")
         val aPrice = intent.getStringExtra("iPrice")
         val aDays = intent.getStringExtra("iDays")
@@ -42,6 +43,12 @@ class DetalhesActivity : AppCompatActivity() {
         binding.textNameContratante.text = aCreator
 
         Picasso.get().load(aImg).into(binding.imgDificultade)
+
+        if (aCreator != null && aTitle != null && aServiceId != null) {
+            creator = aCreator
+            title = aTitle
+            serviceId = aServiceId
+        }
     }
 
     private fun listeners() {
@@ -53,19 +60,22 @@ class DetalhesActivity : AppCompatActivity() {
 
         binding.imgContratante.setOnClickListener {
             val intent = Intent(this, PerfilContratanteActivity::class.java)
+            intent.putExtra("eCreatorId", creator)
             startActivity(intent)
         }
 
         binding.btnCanditadar.setOnClickListener {
             Toast.makeText(this, "Boa sorte, Astronauta!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, EfetuarProjetoActivity::class.java)
+            intent.putExtra("eCreator", creator)
+            intent.putExtra("eId", serviceId)
+            intent.putExtra("eTitle", title)
             startActivity(intent)
         }
     }
 
-    private fun getServiceData() {
-        val aCreator = intent.getStringExtra("iCreator")
-        database = FirebaseDatabase.getInstance().getReference("Users").child(aCreator.toString())
+    private fun getContratanteData() {
+        database = FirebaseDatabase.getInstance().getReference("Users").child(creator!!)
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 binding.textNameContratante.text = snapshot.child("name").value.toString()

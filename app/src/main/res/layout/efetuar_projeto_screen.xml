@@ -10,15 +10,17 @@
         android:id="@+id/h1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
         android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:maxLines="2"
         android:text="Seu Projeto"
         android:textColor="@color/white"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ic_back"
         app:lineHeight="23dp" />
 
 

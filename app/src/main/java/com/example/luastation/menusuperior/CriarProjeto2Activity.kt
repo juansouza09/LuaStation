@@ -126,7 +126,6 @@ class CriarProjeto2Activity : AppCompatActivity() {
 
             dbRef2.child(serviceId).setValue(service)
                 .addOnCompleteListener {
-
                 }.addOnFailureListener {
                     Toast.makeText(
                         this,

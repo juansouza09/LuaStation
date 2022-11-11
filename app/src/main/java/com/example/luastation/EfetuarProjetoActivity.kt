@@ -5,11 +5,8 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.luastation.databinding.ActivityPerfilUsuarioBinding
 import com.example.luastation.databinding.EfetuarProjetoScreenBinding
 import com.example.luastation.firebase.models.Notification
-import com.example.luastation.firebase.models.Services
-import com.example.luastation.menusuperior.PagamentoProjetoActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -20,37 +17,47 @@ class EfetuarProjetoActivity : AppCompatActivity() {
 
     private var serviceId: String? = null
     private var creatorId: String? = null
-    private var titleService: String? = null
-    private lateinit var email: EditText
-    private lateinit var desc: EditText
+    private var title: String? = null
+    private var email: EditText? = null
+    private var desc: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = EfetuarProjetoScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        saveInvite()
-        email = binding.emailInviteInput.editText!!
-        desc = binding.descInput.editText!!
+    }
+
+    override fun onStart() {
+        super.onStart()
+        email = binding.emailInviteInput.editText
+        desc = binding.descInput.editText
 
         dadosIntent()
         listeners()
     }
 
     fun dadosIntent() {
-        var intent = intent
-        val aIdService = intent.getStringExtra("iId")
-        val aCreator = intent.getStringExtra("iCreator")
-        val aTitle = intent.getStringExtra("iTitle")
+        val intent = intent
+        val aCreator = intent.getStringExtra("eCreator")
+        val aIdService = intent.getStringExtra("eId")
+        val aTitle = intent.getStringExtra("eTitle")
 
         serviceId = aIdService
         creatorId = aCreator
-        titleService = aTitle
+        title = aTitle
 
-
+        binding.h1.text = aTitle
     }
 
     private fun listeners() {
         binding.icBack.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.buttonProximo.setOnClickListener {
+            saveInvite()
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
@@ -62,9 +69,9 @@ class EfetuarProjetoActivity : AppCompatActivity() {
         val notificationId = dbReference.push().key!!
         val notification = Notification(
             notificationId,
-            title = titleService,
-            email = email.text.toString(),
-            description = desc.text.toString()
+            title,
+            email?.text.toString(),
+            desc?.text.toString()
         )
 
         dbReference.child(creatorId!!).child(notificationId).setValue(notification)

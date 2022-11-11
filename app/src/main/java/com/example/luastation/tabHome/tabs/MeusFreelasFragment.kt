@@ -1,6 +1,5 @@
 package com.example.luastation.tabHome.tabs
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luastation.DetalhesActivity
 import com.example.luastation.databinding.FragmentMeusFreelasBinding
-import com.example.luastation.firebase.models.Notification
 import com.example.luastation.firebase.models.Services
 import com.example.luastation.tabHome.adapters.MeusFreelasAdapter
 import com.google.firebase.auth.FirebaseAuth
@@ -40,7 +37,6 @@ class MeusFreelasFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         getFreelasData()
     }
-
 
     private fun setRecyclerView() {
         recyclerview = binding?.recyclerFreelas

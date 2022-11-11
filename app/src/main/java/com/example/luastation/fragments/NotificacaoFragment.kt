@@ -17,10 +17,11 @@ import com.google.firebase.database.*
 
 class NotificacaoFragment : Fragment() {
     private lateinit var binding: FragmentNotificacoesBinding
-    var recyclerView: RecyclerView? = null
+    private lateinit var recyclerview: RecyclerView
     private lateinit var database: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var myAdapter: NotificationAdapter
+    var layoutManager: LinearLayoutManager? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,17 +29,19 @@ class NotificacaoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNotificacoesBinding.inflate(inflater, container, false)
-        initAdapter()
+        setRecyclerView()
         firebaseAuth = FirebaseAuth.getInstance()
         getNotificationData()
         return binding.root
     }
 
-    private fun initAdapter() {
-        recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView?.setHasFixedSize(true)
+    private fun setRecyclerView() {
+        recyclerview = binding.recyclerServicos
+        recyclerview.setHasFixedSize(true)
+        layoutManager = LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
+        recyclerview.layoutManager = layoutManager
         myAdapter = NotificationAdapter()
-        recyclerView?.adapter = myAdapter
+        recyclerview.adapter = myAdapter
     }
 
     fun getNotificationData() {
@@ -53,7 +56,7 @@ class NotificacaoFragment : Fragment() {
                         notificationsArrayList.add(notification!!)
                     }
                     myAdapter.submitList(notificationsArrayList)
-                    recyclerView?.visibility = View.VISIBLE
+                    recyclerview.visibility = View.VISIBLE
                 }
             }
 

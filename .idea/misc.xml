@@ -76,6 +76,7 @@
         <entry key="app/src/main/res/layout/item_servicos.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_servicos_fav.xml" value="0.24259259259259258" />
         <entry key="app/src/main/res/layout/login_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/notification_screen.xml" value="0.24342105263157895" />
         <entry key="app/src/main/res/layout/projeto_adicionado_screen.xml" value="0.2632034632034632" />
         <entry key="app/src/main/res/layout/projeto_pagamento_screen.xml" value="0.33" />
         <entry key="app/src/main/res/layout/seguranca_screen.xml" value="0.26666666666666666" />

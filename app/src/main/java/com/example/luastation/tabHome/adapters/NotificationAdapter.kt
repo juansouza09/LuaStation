@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luastation.DetalhesActivity
+import com.example.luastation.NotificationActivity
 import com.example.luastation.databinding.ItemNotificacaoBinding
 import com.example.luastation.firebase.models.Notification
 
@@ -48,7 +48,7 @@ class NotificationAdapter :
 
         holder.itemView.setOnClickListener {
             val context: Context = holder.itemView.context
-            val intent = Intent(context, DetalhesActivity::class.java)
+            val intent = Intent(context, NotificationActivity::class.java)
             intent.putExtra("iId", id)
             intent.putExtra("iTitle", title)
             intent.putExtra("iDesc", desc)

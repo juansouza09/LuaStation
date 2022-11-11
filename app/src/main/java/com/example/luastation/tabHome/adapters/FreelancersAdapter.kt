@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.PerfilContratanteActivity
+import com.example.luastation.PerfilFreelancerActivity
 import com.example.luastation.databinding.ItemFreelancersBinding
 import com.example.luastation.firebase.models.Freelancers
 import com.google.firebase.auth.FirebaseAuth
@@ -77,8 +78,8 @@ class FreelancersAdapter() :
         val id = freelancer.id
         val name = freelancer.name
         val email = freelancer.email
-        val cpf_cnpj = freelancer.cpf_cnpj
         val dataNasc = freelancer.dataNasc
+        val cpf_cnpj = freelancer.cpf_cnpj
 
         holder.binding.emailText.text = email
         holder.binding.titleNameText.text = name
@@ -105,11 +106,11 @@ class FreelancersAdapter() :
 
         holder.binding.buttonFinalizar.setOnClickListener {
             val context: Context = holder.itemView.context
-            val intent = Intent(context, PerfilContratanteActivity::class.java)
+            val intent = Intent(context, PerfilFreelancerActivity::class.java)
             intent.putExtra("iName", name)
             intent.putExtra("iEmail", email)
-            intent.putExtra("iCpf_cnpj", cpf_cnpj)
             intent.putExtra("iDataNasc", dataNasc)
+            intent.putExtra("iCpf_cnpj", cpf_cnpj)
             context.startActivity(intent)
         }
     }

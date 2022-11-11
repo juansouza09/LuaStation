@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luastation.PerfilContratanteActivity
+import com.example.luastation.PerfilFreelancerActivity
 import com.example.luastation.databinding.ItemFreelancersFavBinding
 import com.example.luastation.firebase.models.Freelancers
 import com.google.firebase.auth.FirebaseAuth
@@ -80,11 +80,11 @@ class FreelancerFavAdapter() :
 
         holder.binding.buttonFinalizar.setOnClickListener {
             val context: Context = holder.itemView.context
-            val intent = Intent(context, PerfilContratanteActivity::class.java)
+            val intent = Intent(context, PerfilFreelancerActivity::class.java)
             intent.putExtra("iName", name)
             intent.putExtra("iEmail", email)
-            intent.putExtra("iCpf_cnpj", cpf_cnpj)
             intent.putExtra("iDataNasc", dataNasc)
+            intent.putExtra("iCpf_cnpj", cpf_cnpj)
             context.startActivity(intent)
         }
     }

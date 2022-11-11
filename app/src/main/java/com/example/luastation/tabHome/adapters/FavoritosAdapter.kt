@@ -64,6 +64,7 @@ class FavoritosAdapter() : ListAdapter<Services, FavoritosAdapter.MyViewHolder>(
         val plataform = service.plataform
         val desc = service.desc
         val img = service.img
+        val creator = service.creator
 
         Picasso.get().load(service.img).into(holder.binding.imgDificuldade)
         holder.binding.titleText.text = service.name
@@ -76,19 +77,25 @@ class FavoritosAdapter() : ListAdapter<Services, FavoritosAdapter.MyViewHolder>(
             if (!holder.binding.icon.isChecked) {
                 FavoritosAdapter.desfavoritar(id)
                 holder.binding.favoriteAnimation.visibility = View.GONE
-                Toast.makeText(holder.itemView.context, "Desfavoritado com sucesso!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    holder.itemView.context,
+                    "Desfavoritado com sucesso!",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
         holder.itemView.setOnClickListener {
             val context: Context = holder.itemView.context
             val intent = Intent(context, DetalhesActivity::class.java)
+            intent.putExtra("iId", id)
             intent.putExtra("iTitle", name)
             intent.putExtra("iPrice", price)
             intent.putExtra("iDays", days)
             intent.putExtra("iPlataform", plataform)
             intent.putExtra("iDesc", desc)
             intent.putExtra("iImg", img)
+            intent.putExtra("iCreator", creator)
             context.startActivity(intent)
         }
     }

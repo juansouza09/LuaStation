@@ -42,21 +42,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun animation() {
-        binding.viewPagerHome?.let{
-            it.setPageTransformer(ZoomOutPageTransformer())
-        }
+        binding.viewPagerHome.setPageTransformer(ZoomOutPageTransformer())
     }
 
     private fun setTabs() {
         val fm = requireActivity().supportFragmentManager
         val adapter = TabFragPageAdapter(fm, lifecycle)
-        binding?.let {
-            it.viewPagerHome.adapter = adapter
-        }
+        binding.viewPagerHome.adapter = adapter
     }
 
     private fun addTabsToPageIndicator() {
-        binding?.let {
+        binding.let {
             TabLayoutMediator(
                 it.tabLayout,
                 it.viewPagerHome

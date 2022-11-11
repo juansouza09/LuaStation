@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.databinding.FragmentServicosBinding
 import com.example.luastation.firebase.models.Services
+import com.example.luastation.tabHome.adapters.MeusFreelasAdapter
 import com.example.luastation.tabHome.adapters.NotificationAdapter
 import com.example.luastation.tabHome.adapters.ServicosAdapter
 import com.google.firebase.database.*
@@ -19,6 +20,7 @@ class ServicosFragment : Fragment() {
     private lateinit var binding: FragmentServicosBinding
     private lateinit var database: DatabaseReference
     private lateinit var myAdapter: ServicosAdapter
+    var layoutManager: LinearLayoutManager? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,16 +28,17 @@ class ServicosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentServicosBinding.inflate(inflater, container, false)
-        recyclerview = binding.recyclerServicos
-        initAdapter()
+        setRecyclerView()
         getServiceData()
         refreshFragment()
         return binding.root
     }
 
-    private fun initAdapter() {
-        recyclerview.layoutManager = LinearLayoutManager(requireContext())
+    private fun setRecyclerView() {
+        recyclerview = binding?.recyclerServicos
         recyclerview.setHasFixedSize(true)
+        layoutManager = LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
+        recyclerview.layoutManager = layoutManager
         myAdapter = ServicosAdapter()
         recyclerview.adapter = myAdapter
     }

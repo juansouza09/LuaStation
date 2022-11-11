@@ -24,12 +24,13 @@ class NotificationActivity : AppCompatActivity() {
 
     private fun dadosIntent() {
         var intent = intent
-        val aIdNotification = intent.getStringExtra("iId")
         val aTitle = intent.getStringExtra("iTitle")
         val aDesc = intent.getStringExtra("iDesc")
+        val aEmail = intent.getStringExtra("iEmail")
 
-        binding.nomeProjeto.text = aTitle
+        binding.emailAstronauta.text = aEmail
         binding.descNotification.text = aDesc
+        binding.titleScreen.text = aTitle
 
     }
 
