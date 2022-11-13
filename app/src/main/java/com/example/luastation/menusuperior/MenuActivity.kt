@@ -9,8 +9,10 @@ import com.example.luastation.firebase.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MenuActivity : AppCompatActivity() {
+
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var binding: ActivityMenuSeperiorBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuSeperiorBinding.inflate(layoutInflater)

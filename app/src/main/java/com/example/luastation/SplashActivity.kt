@@ -9,6 +9,7 @@ import com.example.luastation.firebase.login.LoginActivity
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: SplashActivityBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = SplashActivityBinding.inflate(layoutInflater)

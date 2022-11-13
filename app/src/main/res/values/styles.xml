@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="AppTabLayout2" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/roxo</item>
         <item name="tabIndicatorHeight">4dp</item>
@@ -37,6 +38,7 @@
     </style>
 
     //////////////Buttons
+
     <style name="buttonLogin">
         <item name="android:background">@drawable/button_login</item>
         <item name="android:fontFamily">@font/poppins_medium</item>

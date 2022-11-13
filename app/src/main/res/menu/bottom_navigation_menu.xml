@@ -4,21 +4,21 @@
         android:id="@+id/homeFragment"
         android:enabled="true"
         android:icon="@drawable/ic_home"
-        android:title="Home"/>
+        android:title="Home" />
     <item
         android:id="@+id/favoritosFragment"
         android:enabled="true"
         android:icon="@drawable/ic_favorite"
-        android:title="Favoritos"/>
+        android:title="Favoritos" />
     <item
         android:id="@+id/notificacaoFragment"
         android:enabled="true"
         android:icon="@drawable/ic_notificacao"
-        android:title="Notificações"/>
+        android:title="Notificações" />
     <item
         android:id="@+id/perfilFragment"
         android:enabled="true"
         android:icon="@drawable/ic_perfil"
-        android:title="Perfil"/>
+        android:title="Perfil" />
 
 </menu>

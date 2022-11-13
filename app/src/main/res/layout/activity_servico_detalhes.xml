@@ -16,7 +16,8 @@
         app:layout_constraintBottom_toTopOf="@id/bg_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/img_dificultade"
@@ -63,7 +64,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/plataforma_text"
@@ -141,7 +142,8 @@
         app:layout_constraintEnd_toEndOf="@id/title_text_freela"
         app:layout_constraintStart_toStartOf="@id/title_text_freela"
         app:layout_constraintTop_toBottomOf="@+id/price_text_freela"
-        app:srcCompat="@drawable/ic_app" />
+        app:srcCompat="@drawable/ic_app"
+        tools:ignore="ContentDescription" />
 
     <CheckBox
         android:id="@+id/icon"

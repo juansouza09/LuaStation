@@ -9,11 +9,12 @@ import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
 class DetalhesActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityServicoDetalhesBinding
     private lateinit var database: DatabaseReference
-    var creator: String? = null
-    var serviceId: String? = null
-    var title: String? = null
+    private var creator: String? = null
+    private var serviceId: String? = null
+    private var title: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

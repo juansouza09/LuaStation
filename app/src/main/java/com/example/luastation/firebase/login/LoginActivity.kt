@@ -12,6 +12,7 @@ import com.example.luastation.firebase.cadastro.EscolhaActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
+
     private lateinit var binding: LoginScreenBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private var email = ""
@@ -76,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun abrirCadastro() {
+    private fun abrirCadastro() {
         val cadastro = Intent(this, EscolhaActivity::class.java)
         startActivity(cadastro)
         finish()

@@ -18,7 +18,7 @@ class PerfilFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPerfilBinding.inflate(inflater, container, false)
         firebaseAuth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().getReference("Users")
@@ -26,7 +26,7 @@ class PerfilFragment : Fragment() {
         return binding.root
     }
 
-    fun setInfo() {
+    private fun setInfo() {
         val user = firebaseAuth.currentUser
         val userReference = database.child(user!!.uid)
 

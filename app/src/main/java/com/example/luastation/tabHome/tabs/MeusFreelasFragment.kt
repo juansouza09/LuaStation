@@ -15,12 +15,12 @@ import com.google.firebase.database.*
 
 class MeusFreelasFragment : Fragment() {
 
-    var recyclerview: RecyclerView? = null
-    var layoutManager: LinearLayoutManager? = null
-    var binding: FragmentMeusFreelasBinding? = null
-    var adapter: MeusFreelasAdapter? = null
     private lateinit var database: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
+    private var layoutManager: LinearLayoutManager? = null
+    var recyclerview: RecyclerView? = null
+    var binding: FragmentMeusFreelasBinding? = null
+    var adapter: MeusFreelasAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,

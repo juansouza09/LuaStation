@@ -19,14 +19,13 @@ class FreelancersFavFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var database: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
-
     private lateinit var myAdapter: FreelancerFavAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFreelancersFavBinding.inflate(inflater, container, false)
         recyclerView = binding.recyclerFreelancers
         firebaseAuth = FirebaseAuth.getInstance()

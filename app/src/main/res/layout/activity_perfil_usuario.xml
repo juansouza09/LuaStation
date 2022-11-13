@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 
     <com.airbnb.lottie.LottieAnimationView
@@ -221,7 +221,8 @@
             app:layout_constraintEnd_toStartOf="@id/img_lua"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_estrela" />
+            app:srcCompat="@drawable/img_estrela"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/img_lua"
@@ -231,7 +232,8 @@
             app:layout_constraintEnd_toStartOf="@id/img_meteoro"
             app:layout_constraintStart_toEndOf="@+id/img_estrela"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_lua" />
+            app:srcCompat="@drawable/img_lua"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/img_meteoro"
@@ -241,7 +243,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_lua"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_meteoro" />
+            app:srcCompat="@drawable/img_meteoro"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/item_count_estrela"

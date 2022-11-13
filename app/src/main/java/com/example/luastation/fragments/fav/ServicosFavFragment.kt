@@ -25,7 +25,7 @@ class ServicosFavFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentServicosFavBinding.inflate(inflater, container, false)
         recyclerview = binding.recyclerServicos
         firebaseAuth = FirebaseAuth.getInstance()

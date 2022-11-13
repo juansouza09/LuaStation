@@ -69,6 +69,6 @@
         android:layout_marginEnd="20dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/ic_app" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shape_branco" />
+        app:srcCompat="@drawable/shape_branco"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/title_name_text"

@@ -17,11 +17,8 @@ import java.util.*
 
 class PagamentoProjetoActivity : AppCompatActivity() {
 
-    private companion object {
-        private const val CHANNEL_ID = "channel01"
-    }
-
     private lateinit var binding: ProjetoPagamentoScreenBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ProjetoPagamentoScreenBinding.inflate(layoutInflater)
@@ -57,7 +54,7 @@ class PagamentoProjetoActivity : AppCompatActivity() {
 
         val notificationBuilder = NotificationCompat.Builder(
             this,
-            PagamentoProjetoActivity.CHANNEL_ID
+            CHANNEL_ID
         )
         notificationBuilder.setSmallIcon(R.drawable.ic_app)
         notificationBuilder.setContentTitle("Projeto na Lua Station")
@@ -75,12 +72,16 @@ class PagamentoProjetoActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name: CharSequence = "Lua Station Notificação"
             val description = "Descrição da notificação"
-
             val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val notificationChannel = NotificationChannel(PagamentoProjetoActivity.CHANNEL_ID, name, importance)
+            val notificationChannel =
+                NotificationChannel(CHANNEL_ID, name, importance)
             notificationChannel.description = description
             val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(notificationChannel)
         }
+    }
+
+    companion object {
+        const val CHANNEL_ID = "channel01"
     }
 }

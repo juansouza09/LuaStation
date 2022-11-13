@@ -23,7 +23,7 @@ class FreelancersFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFreelancersBinding.inflate(inflater, container, false)
         recyclerView = binding.recyclerFreelancers
         initAdapter()

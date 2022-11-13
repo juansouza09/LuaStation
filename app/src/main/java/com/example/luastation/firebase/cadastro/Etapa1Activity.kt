@@ -23,6 +23,7 @@ class Etapa1Activity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var databaseNotification: DatabaseReference
+
     private var email = ""
     private var password = ""
     private var cpf_cnpj = ""
@@ -85,17 +86,9 @@ class Etapa1Activity : AppCompatActivity() {
     private fun firebaseSignUp() {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {
-
-                binding.progressBar.visibility = View.VISIBLE
-
-                val firebaseUser = firebaseAuth.currentUser
-                val email = firebaseUser!!.email
-
-                val currentUserNotificationDb = databaseNotification.child((firebaseUser.uid))
-                currentUserNotificationDb.child("id").setValue((firebaseUser.uid))
-
-
+                val firebaseUser = firebaseAuth.currentUser!!
                 val currentUserDb = database.child((firebaseUser.uid))
+
                 currentUserDb.child("id").setValue((firebaseUser.uid))
                 currentUserDb.child("name").setValue(binding.nomeInput.editText?.text.toString())
                 currentUserDb.child("dataNasc")
@@ -104,6 +97,7 @@ class Etapa1Activity : AppCompatActivity() {
                 currentUserDb.child("cpf_cnpj")
                     .setValue(binding.cpfCnpjInput.editText?.text.toString())
 
+                binding.progressBar.visibility = View.VISIBLE
                 startActivity(Intent(this, HomeActivity::class.java))
                 finish()
             }
@@ -113,7 +107,7 @@ class Etapa1Activity : AppCompatActivity() {
             }
     }
 
-    fun cancelar() {
+    private fun cancelar() {
         val login = Intent(this, LoginActivity::class.java)
         startActivity(login)
         finish()
@@ -121,8 +115,8 @@ class Etapa1Activity : AppCompatActivity() {
 
     object MaskEditUtil {
         fun mask(ediTxt: EditText): TextWatcher {
-            var isUpdating: Boolean = false
-            var mask = ""
+            var isUpdating = false
+            var mask: String
             var old = ""
             return object : TextWatcher {
                 override fun afterTextChanged(s: Editable) {
@@ -139,9 +133,9 @@ class Etapa1Activity : AppCompatActivity() {
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                     val str = unmask(s.toString())
                     var mascara = ""
-                    when (str.length) {
-                        in 0..11 -> mask = "###.###.###-##"
-                        else -> mask = "##.###.###/####-##"
+                    mask = when (str.length) {
+                        in 0..11 -> "###.###.###-##"
+                        else -> "##.###.###/####-##"
                     }
                     if (isUpdating) {
                         old = str

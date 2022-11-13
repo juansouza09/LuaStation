@@ -9,6 +9,7 @@ import com.example.luastation.firebase.login.LoginActivity
 class ErrorSignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ErrorSignupActivityBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ErrorSignupActivityBinding.inflate(layoutInflater)

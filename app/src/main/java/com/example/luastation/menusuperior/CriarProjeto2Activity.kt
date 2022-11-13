@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class CriarProjeto2Activity : AppCompatActivity() {
+
     private lateinit var binding: CriarProjeto2ScreenBinding
     private lateinit var dbRef: DatabaseReference
     private lateinit var dbRef2: DatabaseReference
@@ -56,7 +57,6 @@ class CriarProjeto2Activity : AppCompatActivity() {
     }
 
     private fun saveServiceData() {
-
         val meteoro =
             "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/meteoro%201%20(2).png?alt=media&token=cb0ec932-e953-4bed-9ced-13e350205855"
         val estrela =
@@ -99,7 +99,6 @@ class CriarProjeto2Activity : AppCompatActivity() {
             plataform.error = "Coloque a plataforma corretamente, por favor!"
         } else {
             val serviceId = dbRef.push().key!!
-
             val service = Services(
                 serviceId,
                 serviceName,

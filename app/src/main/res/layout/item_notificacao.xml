@@ -13,7 +13,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shape_notificacao" />
+        app:srcCompat="@drawable/shape_notificacao"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/title_notification_text"
@@ -37,6 +38,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/item_container"
         app:layout_constraintTop_toTopOf="@+id/item_container"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/ic_app"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

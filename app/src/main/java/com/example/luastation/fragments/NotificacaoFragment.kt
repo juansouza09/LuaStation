@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class NotificacaoFragment : Fragment() {
+
     private lateinit var binding: FragmentNotificacoesBinding
     private lateinit var recyclerview: RecyclerView
     private lateinit var database: DatabaseReference
@@ -27,7 +28,7 @@ class NotificacaoFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentNotificacoesBinding.inflate(inflater, container, false)
         setRecyclerView()
         firebaseAuth = FirebaseAuth.getInstance()
@@ -44,7 +45,7 @@ class NotificacaoFragment : Fragment() {
         recyclerview.adapter = myAdapter
     }
 
-    fun getNotificationData() {
+    private fun getNotificationData() {
         database = FirebaseDatabase.getInstance().getReference("Notification")
             .child(firebaseAuth.currentUser!!.uid)
         database.addValueEventListener(object : ValueEventListener {

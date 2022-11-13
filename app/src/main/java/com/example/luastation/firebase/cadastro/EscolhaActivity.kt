@@ -7,7 +7,9 @@ import com.example.luastation.firebase.login.LoginActivity
 import com.example.luastation.databinding.CadastroEscolhaScreenBinding
 
 class EscolhaActivity : AppCompatActivity() {
+
     private lateinit var binding: CadastroEscolhaScreenBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = CadastroEscolhaScreenBinding.inflate(layoutInflater)
@@ -26,19 +28,19 @@ class EscolhaActivity : AppCompatActivity() {
         }
     }
 
-    fun empresa() {
+    private fun empresa() {
         val empresa = Intent(this, Etapa1Activity::class.java)
         startActivity(empresa)
         finish()
     }
 
-    fun freelancer() {
+    private fun freelancer() {
         val freelancer = Intent(this, Etapa3Activity::class.java)
         startActivity(freelancer)
         finish()
     }
 
-    fun cancelar() {
+    private fun cancelar() {
         val login = Intent(this, LoginActivity::class.java)
         startActivity(login)
         finish()

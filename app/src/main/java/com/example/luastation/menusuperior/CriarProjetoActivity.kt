@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.CriarProjetoScreenBinding
 
 class CriarProjetoActivity : AppCompatActivity() {
+
     private lateinit var binding: CriarProjetoScreenBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = CriarProjetoScreenBinding.inflate(layoutInflater)

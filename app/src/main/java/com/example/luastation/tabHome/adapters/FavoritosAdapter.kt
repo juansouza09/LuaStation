@@ -17,7 +17,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
-class FavoritosAdapter() : ListAdapter<Services, FavoritosAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class FavoritosAdapter : ListAdapter<Services, FavoritosAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private lateinit var dbRef: DatabaseReference

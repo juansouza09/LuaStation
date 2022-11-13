@@ -7,9 +7,10 @@ import com.example.luastation.databinding.ActivityPerfilUsuarioBinding
 import com.google.firebase.database.*
 
 class PerfilContratanteActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityPerfilUsuarioBinding
     private lateinit var database: DatabaseReference
-    var creatorId: String? = null
+    private var creatorId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

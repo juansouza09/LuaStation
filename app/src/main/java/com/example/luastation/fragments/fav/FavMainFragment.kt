@@ -20,7 +20,7 @@ class FavMainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
 
-    ): View? {
+    ): View {
         binding = FragmentFavMainBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -33,20 +33,17 @@ class FavMainFragment : Fragment() {
     }
 
     private fun animation() {
-        binding.viewPagerHome?.let{
-            it.setPageTransformer(ZoomOutPageTransformer())
-        }
+        binding.viewPagerHome.setPageTransformer(ZoomOutPageTransformer())
     }
+
     private fun setTabs() {
         val fm = requireActivity().supportFragmentManager
         val adapter = TabFragPageFavAdapter(fm, lifecycle)
-        binding?.let {
-            it.viewPagerHome.adapter = adapter
-        }
+        binding.viewPagerHome.adapter = adapter
     }
 
     private fun addTabsToPageIndicator() {
-        binding?.let {
+        binding.let {
             TabLayoutMediator(
                 it.tabLayout,
                 it.viewPagerHome

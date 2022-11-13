@@ -27,7 +27,7 @@ class Etapa3Activity : AppCompatActivity() {
         }
     }
 
-    fun validate() {
+    private fun validate() {
         if (!binding.checkBaixaRenda.isChecked && !binding.checkLgbt.isChecked && !binding.checkMulher.isChecked && !binding.checkPreto.isChecked) {
             val intent = Intent(this, ErrorSignUpActivity::class.java)
             startActivity(intent)
@@ -36,19 +36,19 @@ class Etapa3Activity : AppCompatActivity() {
         }
     }
 
-    fun proximo() {
+    private fun proximo() {
         val freelancer = Intent(this, Etapa1Activity::class.java)
         startActivity(freelancer)
         finish()
     }
 
-    fun voltar() {
+    private fun voltar() {
         val voltar = Intent(this, EscolhaActivity::class.java)
         startActivity(voltar)
         finish()
     }
 
-    fun cancelar() {
+    private fun cancelar() {
         val login = Intent(this, LoginActivity::class.java)
         startActivity(login)
         finish()

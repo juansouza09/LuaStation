@@ -9,22 +9,20 @@
         android:id="@+id/homeFragment"
         android:name="com.example.luastation.tabHome.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"
-        />
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/favoritosFragment"
         android:name="com.example.luastation.fragments.fav.FavMainFragment"
         android:label="FavoritosFragment"
-        tools:layout="@layout/fragment_fav_main"
-        />
+        tools:layout="@layout/fragment_fav_main" />
     <fragment
         android:id="@+id/perfilFragment"
         android:name="com.example.luastation.fragments.PerfilFragment"
         android:label="PerfilFragment"
-        tools:layout="@layout/fragment_perfil"/>
+        tools:layout="@layout/fragment_perfil" />
     <fragment
         android:id="@+id/notificacaoFragment"
         android:name="com.example.luastation.fragments.NotificacaoFragment"
         android:label="NotificacaoFragment"
-        tools:layout="@layout/fragment_notificacoes"/>
+        tools:layout="@layout/fragment_notificacoes" />
 </navigation>
