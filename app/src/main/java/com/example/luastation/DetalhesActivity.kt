@@ -10,7 +10,9 @@ import com.squareup.picasso.Picasso
 
 class DetalhesActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityServicoDetalhesBinding
+    private val binding by lazy {
+        ActivityServicoDetalhesBinding.inflate(layoutInflater)
+    }
     private lateinit var database: DatabaseReference
     private var creator: String? = null
     private var serviceId: String? = null
@@ -18,7 +20,6 @@ class DetalhesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityServicoDetalhesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         listeners()
         detalhesIntent()
@@ -53,38 +54,47 @@ class DetalhesActivity : AppCompatActivity() {
     }
 
     private fun listeners() {
-        binding.icBack.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
+        binding.icBack.apply {
+            setOnClickListener {
+                val intent = Intent(this@DetalhesActivity, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
 
-        binding.imgContratante.setOnClickListener {
-            val intent = Intent(this, PerfilContratanteActivity::class.java)
-            intent.putExtra("eCreatorId", creator)
-            startActivity(intent)
+        binding.imgContratante.apply {
+            setOnClickListener {
+                val intent = Intent(this@DetalhesActivity, PerfilContratanteActivity::class.java)
+                intent.putExtra("eCreatorId", creator)
+                startActivity(intent)
+            }
         }
 
-        binding.btnCanditadar.setOnClickListener {
-            Toast.makeText(this, "Boa sorte, Astronauta!", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, EfetuarProjetoActivity::class.java)
-            intent.putExtra("eCreator", creator)
-            intent.putExtra("eId", serviceId)
-            intent.putExtra("eTitle", title)
-            startActivity(intent)
+        binding.btnCanditadar.apply {
+            setOnClickListener {
+                Toast.makeText(this@DetalhesActivity, "Boa sorte, Astronauta!", Toast.LENGTH_SHORT)
+                    .show()
+                val intent = Intent(this@DetalhesActivity, EfetuarProjetoActivity::class.java)
+                intent.putExtra("eCreator", creator)
+                intent.putExtra("eId", serviceId)
+                intent.putExtra("eTitle", title)
+                startActivity(intent)
+            }
         }
     }
 
     private fun getContratanteData() {
         database = FirebaseDatabase.getInstance().getReference("Users").child(creator!!)
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                binding.textNameContratante.text = snapshot.child("name").value.toString()
-            }
+        database.apply {
+            addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    binding.textNameContratante.text = snapshot.child("name").value.toString()
+                }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+        }
     }
 }

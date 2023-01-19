@@ -8,11 +8,12 @@ import com.example.luastation.firebase.login.LoginActivity
 
 class ErrorSignUpActivity : AppCompatActivity() {
 
-    private lateinit var binding: ErrorSignupActivityBinding
+    private val binding by lazy {
+        ErrorSignupActivityBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ErrorSignupActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.button.let {

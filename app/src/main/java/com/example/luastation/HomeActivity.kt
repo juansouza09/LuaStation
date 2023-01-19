@@ -13,15 +13,17 @@ import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityHomeBinding
-    private lateinit var firebaseAuth: FirebaseAuth
+    private val binding by lazy {
+        ActivityHomeBinding.inflate(layoutInflater)
+    }
+    private val firebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
     private val navController: NavController by lazy { findNavController(R.id.navHostFragment) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
         bottomNavigation()
     }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +17,9 @@ class ServicosFragment : Fragment() {
 
     private lateinit var recyclerview: RecyclerView
     private lateinit var binding: FragmentServicosBinding
-    private lateinit var database: DatabaseReference
+    private val database by lazy {
+        FirebaseDatabase.getInstance().getReference("Services")
+    }
     private lateinit var myAdapter: ServicosAdapter
     private var layoutManager: LinearLayoutManager? = null
 
@@ -50,23 +53,28 @@ class ServicosFragment : Fragment() {
     }
 
     private fun getServiceData() {
-        database = FirebaseDatabase.getInstance().getReference("Services")
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val servicesArrayList = mutableListOf<Services>()
-                if (snapshot.exists()) {
-                    for (serviceSnapshot in snapshot.children) {
-                        val service = serviceSnapshot.getValue(Services::class.java)
-                        servicesArrayList.add(service!!)
+        database.apply {
+            addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val servicesArrayList = mutableListOf<Services>()
+                    if (snapshot.exists()) {
+                        for (serviceSnapshot in snapshot.children) {
+                            val service = serviceSnapshot.getValue(Services::class.java)
+                            servicesArrayList.add(service!!)
+                        }
+                        myAdapter.submitList(servicesArrayList)
+                        recyclerview.visibility = View.VISIBLE
                     }
-                    myAdapter.submitList(servicesArrayList)
-                    recyclerview.visibility = View.VISIBLE
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Infelizmente, não foi possível fazer a busca",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+        }
     }
 }

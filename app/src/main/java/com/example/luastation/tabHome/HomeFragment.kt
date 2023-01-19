@@ -27,22 +27,26 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listener()
-        animation()
         setTabs()
         addTabsToPageIndicator()
+        listener()
+        animation()
     }
 
     private fun listener() {
-        binding.btnMenu.setOnClickListener {
-            requireActivity().run {
-                startActivity(Intent(this, MenuActivity::class.java))
+        binding.btnMenu.let {
+            it.setOnClickListener {
+                requireActivity().run {
+                    startActivity(Intent(this, MenuActivity::class.java))
+                }
             }
         }
     }
 
     private fun animation() {
-        binding.viewPagerHome.setPageTransformer(ZoomOutPageTransformer())
+        binding.viewPagerHome.apply {
+            setPageTransformer(ZoomOutPageTransformer())
+        }
     }
 
     private fun setTabs() {

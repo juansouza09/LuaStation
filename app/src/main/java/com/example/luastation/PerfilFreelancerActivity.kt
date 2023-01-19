@@ -7,11 +7,12 @@ import com.example.luastation.databinding.ActivityPerfilUsuarioBinding
 
 class PerfilFreelancerActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityPerfilUsuarioBinding
+    private val binding by lazy {
+        ActivityPerfilUsuarioBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityPerfilUsuarioBinding.inflate(layoutInflater)
         setContentView(binding.root)
         dadosIntent()
         listeners()
@@ -33,10 +34,12 @@ class PerfilFreelancerActivity : AppCompatActivity() {
     }
 
     private fun listeners() {
-        binding.icBack.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
+        binding.icBack.let {
+            it.setOnClickListener {
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 }

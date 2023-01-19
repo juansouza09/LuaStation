@@ -1,18 +1,21 @@
 package com.example.luastation
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.SplashActivityBinding
 import com.example.luastation.firebase.login.LoginActivity
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
-    private lateinit var binding: SplashActivityBinding
+    private val binding by lazy {
+        SplashActivityBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = SplashActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.buttonEntrar.let {

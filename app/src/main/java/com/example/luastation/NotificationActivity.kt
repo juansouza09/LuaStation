@@ -7,11 +7,12 @@ import com.example.luastation.databinding.NotificationScreenBinding
 
 class NotificationActivity : AppCompatActivity() {
 
-    private lateinit var binding: NotificationScreenBinding
+    private val binding by lazy {
+        NotificationScreenBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = NotificationScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
         dadosIntent()
         listeners()
@@ -30,10 +31,12 @@ class NotificationActivity : AppCompatActivity() {
     }
 
     private fun listeners() {
-        binding.icBack.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
+        binding.icBack.let {
+            it.setOnClickListener {
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 }

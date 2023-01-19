@@ -7,13 +7,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.EfetuarProjetoScreenBinding
 import com.example.luastation.firebase.models.Notification
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class EfetuarProjetoActivity : AppCompatActivity() {
 
-    private lateinit var binding: EfetuarProjetoScreenBinding
-    private lateinit var dbReference: DatabaseReference
+    private val binding by lazy {
+        EfetuarProjetoScreenBinding.inflate(layoutInflater)
+    }
+
+    private val dbReference by lazy {
+        FirebaseDatabase.getInstance().getReference("Notification")
+    }
 
     private var serviceId: String? = null
     private var creatorId: String? = null
@@ -21,9 +25,9 @@ class EfetuarProjetoActivity : AppCompatActivity() {
     private var email: EditText? = null
     private var desc: EditText? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = EfetuarProjetoScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
@@ -50,22 +54,25 @@ class EfetuarProjetoActivity : AppCompatActivity() {
     }
 
     private fun listeners() {
-        binding.icBack.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
+        binding.icBack.let {
+            it.setOnClickListener {
+                val intent = Intent(this@EfetuarProjetoActivity, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
 
-        binding.buttonProximo.setOnClickListener {
-            saveInvite()
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
+        binding.buttonProximo.let {
+            it.setOnClickListener {
+                saveInvite()
+                val intent = Intent(this@EfetuarProjetoActivity, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 
     private fun saveInvite() {
-        dbReference = FirebaseDatabase.getInstance().getReference("Notification")
         val notificationId = dbReference.push().key!!
         val notification = Notification(
             notificationId,
@@ -74,18 +81,24 @@ class EfetuarProjetoActivity : AppCompatActivity() {
             desc?.text.toString()
         )
 
-        dbReference.child(creatorId!!).child(notificationId).setValue(notification)
-            .addOnCompleteListener {
-                binding.buttonProximo.isClickable = false
-                startActivity(Intent(this, HomeActivity::class.java))
-                finish()
-            }.addOnFailureListener {
-                Toast.makeText(
-                    this,
-                    "O projeto $title não foi armazenado!",
-                    Toast.LENGTH_SHORT
-                ).show()
-                finish()
+        dbReference
+            .child(creatorId!!)
+            .child(notificationId)
+            .setValue(notification)
+            .let {
+                it.addOnCompleteListener {
+                    binding.buttonProximo.isClickable = false
+                    startActivity(Intent(this@EfetuarProjetoActivity, HomeActivity::class.java))
+                    finish()
+                }
+                it.addOnFailureListener {
+                    Toast.makeText(
+                        this@EfetuarProjetoActivity,
+                        "O projeto $title não foi armazenado!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    finish()
+                }
             }
     }
 }
