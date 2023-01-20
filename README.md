@@ -38,11 +38,11 @@ Download the <a href="https://www.mediafire.com/file/2sly9mlr2cargr6/luastation.
   - Custom Views: Custom views made from scratch using XML.
   
 - Libraries
-  - [Retrofit2 & OkHttp3](https://github.com/square/retrofit): Para realizar requisições seguindo o padrão HTTP.
-  - [Picasso](https://github.com/square/picasso): Para carregamento de imagens.
-  - [Timber](https://github.com/JakeWharton/timber): Para registros de logs mais amigáveis que facilitam o debug.
-  - [Lottie](https://github.com/airbnb/lottie-android): Para carregamento de animações.
-  - [Firebase Database](firebase.google.com/docs/database): Para salvar os dados do usuário.
-  - [Firebase Auth](https://firebase.google.com/docs/auth): Para autenticar a conta do usuário.
-  - [Mockito](https://github.com/mockito/mockito-kotlin): Para fazer os teste unitários
+  - [Retrofit2 & OkHttp3](https://github.com/square/retrofit): To perform requests following the HTTP standard.
+  - [Picasso](https://github.com/square/picasso): For loading images.
+  - [Timber](https://github.com/JakeWharton/timber): For friendlier logging that makes debugging easier.
+  - [Lottie](https://github.com/airbnb/lottie-android): For loading animations.
+  - [Firebase Database](firebase.google.com/docs/database): To save user data.
+  - [Firebase Auth](https://firebase.google.com/docs/auth): To authenticate the user account.
+  - [Mockito](https://github.com/mockito/mockito-kotlin): To do unit tests
 
