@@ -22,28 +22,22 @@
 </p>
 
 ## Download
-Faça o download da <a href="https://www.mediafire.com/file/2sly9mlr2cargr6/luastation.apk/file">APK diretamente</a>. Você pode ver <a href="https://www.google.com/search?q=como+instalar+um+apk+no+android">aqui</a> como instalar uma APK no seu aparelho android.
+Download the <a href="https://www.mediafire.com/file/2sly9mlr2cargr6/luastation.apk/file">APK directly</a>. You can see <a href="https://www.google.com/search?q=como+instalar+um+apk+no+android">here</a> how to install an APK  on your android device.
 
-## Tecnologias usadas e bibliotecas de código aberto
+## Used technologies and open source libraries
 
 - Minimum SDK level 21
-- [Linguagem Kotlin](https://kotlinlang.org/)
+- [Language Kotlin](https://kotlinlang.org/)
 
 - Jetpack
-  - Lifecycle: Observe os ciclos de vida do Android e manipule os estados da interface do usuário após as alterações do ciclo de vida.
-  - ViewModel: Gerencia o detentor de dados relacionados à interface do usuário e o ciclo de vida. Permite que os dados sobrevivam a alterações de configuração, como rotações de tela.
-  - ViewBinding: Liga os componentes do XML no Kotlin através de uma classe que garante segurança de tipo e outras vantagens.
-  - Material Design Components: Componentes modulares e personalizáveis da IU do Material Design para Android.
-  - ViewPager2: Mostre visualizações ou fragmentos em um formato deslizante.
-  - Custom Views: View customizadas feitas do zero usando XML.
-
-- Arquitetura
-  - MVVM (View - ViewModel - Model)
-  - Comunicação da ViewModel com a View através de LiveData
-  - Comunicação da ViewModel com a Model através de Kotlin Flow
-  - Repositories para abstração da comunidação com a camada de dados.
+  - Lifecycle: Observe Android lifecycles and handle UI states after lifecycle changes.
+  - ViewModel: Manages the UI-related data holder and lifecycle. Allows data to survive configuration changes such as screen rotations.
+  - ViewBinding: Binds XML components in Kotlin through a class that guarantees type safety and other advantages.
+  - Material Design Components: Modular and customizable Material Design UI components for Android.
+  - ViewPager2: Show previews or snippets in a slide-out format.
+  - Custom Views: Custom views made from scratch using XML.
   
-- Bibliotecas - LISTE TODAS AS BIBLIOTECAS USADAS NO PROJETO, COM LINK E DESCRIÇÃO BREVE DO QUE ELA FAZ
+- Libraries
   - [Retrofit2 & OkHttp3](https://github.com/square/retrofit): Para realizar requisições seguindo o padrão HTTP.
   - [Picasso](https://github.com/square/picasso): Para carregamento de imagens.
   - [Timber](https://github.com/JakeWharton/timber): Para registros de logs mais amigáveis que facilitam o debug.
