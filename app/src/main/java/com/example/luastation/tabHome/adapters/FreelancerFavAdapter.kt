@@ -66,26 +66,30 @@ class FreelancerFavAdapter :
         holder.binding.emailText.text = email
         holder.binding.titleNameText.text = name
 
-        holder.binding.icon.setOnClickListener {
-            if (!holder.binding.icon.isChecked) {
-                desfavoritar(id)
-                holder.binding.favoriteAnimation.visibility = View.GONE
-                Toast.makeText(
-                    holder.itemView.context,
-                    "Desfavoritado com sucesso!",
-                    Toast.LENGTH_SHORT
-                ).show()
+        holder.binding.icon.let {
+            it.setOnClickListener {
+                if (!holder.binding.icon.isChecked) {
+                    desfavoritar(id)
+                    holder.binding.favoriteAnimation.visibility = View.GONE
+                    Toast.makeText(
+                        holder.itemView.context,
+                        "Desfavoritado com sucesso!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
 
-        holder.binding.buttonFinalizar.setOnClickListener {
-            val context: Context = holder.itemView.context
-            val intent = Intent(context, PerfilFreelancerActivity::class.java)
-            intent.putExtra("iName", name)
-            intent.putExtra("iEmail", email)
-            intent.putExtra("iDataNasc", dataNasc)
-            intent.putExtra("iCpf_cnpj", cpf_cnpj)
-            context.startActivity(intent)
+        holder.binding.buttonFinalizar.let {
+            it.setOnClickListener {
+                val context: Context = holder.itemView.context
+                val intent = Intent(context, PerfilFreelancerActivity::class.java)
+                intent.putExtra("iName", name)
+                intent.putExtra("iEmail", email)
+                intent.putExtra("iDataNasc", dataNasc)
+                intent.putExtra("iCpf_cnpj", cpf_cnpj)
+                context.startActivity(intent)
+            }
         }
     }
 

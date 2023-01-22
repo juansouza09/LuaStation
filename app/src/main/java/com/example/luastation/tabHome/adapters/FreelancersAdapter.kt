@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luastation.PerfilContratanteActivity
 import com.example.luastation.PerfilFreelancerActivity
 import com.example.luastation.databinding.ItemFreelancersBinding
 import com.example.luastation.firebase.models.Freelancers

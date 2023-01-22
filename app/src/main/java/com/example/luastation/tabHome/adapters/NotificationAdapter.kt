@@ -46,14 +46,16 @@ class NotificationAdapter :
 
         holder.binding.titleNotificationText.text = notification.title
 
-        holder.itemView.setOnClickListener {
-            val context: Context = holder.itemView.context
-            val intent = Intent(context, NotificationActivity::class.java)
-            intent.putExtra("iId", id)
-            intent.putExtra("iTitle", title)
-            intent.putExtra("iDesc", desc)
-            intent.putExtra("iEmail", email)
-            context.startActivity(intent)
+        holder.itemView.let {
+            it.setOnClickListener {
+                val context: Context = holder.itemView.context
+                val intent = Intent(context, NotificationActivity::class.java)
+                intent.putExtra("iId", id)
+                intent.putExtra("iTitle", title)
+                intent.putExtra("iDesc", desc)
+                intent.putExtra("iEmail", email)
+                context.startActivity(intent)
+            }
         }
     }
 
