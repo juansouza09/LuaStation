@@ -12,12 +12,16 @@ import com.example.luastation.databinding.FragmentMeusFreelasBinding
 import com.example.luastation.firebase.models.Services
 import com.example.luastation.tabHome.adapters.MeusFreelasAdapter
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.DatabaseError
 
 class MeusFreelasFragment : Fragment() {
 
-    private var binding: FragmentMeusFreelasBinding? = null
-    private var layoutManager: LinearLayoutManager? = null
+    private var _binding: FragmentMeusFreelasBinding? = null
+    private val binding get() = _binding!!
+
     var recyclerview: RecyclerView? = null
     var adapter: MeusFreelasAdapter? = null
     private val database by lazy {
@@ -32,9 +36,9 @@ class MeusFreelasFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentMeusFreelasBinding.inflate(inflater, container, false)
-        return binding?.root
+    ): View {
+        _binding = FragmentMeusFreelasBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,10 +48,10 @@ class MeusFreelasFragment : Fragment() {
     }
 
     private fun setRecyclerView() {
-        recyclerview = binding?.recyclerFreelas
+        recyclerview = binding.recyclerFreelas
         recyclerview!!.setHasFixedSize(true)
-        layoutManager = LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
-        recyclerview!!.layoutManager = layoutManager
+        recyclerview!!.layoutManager =
+            LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
         adapter = MeusFreelasAdapter()
         recyclerview!!.adapter = adapter
     }

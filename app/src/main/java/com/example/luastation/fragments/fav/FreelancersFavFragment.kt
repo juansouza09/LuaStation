@@ -11,14 +11,23 @@ import com.example.luastation.databinding.FragmentFreelancersFavBinding
 import com.example.luastation.firebase.models.Freelancers
 import com.example.luastation.tabHome.adapters.FreelancerFavAdapter
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 
 class FreelancersFavFragment : Fragment() {
 
-    private lateinit var binding: FragmentFreelancersFavBinding
-    private lateinit var recyclerView: RecyclerView
+    private var _binding: FragmentFreelancersFavBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var database: DatabaseReference
-    private lateinit var firebaseAuth: FirebaseAuth
+    private val firebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+
+    private lateinit var recyclerView: RecyclerView
     private lateinit var myAdapter: FreelancerFavAdapter
 
     override fun onCreateView(
@@ -26,16 +35,19 @@ class FreelancersFavFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFreelancersFavBinding.inflate(inflater, container, false)
-        recyclerView = binding.recyclerFreelancers
-        firebaseAuth = FirebaseAuth.getInstance()
-        initAdapter()
-        getFreelancersData()
-        refreshFragment()
+        _binding = FragmentFreelancersFavBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initAdapter()
+        getFreelancersData()
+        refreshFragment()
+    }
+
     private fun initAdapter() {
+        recyclerView = binding.recyclerFreelancers
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.setHasFixedSize(true)
         myAdapter = FreelancerFavAdapter()

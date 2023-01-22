@@ -92,38 +92,42 @@ class ServicosAdapter : ListAdapter<Services, ServicosAdapter.MyViewHolder>(DIFF
         holder.binding.plataformaText.text = service.plataform
         holder.binding.descriptionText.text = service.desc
 
-        holder.binding.icon.setOnClickListener {
-            if (holder.binding.icon.isChecked) {
-                holder.binding.favoriteAnimation.visibility = View.VISIBLE
-                favorite(id, name, img, price, days, desc, plataform, creator)
-                Toast.makeText(
-                    holder.itemView.context,
-                    "Favoritado com sucesso!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                desfavoritar(id)
-                Toast.makeText(
-                    holder.itemView.context,
-                    "Desfavoritado com sucesso!",
-                    Toast.LENGTH_SHORT
-                ).show()
-                holder.binding.favoriteAnimation.visibility = View.GONE
+        holder.binding.icon.let {
+            it.setOnClickListener {
+                if (holder.binding.icon.isChecked) {
+                    holder.binding.favoriteAnimation.visibility = View.VISIBLE
+                    favorite(id, name, img, price, days, desc, plataform, creator)
+                    Toast.makeText(
+                        holder.itemView.context,
+                        "Favoritado com sucesso!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    desfavoritar(id)
+                    Toast.makeText(
+                        holder.itemView.context,
+                        "Desfavoritado com sucesso!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    holder.binding.favoriteAnimation.visibility = View.GONE
+                }
             }
         }
 
-        holder.itemView.setOnClickListener {
-            val context: Context = holder.itemView.context
-            val intent = Intent(context, DetalhesActivity::class.java)
-            intent.putExtra("iId", id)
-            intent.putExtra("iTitle", name)
-            intent.putExtra("iPrice", price)
-            intent.putExtra("iDays", days)
-            intent.putExtra("iPlataform", plataform)
-            intent.putExtra("iDesc", desc)
-            intent.putExtra("iImg", img)
-            intent.putExtra("iCreator", creator)
-            context.startActivity(intent)
+        holder.itemView.let {
+            it.setOnClickListener {
+                val context: Context = holder.itemView.context
+                val intent = Intent(context, DetalhesActivity::class.java)
+                intent.putExtra("iId", id)
+                intent.putExtra("iTitle", name)
+                intent.putExtra("iPrice", price)
+                intent.putExtra("iDays", days)
+                intent.putExtra("iPlataform", plataform)
+                intent.putExtra("iDesc", desc)
+                intent.putExtra("iImg", img)
+                intent.putExtra("iCreator", creator)
+                context.startActivity(intent)
+            }
         }
     }
 

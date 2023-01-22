@@ -7,23 +7,35 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.luastation.databinding.FragmentPerfilBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.DatabaseError
 
 class PerfilFragment : Fragment() {
 
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var database: DatabaseReference
-    private lateinit var binding: FragmentPerfilBinding
+    private var _binding: FragmentPerfilBinding? = null
+    private val binding get() = _binding!!
+
+    private val firebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+    private val database by lazy {
+        FirebaseDatabase.getInstance().getReference("Users")
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPerfilBinding.inflate(inflater, container, false)
-        firebaseAuth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance().getReference("Users")
-        setInfo()
+        _binding = FragmentPerfilBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setInfo()
     }
 
     private fun setInfo() {

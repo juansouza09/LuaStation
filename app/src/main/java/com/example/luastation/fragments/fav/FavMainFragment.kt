@@ -13,7 +13,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class FavMainFragment : Fragment() {
 
-    private lateinit var binding: FragmentFavMainBinding
+    private var _binding: FragmentFavMainBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,7 +22,7 @@ class FavMainFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View {
-        binding = FragmentFavMainBinding.inflate(inflater, container, false)
+        _binding = FragmentFavMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 

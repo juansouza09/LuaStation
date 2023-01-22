@@ -11,13 +11,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.databinding.FragmentFreelancersBinding
 import com.example.luastation.firebase.models.Freelancers
 import com.example.luastation.tabHome.adapters.FreelancersAdapter
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.DatabaseError
 
 class FreelancersFragment : Fragment() {
 
-    private lateinit var binding: FragmentFreelancersBinding
+    private var _binding: FragmentFreelancersBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var recyclerView: RecyclerView
-    private lateinit var database: DatabaseReference
+    private val database by lazy {
+        FirebaseDatabase.getInstance().getReference("Users")
+    }
     private lateinit var myAdapter: FreelancersAdapter
 
     override fun onCreateView(
@@ -25,15 +32,19 @@ class FreelancersFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFreelancersBinding.inflate(inflater, container, false)
-        recyclerView = binding.recyclerFreelancers
-        initAdapter()
-        getFreelancersData()
-        refreshFragment()
+        _binding = FragmentFreelancersBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initAdapter()
+        getFreelancersData()
+        refreshFragment()
+    }
+
     private fun initAdapter() {
+        recyclerView = binding.recyclerFreelancers
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.setHasFixedSize(true)
         myAdapter = FreelancersAdapter()
@@ -49,7 +60,6 @@ class FreelancersFragment : Fragment() {
     }
 
     private fun getFreelancersData() {
-        database = FirebaseDatabase.getInstance().getReference("Users")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val freelancersArrayList = mutableListOf<Freelancers>()

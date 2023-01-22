@@ -11,15 +11,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.databinding.FragmentServicosBinding
 import com.example.luastation.firebase.models.Services
 import com.example.luastation.tabHome.adapters.ServicosAdapter
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.DatabaseError
 
 class ServicosFragment : Fragment() {
 
-    private lateinit var recyclerview: RecyclerView
-    private lateinit var binding: FragmentServicosBinding
+    private var _binding: FragmentServicosBinding? = null
+    private val binding get() = _binding!!
+
     private val database by lazy {
         FirebaseDatabase.getInstance().getReference("Services")
     }
+    private lateinit var recyclerview: RecyclerView
     private lateinit var myAdapter: ServicosAdapter
     private var layoutManager: LinearLayoutManager? = null
 
@@ -28,11 +33,15 @@ class ServicosFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentServicosBinding.inflate(inflater, container, false)
+        _binding = FragmentServicosBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setRecyclerView()
         getServiceData()
         refreshFragment()
-        return binding.root
     }
 
     private fun setRecyclerView() {
