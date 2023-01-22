@@ -8,25 +8,33 @@ import com.example.luastation.databinding.CriarProjetoScreenBinding
 
 class CriarProjetoActivity : AppCompatActivity() {
 
-    private lateinit var binding: CriarProjetoScreenBinding
+    private val binding by lazy { CriarProjetoScreenBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = CriarProjetoScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupListeners()
+    }
 
-        binding.buttonProximo.setOnClickListener {
-            startActivity(Intent(this, CriarProjeto2Activity::class.java))
-            finish()
+    private fun setupListeners() {
+        binding.buttonProximo.let {
+            it.setOnClickListener {
+                startActivity(Intent(this, CriarProjeto2Activity::class.java))
+                finish()
+            }
         }
 
-        binding.btnCancelar.setOnClickListener {
-            startActivity(Intent(this, MenuActivity::class.java))
-            finish()
+        binding.btnCancelar.let {
+            it.setOnClickListener {
+                startActivity(Intent(this, MenuActivity::class.java))
+                finish()
+            }
         }
 
-        binding.btnAnexo.setOnClickListener {
-            Toast.makeText(this, "O documento foi adicionado!", Toast.LENGTH_SHORT).show()
+        binding.btnAnexo.let {
+            it.setOnClickListener {
+                Toast.makeText(this, "O documento foi adicionado!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

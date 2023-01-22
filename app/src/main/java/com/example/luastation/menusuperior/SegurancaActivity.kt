@@ -7,15 +7,19 @@ import com.example.luastation.databinding.SegurancaScreenBinding
 
 class SegurancaActivity : AppCompatActivity() {
 
-    private lateinit var binding: SegurancaScreenBinding
+    private val binding by lazy { SegurancaScreenBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = SegurancaScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupListeners()
+    }
 
-        binding.icBack.setOnClickListener {
-            voltar()
+    private fun setupListeners() {
+        binding.icBack.let {
+            it.setOnClickListener {
+                voltar()
+            }
         }
     }
 

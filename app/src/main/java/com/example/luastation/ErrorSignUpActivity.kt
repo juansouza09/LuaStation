@@ -15,7 +15,10 @@ class ErrorSignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setupListeners()
+    }
 
+    private fun setupListeners() {
         binding.button.let {
             it.setOnClickListener {
                 startActivity(Intent(this, LoginActivity::class.java))

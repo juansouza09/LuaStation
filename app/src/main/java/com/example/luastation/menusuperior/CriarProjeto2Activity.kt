@@ -2,7 +2,6 @@ package com.example.luastation.menusuperior
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.CriarProjeto2ScreenBinding
@@ -13,50 +12,46 @@ import com.google.firebase.database.FirebaseDatabase
 
 class CriarProjeto2Activity : AppCompatActivity() {
 
-    private lateinit var binding: CriarProjeto2ScreenBinding
+    private val binding by lazy { CriarProjeto2ScreenBinding.inflate(layoutInflater) }
+
     private lateinit var dbRef: DatabaseReference
     private lateinit var dbRef2: DatabaseReference
-    private lateinit var firebaseAuth: FirebaseAuth
-
-    private lateinit var name: EditText
-    private lateinit var price: EditText
-    private lateinit var days: EditText
-    private lateinit var plataform: EditText
-    private lateinit var desc: EditText
+    private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = CriarProjeto2ScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getInstance()
-        initListeners()
-
-        name = binding.nomeProjetoInput.editText!!
-        price = binding.priceInput.editText!!
-        days = binding.prazoInput.editText!!
-        desc = binding.descInput.editText!!
-        plataform = binding.plataformaInput.editText!!
+        setupListeners()
     }
 
     private fun getInstance() {
-        firebaseAuth = FirebaseAuth.getInstance()
         dbRef = FirebaseDatabase.getInstance().getReference("Services")
         dbRef2 = FirebaseDatabase.getInstance().getReference("Users")
             .child(firebaseAuth.currentUser!!.uid).child("Meus Projetos")
     }
 
-    private fun initListeners() {
-        binding.icBack.setOnClickListener {
-            startActivity(Intent(this, CriarProjetoActivity::class.java))
-            finish()
+    private fun setupListeners() {
+        binding.icBack.let {
+            it.setOnClickListener {
+                startActivity(Intent(this, CriarProjetoActivity::class.java))
+                finish()
+            }
         }
 
-        binding.buttonProximo.setOnClickListener {
-            saveServiceData()
+        binding.buttonProximo.let {
+            it.setOnClickListener {
+                saveServiceData()
+            }
         }
     }
 
     private fun saveServiceData() {
+        val name = binding.nomeProjetoInput.editText!!
+        val price = binding.priceInput.editText!!
+        val days = binding.prazoInput.editText!!
+        val desc = binding.descInput.editText!!
+        val plataform = binding.plataformaInput.editText!!
         val meteoro =
             "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/meteoro%201%20(2).png?alt=media&token=cb0ec932-e953-4bed-9ced-13e350205855"
         val estrela =

@@ -5,15 +5,19 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.ActivityServicoDetalhesBinding
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.DatabaseError
 import com.squareup.picasso.Picasso
 
 class DetalhesActivity : AppCompatActivity() {
 
-    private val binding by lazy {
-        ActivityServicoDetalhesBinding.inflate(layoutInflater)
+    private val binding by lazy { ActivityServicoDetalhesBinding.inflate(layoutInflater) }
+    private val database by lazy {
+        FirebaseDatabase.getInstance().getReference("Users").child(creator!!)
     }
-    private lateinit var database: DatabaseReference
+
     private var creator: String? = null
     private var serviceId: String? = null
     private var title: String? = null
@@ -21,7 +25,7 @@ class DetalhesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        listeners()
+        setupListeners()
         detalhesIntent()
         getContratanteData()
     }
@@ -53,28 +57,28 @@ class DetalhesActivity : AppCompatActivity() {
         }
     }
 
-    private fun listeners() {
-        binding.icBack.apply {
-            setOnClickListener {
-                val intent = Intent(this@DetalhesActivity, HomeActivity::class.java)
+    private fun setupListeners() {
+        binding.icBack.let {
+            it.setOnClickListener {
+                val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
                 finish()
             }
         }
 
-        binding.imgContratante.apply {
-            setOnClickListener {
-                val intent = Intent(this@DetalhesActivity, PerfilContratanteActivity::class.java)
+        binding.imgContratante.let {
+            it.setOnClickListener {
+                val intent = Intent(this, PerfilContratanteActivity::class.java)
                 intent.putExtra("eCreatorId", creator)
                 startActivity(intent)
             }
         }
 
-        binding.btnCanditadar.apply {
-            setOnClickListener {
-                Toast.makeText(this@DetalhesActivity, "Boa sorte, Astronauta!", Toast.LENGTH_SHORT)
+        binding.btnCanditadar.let {
+            it.setOnClickListener {
+                Toast.makeText(this, "Boa sorte, Astronauta!", Toast.LENGTH_SHORT)
                     .show()
-                val intent = Intent(this@DetalhesActivity, EfetuarProjetoActivity::class.java)
+                val intent = Intent(this, EfetuarProjetoActivity::class.java)
                 intent.putExtra("eCreator", creator)
                 intent.putExtra("eId", serviceId)
                 intent.putExtra("eTitle", title)
@@ -84,7 +88,6 @@ class DetalhesActivity : AppCompatActivity() {
     }
 
     private fun getContratanteData() {
-        database = FirebaseDatabase.getInstance().getReference("Users").child(creator!!)
         database.apply {
             addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

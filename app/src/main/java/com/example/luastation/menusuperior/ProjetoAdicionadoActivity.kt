@@ -8,16 +8,20 @@ import com.example.luastation.databinding.ProjetoAdicionadoScreenBinding
 
 class ProjetoAdicionadoActivity : AppCompatActivity() {
 
-    private lateinit var binding: ProjetoAdicionadoScreenBinding
+    private val binding by lazy { ProjetoAdicionadoScreenBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ProjetoAdicionadoScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupListeners()
+    }
 
-        binding.btnVoltar.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
+    private fun setupListeners() {
+        binding.btnVoltar.let {
+            it.setOnClickListener {
+                startActivity(Intent(this, HomeActivity::class.java))
+                finish()
+            }
         }
     }
 }

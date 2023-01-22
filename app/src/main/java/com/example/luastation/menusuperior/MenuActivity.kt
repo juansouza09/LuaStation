@@ -10,33 +10,42 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MenuActivity : AppCompatActivity() {
 
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var binding: ActivityMenuSeperiorBinding
+    private val binding by lazy { ActivityMenuSeperiorBinding.inflate(layoutInflater) }
+    private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMenuSeperiorBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        firebaseAuth = FirebaseAuth.getInstance()
+        setupListeners()
+    }
 
-        binding.linearHomeMenu.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
+    private fun setupListeners() {
+        binding.linearHomeMenu.let {
+            it.setOnClickListener {
+                startActivity(Intent(this, HomeActivity::class.java))
+                finish()
+            }
         }
 
-        binding.linearSegurancaMenu.setOnClickListener {
-            startActivity(Intent(this, SegurancaActivity::class.java))
-            finish()
+        binding.linearSegurancaMenu.let {
+            it.setOnClickListener {
+                startActivity(Intent(this, SegurancaActivity::class.java))
+                finish()
+            }
         }
 
-        binding.linearPubMenu.setOnClickListener {
-            startActivity(Intent(this, CriarProjetoActivity::class.java))
-            finish()
+        binding.linearPubMenu.let {
+            it.setOnClickListener {
+                startActivity(Intent(this, CriarProjetoActivity::class.java))
+                finish()
+            }
         }
 
-        binding.linearSairMenu.setOnClickListener {
-            checkUser()
-            firebaseAuth.signOut()
+        binding.linearSairMenu.let {
+            it.setOnClickListener {
+                checkUser()
+                firebaseAuth.signOut()
+            }
         }
     }
 

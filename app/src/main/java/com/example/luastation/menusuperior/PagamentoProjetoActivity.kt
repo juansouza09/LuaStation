@@ -17,27 +17,35 @@ import java.util.*
 
 class PagamentoProjetoActivity : AppCompatActivity() {
 
-    private lateinit var binding: ProjetoPagamentoScreenBinding
+    private val binding by lazy { ProjetoPagamentoScreenBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ProjetoPagamentoScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupListeners()
+    }
 
-        binding.icBack.setOnClickListener {
-            startActivity(Intent(this, CriarProjeto2Activity::class.java))
-            finish()
+    private fun setupListeners() {
+        binding.icBack.let {
+            it.setOnClickListener {
+                startActivity(Intent(this, CriarProjeto2Activity::class.java))
+                finish()
+            }
         }
 
-        binding.buttonFinalizar.setOnClickListener {
-            showNotification()
-            startActivity(Intent(this, ProjetoAdicionadoActivity::class.java))
-            finish()
+        binding.buttonFinalizar.let {
+            it.setOnClickListener {
+                showNotification()
+                startActivity(Intent(this, ProjetoAdicionadoActivity::class.java))
+                finish()
+            }
         }
 
-        binding.btnCancelar.setOnClickListener {
-            startActivity(Intent(this, MenuActivity::class.java))
-            finish()
+        binding.btnCancelar.let {
+            it.setOnClickListener {
+                startActivity(Intent(this, MenuActivity::class.java))
+                finish()
+            }
         }
     }
 

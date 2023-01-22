@@ -21,7 +21,7 @@ class PerfilContratanteActivity : AppCompatActivity() {
         setContentView(binding.root)
         dadosIntent()
         getContratanteData()
-        listeners()
+        setupListeners()
     }
 
     private fun dadosIntent() {
@@ -33,7 +33,7 @@ class PerfilContratanteActivity : AppCompatActivity() {
         }
     }
 
-    private fun listeners() {
+    private fun setupListeners() {
         binding.icBack.let {
             it.setOnClickListener {
                 val intent = Intent(this, HomeActivity::class.java)

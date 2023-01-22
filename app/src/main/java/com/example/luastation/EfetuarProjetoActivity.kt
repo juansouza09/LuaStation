@@ -2,7 +2,6 @@ package com.example.luastation
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.EfetuarProjetoScreenBinding
@@ -22,22 +21,13 @@ class EfetuarProjetoActivity : AppCompatActivity() {
     private var serviceId: String? = null
     private var creatorId: String? = null
     private var title: String? = null
-    private var email: EditText? = null
-    private var desc: EditText? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        email = binding.emailInviteInput.editText
-        desc = binding.descInput.editText
-
         dadosIntent()
-        listeners()
+        setupListeners()
     }
 
     fun dadosIntent() {
@@ -53,7 +43,7 @@ class EfetuarProjetoActivity : AppCompatActivity() {
         binding.h1.text = aTitle
     }
 
-    private fun listeners() {
+    private fun setupListeners() {
         binding.icBack.let {
             it.setOnClickListener {
                 val intent = Intent(this@EfetuarProjetoActivity, HomeActivity::class.java)
@@ -73,6 +63,8 @@ class EfetuarProjetoActivity : AppCompatActivity() {
     }
 
     private fun saveInvite() {
+        val email = binding.emailInviteInput.editText
+        val desc = binding.descInput.editText
         val notificationId = dbReference.push().key!!
         val notification = Notification(
             notificationId,

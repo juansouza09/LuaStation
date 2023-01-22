@@ -15,7 +15,7 @@ class NotificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         dadosIntent()
-        listeners()
+        setupListeners()
     }
 
     private fun dadosIntent() {
@@ -30,7 +30,7 @@ class NotificationActivity : AppCompatActivity() {
 
     }
 
-    private fun listeners() {
+    private fun setupListeners() {
         binding.icBack.let {
             it.setOnClickListener {
                 val intent = Intent(this, HomeActivity::class.java)

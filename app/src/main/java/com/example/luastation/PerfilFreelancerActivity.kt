@@ -15,7 +15,7 @@ class PerfilFreelancerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         dadosIntent()
-        listeners()
+        setupListeners()
     }
 
     private fun dadosIntent() {
@@ -33,7 +33,7 @@ class PerfilFreelancerActivity : AppCompatActivity() {
         binding.perfilNascText.text = dataNasc
     }
 
-    private fun listeners() {
+    private fun setupListeners() {
         binding.icBack.let {
             it.setOnClickListener {
                 val intent = Intent(this, HomeActivity::class.java)
