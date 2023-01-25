@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.databinding.FragmentNotificacoesBinding
-import com.example.luastation.firebase.models.Notification
-import com.example.luastation.tabHome.adapters.NotificationAdapter
+import com.example.luastation.models.Notification
+import com.example.luastation.adapters.NotificationAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
@@ -42,16 +42,14 @@ class NotificacaoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setRecyclerView()
+        setupUi()
         getNotificationData()
     }
 
-    private fun setRecyclerView() {
-        recyclerview = binding.recyclerServicos
-        recyclerview.setHasFixedSize(true)
-        recyclerview.layoutManager = LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
-        myAdapter = NotificationAdapter()
-        recyclerview.adapter = myAdapter
+    private fun setupUi() {
+        binding.recyclerServicos.layoutManager =
+            LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
+        binding.recyclerServicos.adapter = myAdapter
     }
 
     private fun getNotificationData() {

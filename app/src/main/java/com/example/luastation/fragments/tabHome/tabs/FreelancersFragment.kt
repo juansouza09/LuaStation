@@ -1,41 +1,38 @@
-package com.example.luastation.fragments.fav
+package com.example.luastation.fragments.tabHome.tabs
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luastation.databinding.FragmentFreelancersFavBinding
+import com.example.luastation.databinding.FragmentFreelancersBinding
 import com.example.luastation.models.Freelancers
-import com.example.luastation.adapters.FreelancerFavAdapter
-import com.google.firebase.auth.FirebaseAuth
+import com.example.luastation.adapters.FreelancersAdapter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 
-class FreelancersFavFragment : Fragment() {
+class FreelancersFragment : Fragment() {
 
-    private var _binding: FragmentFreelancersFavBinding? = null
+    private var _binding: FragmentFreelancersBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var database: DatabaseReference
-    private val firebaseAuth by lazy {
-        FirebaseAuth.getInstance()
-    }
-
     private lateinit var recyclerView: RecyclerView
-    private lateinit var myAdapter: FreelancerFavAdapter
+    private val database by lazy {
+        FirebaseDatabase.getInstance().getReference("Users")
+    }
+    private lateinit var myAdapter: FreelancersAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFreelancersFavBinding.inflate(inflater, container, false)
+        _binding = FragmentFreelancersBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -50,7 +47,7 @@ class FreelancersFavFragment : Fragment() {
         recyclerView = binding.recyclerFreelancers
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.setHasFixedSize(true)
-        myAdapter = FreelancerFavAdapter()
+        myAdapter = FreelancersAdapter()
         recyclerView.adapter = myAdapter
     }
 
@@ -63,16 +60,9 @@ class FreelancersFavFragment : Fragment() {
     }
 
     private fun getFreelancersData() {
-        val firebaseUser = firebaseAuth.currentUser
-        database = FirebaseDatabase.getInstance().getReference("Users").child((firebaseUser!!.uid))
-            .child("FreelancerFav")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val freelancersArrayList = mutableListOf<Freelancers>()
-                freelancersArrayList.clear()
-                if (freelancersArrayList.isEmpty()) {
-                    binding.recyclerFreelancers.visibility = View.GONE
-                }
                 if (snapshot.exists()) {
                     for (freelancerSnapshot in snapshot.children) {
                         val freelancer = freelancerSnapshot.getValue(Freelancers::class.java)
@@ -84,7 +74,11 @@ class FreelancersFavFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                binding.recyclerFreelancers.visibility = View.GONE
+                Toast.makeText(
+                    requireContext(),
+                    "Infelizmente, não foi possível fazer a busca",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }

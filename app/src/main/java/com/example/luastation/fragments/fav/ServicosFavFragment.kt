@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.databinding.FragmentServicosFavBinding
-import com.example.luastation.firebase.models.Services
-import com.example.luastation.tabHome.adapters.FavoritosAdapter
+import com.example.luastation.models.Services
+import com.example.luastation.adapters.FavoritosAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase

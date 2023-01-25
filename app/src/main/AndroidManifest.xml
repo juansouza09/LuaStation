@@ -10,75 +10,75 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LuaStation">
         <activity
-            android:name=".HomeActivity"
+            android:name="com.example.luastation.activities.HomeActivity"
             android:exported="true" />
 
         <activity
-            android:name="com.example.luastation.firebase.login.LoginActivity"
+            android:name="com.example.luastation.activities.login.LoginActivity"
             android:exported="true" />
 
         <activity
-            android:name="com.example.luastation.firebase.cadastro.EscolhaActivity"
+            android:name="com.example.luastation.activities.cadastro.EscolhaActivity"
             android:exported="true" />
 
         <activity
-            android:name="com.example.luastation.firebase.cadastro.Etapa1Activity"
+            android:name="com.example.luastation.activities.cadastro.Etapa1Activity"
             android:exported="true" />
 
         <activity
-            android:name="com.example.luastation.firebase.cadastro.Etapa3Activity"
+            android:name="com.example.luastation.activities.cadastro.Etapa3Activity"
             android:exported="true" />
 
         <activity
-            android:name=".menusuperior.MenuActivity"
+            android:name="com.example.luastation.activities.menusuperior.MenuActivity"
             android:exported="true" />
 
         <activity
-            android:name=".menusuperior.SegurancaActivity"
+            android:name="com.example.luastation.activities.menusuperior.SegurancaActivity"
             android:exported="true" />
 
         <activity
-            android:name=".menusuperior.CriarProjetoActivity"
+            android:name="com.example.luastation.activities.menusuperior.CriarProjetoActivity"
             android:exported="true" />
 
         <activity
-            android:name=".menusuperior.CriarProjeto2Activity"
+            android:name="com.example.luastation.activities.menusuperior.CriarProjeto2Activity"
             android:exported="true" />
 
         <activity
-            android:name=".menusuperior.PagamentoProjetoActivity"
+            android:name="com.example.luastation.activities.menusuperior.PagamentoProjetoActivity"
             android:exported="true" />
 
         <activity
-            android:name=".menusuperior.ProjetoAdicionadoActivity"
+            android:name="com.example.luastation.activities.menusuperior.ProjetoAdicionadoActivity"
             android:exported="true" />
 
         <activity
-            android:name=".DetalhesActivity"
+            android:name="com.example.luastation.activities.DetalhesActivity"
             android:exported="true" />
 
         <activity
-            android:name=".PerfilContratanteActivity"
+            android:name="com.example.luastation.activities.PerfilContratanteActivity"
             android:exported="true" />
 
         <activity
-            android:name=".ErrorSignUpActivity"
+            android:name="com.example.luastation.activities.ErrorSignUpActivity"
             android:exported="true" />
 
         <activity
-            android:name=".EfetuarProjetoActivity"
+            android:name="com.example.luastation.activities.EfetuarProjetoActivity"
             android:exported="true" />
 
         <activity
-            android:name=".NotificationActivity"
+            android:name="com.example.luastation.activities.NotificationActivity"
             android:exported="true" />
 
         <activity
-            android:name=".PerfilFreelancerActivity"
+            android:name="com.example.luastation.activities.PerfilFreelancerActivity"
             android:exported="true" />
 
         <activity
-            android:name=".SplashActivity"
+            android:name="com.example.luastation.activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
