@@ -42,6 +42,7 @@ class NotificacaoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        myAdapter = NotificationAdapter()
         setupUi()
         getNotificationData()
     }
