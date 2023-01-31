@@ -1,10 +1,12 @@
 package com.example.luastation.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.luastation.activities.login.LoginActivity
 import com.example.luastation.databinding.FragmentPerfilBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -36,6 +38,24 @@ class PerfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setInfo()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        binding.imgSair.setOnClickListener {
+            requireActivity().run {
+                checkUser()
+                firebaseAuth.signOut()
+            }
+        }
+    }
+
+    private fun checkUser() {
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser != null) {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setInfo() {

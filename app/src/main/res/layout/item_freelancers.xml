@@ -9,12 +9,12 @@
 
     <ImageView
         android:id="@+id/item_container"
-        android:layout_width="205dp"
+        android:layout_width="0dp"
         android:layout_height="235dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shape_branco"
+        app:srcCompat="@drawable/white_shape"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -42,7 +42,7 @@
         android:text=""
         android:textColor="@color/black"
         android:textSize="11sp"
-        android:maxLines="1"
+        android:maxLines="2"
         app:layout_constraintEnd_toEndOf="@id/title_name_text"
         app:layout_constraintStart_toStartOf="@id/title_name_text"
         app:layout_constraintTop_toBottomOf="@id/title_name_text" />
@@ -64,7 +64,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="5dp"
         android:button="@drawable/selector_favorite_item"
         app:layout_constraintEnd_toEndOf="@+id/item_container"
         app:layout_constraintTop_toTopOf="@+id/item_container" />

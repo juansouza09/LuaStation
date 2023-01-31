@@ -20,9 +20,15 @@ import com.google.firebase.database.FirebaseDatabase
 class Etapa1Activity : AppCompatActivity() {
 
     private lateinit var binding: CadastroScreenBinding
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var database: DatabaseReference
-    private lateinit var databaseNotification: DatabaseReference
+    private val firebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+    private val database by lazy {
+        FirebaseDatabase.getInstance().getReference("Users")
+    }
+    private val databaseNotification by lazy {
+        FirebaseDatabase.getInstance().getReference("Notification")
+    }
 
     private var email = ""
     private var password = ""
@@ -41,9 +47,6 @@ class Etapa1Activity : AppCompatActivity() {
         val date = binding.dataNascInput.editText
         DateInputMask(date).listen()
 
-        database = FirebaseDatabase.getInstance().getReference("Users")
-        databaseNotification = FirebaseDatabase.getInstance().getReference("Notification")
-        firebaseAuth = FirebaseAuth.getInstance()
 
         binding.buttonProximo.setOnClickListener {
             validateData()

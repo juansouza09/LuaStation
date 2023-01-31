@@ -15,34 +15,37 @@ class EscolhaActivity : AppCompatActivity() {
         binding = CadastroEscolhaScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonEmpresa.setOnClickListener {
-            empresa()
+        binding.buttonEmpresa.let {
+            it.setOnClickListener {
+                empresa()
+            }
         }
 
-        binding.buttonFreelancer.setOnClickListener {
-            freelancer()
+        binding.buttonFreelancer.let {
+            it.setOnClickListener {
+                freelancer()
+            }
         }
 
-        binding.buttonCancelar.setOnClickListener {
-            cancelar()
+        binding.buttonCancelar.let {
+            it.setOnClickListener {
+                cancelar()
+            }
         }
     }
 
     private fun empresa() {
-        val empresa = Intent(this, Etapa1Activity::class.java)
-        startActivity(empresa)
+        startActivity(Intent(this, Etapa1Activity::class.java))
         finish()
     }
 
     private fun freelancer() {
-        val freelancer = Intent(this, Etapa3Activity::class.java)
-        startActivity(freelancer)
+        startActivity(Intent(this, Etapa3Activity::class.java))
         finish()
     }
 
     private fun cancelar() {
-        val login = Intent(this, LoginActivity::class.java)
-        startActivity(login)
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 }

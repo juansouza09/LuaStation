@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toTopOf="@id/button_entrar"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/astronaut" />
+        app:lottie_rawRes="@raw/astro" />
 
     <ImageView
         android:id="@+id/imageView2"

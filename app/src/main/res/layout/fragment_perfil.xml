@@ -6,6 +6,25 @@
     android:layout_height="match_parent"
     android:background="@drawable/pattern_dark">
 
+
+    <ImageView
+        android:id="@+id/img_sair"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@id/img_perfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/img_perfil"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_exit"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/img_perfil"
         android:layout_width="100dp"
