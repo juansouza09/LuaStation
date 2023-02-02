@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.luastation.ZoomOutPageTransformer
 import com.example.luastation.databinding.FragmentFavMainBinding
-import com.example.luastation.tabHome.adapters.TabFragPageFavAdapter
+import com.example.luastation.adapters.TabFragPageFavAdapter
+import com.example.luastation.utils.ZoomOutPageTransformer
 import com.google.android.material.tabs.TabLayoutMediator
 
 class FavMainFragment : Fragment() {
 
-    private lateinit var binding: FragmentFavMainBinding
+    private var _binding: FragmentFavMainBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,7 +22,7 @@ class FavMainFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View {
-        binding = FragmentFavMainBinding.inflate(inflater, container, false)
+        _binding = FragmentFavMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 
