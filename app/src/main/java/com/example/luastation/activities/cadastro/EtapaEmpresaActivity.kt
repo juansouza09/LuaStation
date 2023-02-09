@@ -41,7 +41,6 @@ class EtapaEmpresaActivity : AppCompatActivity() {
 
         binding.buttonProximo.setOnClickListener {
             validateData()
-            it.isClickable = false
         }
 
         binding.btnCancelar.setOnClickListener {
@@ -65,9 +64,15 @@ class EtapaEmpresaActivity : AppCompatActivity() {
         name = binding.nomeInput.editText?.text.toString().trim()
         dataNasc = binding.dataNascInput.editText?.text.toString().trim()
 
+        val nameRegex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\$".toRegex()
+
         if (TextUtils.isEmpty(name)) {
             binding.nomeInput.error = "Por favor, insira o Nome!"
-        } else if (TextUtils.isEmpty(cnpj)) {
+        }
+        else if (!nameRegex.matches(name)) {
+            binding.nomeInput.error = "Por favor, insira o Nome!"
+        }
+        else if (TextUtils.isEmpty(cnpj)) {
             binding.cnpjInput.error = "Por favor, insira o dado!"
         } else if (cnpj.length < 11) {
             binding.cnpjInput.error = "Por favor, insira o dado corretamente!"
@@ -80,7 +85,7 @@ class EtapaEmpresaActivity : AppCompatActivity() {
         } else if (TextUtils.isEmpty(password)) {
             binding.passwordInput.error = "Por favor, insira a senha!"
         } else if (password.length < 5) {
-            binding.passwordInput.error = "A senha deve ter no mínimo 6 carácteres!"
+            binding.passwordInput.error = "A senha deve ter no mínimo 5 carácteres!"
         } else {
             firebaseSignUp()
         }
