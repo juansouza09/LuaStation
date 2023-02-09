@@ -48,9 +48,10 @@ class NotificacaoFragment : Fragment() {
     }
 
     private fun setupUi() {
-        binding.recyclerServicos.layoutManager =
+        recyclerview = binding.recyclerServicos
+        recyclerview.layoutManager =
             LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
-        binding.recyclerServicos.adapter = myAdapter
+        recyclerview.adapter = myAdapter
     }
 
     private fun getNotificationData() {

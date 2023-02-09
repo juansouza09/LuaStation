@@ -3,6 +3,7 @@ package com.example.luastation.activities.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.text.method.LinkMovementMethod
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +27,8 @@ class LoginActivity : AppCompatActivity() {
         // init firebaseAuth
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
+
+        binding.hiperLink.movementMethod = LinkMovementMethod.getInstance()
 
         binding.buttonEntrar.setOnClickListener {
             validateData()
