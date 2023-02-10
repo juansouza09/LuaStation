@@ -12,8 +12,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.luastation.activities.HomeActivity
-import com.example.luastation.databinding.CadastroScreenBinding
 import com.example.luastation.activities.login.LoginActivity
+import com.example.luastation.databinding.CadastroScreenBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -68,11 +68,9 @@ class EtapaEmpresaActivity : AppCompatActivity() {
 
         if (TextUtils.isEmpty(name)) {
             binding.nomeInput.error = "Por favor, insira o Nome!"
-        }
-        else if (!nameRegex.matches(name)) {
+        } else if (!nameRegex.matches(name)) {
             binding.nomeInput.error = "Por favor, insira o Nome!"
-        }
-        else if (TextUtils.isEmpty(cnpj)) {
+        } else if (TextUtils.isEmpty(cnpj)) {
             binding.cnpjInput.error = "Por favor, insira o dado!"
         } else if (cnpj.length < 11) {
             binding.cnpjInput.error = "Por favor, insira o dado corretamente!"

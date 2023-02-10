@@ -12,9 +12,9 @@ import com.example.luastation.adapters.ServicesAdapter
 import com.example.luastation.databinding.FragmentServicosBinding
 import com.example.luastation.models.Services
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.DatabaseError
 
 class ServicosFragment : Fragment() {
 
@@ -26,7 +26,6 @@ class ServicosFragment : Fragment() {
     }
 
     val myAdapter = ServicesAdapter()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
