@@ -87,35 +87,64 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/button_entrar"
-        style="@style/buttonLogin"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="20dp"
-        android:text="Entrar"
-        app:layout_constraintBottom_toTopOf="@id/button_cadastrar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <LinearLayout
         app:layout_constraintTop_toBottomOf="@id/password_input"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/button_cadastrar"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_margin="20dp"
-        android:fontFamily="@font/poppins_medium"
-        android:letterSpacing="0"
-        android:text="Cadastre-se"
-        android:textAllCaps="false"
-        android:textColor="#7C7C7C"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_entrar" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:id="@+id/button_entrar"
+            style="@style/buttonLogin"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_margin="20dp"
+            android:text="Entrar"
+            app:layout_constraintBottom_toTopOf="@id/button_cadastrar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password_input"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/button_cadastrar"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:letterSpacing="0"
+            android:text="Cadastre-se"
+            android:textAllCaps="false"
+            android:textColor="#7C7C7C"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_entrar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:text="Ao clicar você concorda com nossos"
+            />
+
+        <TextView
+            android:id="@+id/hiper_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColorLink="@color/white"
+            android:textSize="16sp"
+            android:text="@string/login_terms_text"
+            />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

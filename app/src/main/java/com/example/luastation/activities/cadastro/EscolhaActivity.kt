@@ -35,7 +35,7 @@ class EscolhaActivity : AppCompatActivity() {
     }
 
     private fun empresa() {
-        startActivity(Intent(this, Etapa1Activity::class.java))
+        startActivity(Intent(this, EtapaEmpresaActivity::class.java))
         finish()
     }
 

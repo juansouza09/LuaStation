@@ -37,7 +37,7 @@ class Etapa3Activity : AppCompatActivity() {
     }
 
     private fun proximo() {
-        val freelancer = Intent(this, Etapa1Activity::class.java)
+        val freelancer = Intent(this, EtapaFreelancerActivity::class.java)
         startActivity(freelancer)
         finish()
     }

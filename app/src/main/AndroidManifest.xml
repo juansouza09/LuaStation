@@ -25,7 +25,7 @@
             android:exported="true" />
 
         <activity
-            android:name="com.example.luastation.activities.cadastro.Etapa1Activity"
+            android:name="com.example.luastation.activities.cadastro.EtapaEmpresaActivity"
             android:exported="true" />
 
         <activity
@@ -78,6 +78,10 @@
 
         <activity
             android:name="com.example.luastation.activities.PerfilFreelancerActivity"
+            android:exported="true" />
+
+        <activity
+            android:name="com.example.luastation.activities.cadastro.EtapaFreelancerActivity"
             android:exported="true" />
 
         <activity

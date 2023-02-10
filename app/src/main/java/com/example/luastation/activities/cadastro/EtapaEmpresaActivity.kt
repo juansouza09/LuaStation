@@ -10,14 +10,14 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.example.luastation.activities.HomeActivity
 import com.example.luastation.databinding.CadastroScreenBinding
 import com.example.luastation.activities.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class Etapa1Activity : AppCompatActivity() {
+class EtapaEmpresaActivity : AppCompatActivity() {
 
     private lateinit var binding: CadastroScreenBinding
     private val firebaseAuth by lazy {
@@ -26,13 +26,10 @@ class Etapa1Activity : AppCompatActivity() {
     private val database by lazy {
         FirebaseDatabase.getInstance().getReference("Users")
     }
-    private val databaseNotification by lazy {
-        FirebaseDatabase.getInstance().getReference("Notification")
-    }
 
     private var email = ""
     private var password = ""
-    private var cpf_cnpj = ""
+    private var cnpj = ""
     private var name = ""
     private var dataNasc = ""
 
@@ -40,17 +37,10 @@ class Etapa1Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = CadastroScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val cpf = binding.cpfCnpjInput.editText
-        cpf?.addTextChangedListener(MaskEditUtil.mask(cpf))
-
-        val date = binding.dataNascInput.editText
-        DateInputMask(date).listen()
-
+        setMasks()
 
         binding.buttonProximo.setOnClickListener {
             validateData()
-            it.isClickable = false
         }
 
         binding.btnCancelar.setOnClickListener {
@@ -58,19 +48,34 @@ class Etapa1Activity : AppCompatActivity() {
         }
     }
 
+    private fun setMasks() {
+        binding.cnpjInput.isVisible = true
+        val cnpj = binding.cnpjInput.editText
+        cnpj?.addTextChangedListener(MaskEditUtil.mask(cnpj))
+
+        val date = binding.dataNascInput.editText
+        DateInputMask(date).listen()
+    }
+
     private fun validateData() {
         email = binding.emailInput.editText?.text.toString().trim()
         password = binding.passwordInput.editText?.text.toString().trim()
-        cpf_cnpj = binding.cpfCnpjInput.editText?.text.toString().trim()
+        cnpj = binding.cnpjInput.editText?.text.toString().trim()
         name = binding.nomeInput.editText?.text.toString().trim()
         dataNasc = binding.dataNascInput.editText?.text.toString().trim()
 
+        val nameRegex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\$".toRegex()
+
         if (TextUtils.isEmpty(name)) {
             binding.nomeInput.error = "Por favor, insira o Nome!"
-        } else if (TextUtils.isEmpty(cpf_cnpj)) {
-            binding.cpfCnpjInput.error = "Por favor, insira o dado!"
-        } else if (cpf_cnpj.length < 11) {
-            binding.cpfCnpjInput.error = "Por favor, insira o dado corretamente!"
+        }
+        else if (!nameRegex.matches(name)) {
+            binding.nomeInput.error = "Por favor, insira o Nome!"
+        }
+        else if (TextUtils.isEmpty(cnpj)) {
+            binding.cnpjInput.error = "Por favor, insira o dado!"
+        } else if (cnpj.length < 11) {
+            binding.cnpjInput.error = "Por favor, insira o dado corretamente!"
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.emailInput.error = "E-mail inválido!"
         } else if (TextUtils.isEmpty(dataNasc)) {
@@ -80,7 +85,7 @@ class Etapa1Activity : AppCompatActivity() {
         } else if (TextUtils.isEmpty(password)) {
             binding.passwordInput.error = "Por favor, insira a senha!"
         } else if (password.length < 5) {
-            binding.passwordInput.error = "A senha deve ter no mínimo 6 carácteres!"
+            binding.passwordInput.error = "A senha deve ter no mínimo 5 carácteres!"
         } else {
             firebaseSignUp()
         }
@@ -98,7 +103,7 @@ class Etapa1Activity : AppCompatActivity() {
                     .setValue(binding.dataNascInput.editText?.text.toString())
                 currentUserDb.child("email").setValue(binding.emailInput.editText?.text.toString())
                 currentUserDb.child("cpf_cnpj")
-                    .setValue(binding.cpfCnpjInput.editText?.text.toString())
+                    .setValue(binding.cnpjInput.editText?.text.toString())
 
                 binding.progressBar.visibility = View.VISIBLE
                 startActivity(Intent(this, HomeActivity::class.java))
@@ -137,7 +142,7 @@ class Etapa1Activity : AppCompatActivity() {
                     val str = unmask(s.toString())
                     var mascara = ""
                     mask = when (str.length) {
-                        in 0..11 -> "###.###.###-##"
+                        in 0..14 -> "##.###.###/####-##"
                         else -> "##.###.###/####-##"
                     }
                     if (isUpdating) {
