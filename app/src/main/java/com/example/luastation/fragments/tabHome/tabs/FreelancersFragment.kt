@@ -8,13 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.luastation.adapters.FreelancersAdapter
 import com.example.luastation.databinding.FragmentFreelancersBinding
 import com.example.luastation.models.Freelancers
-import com.example.luastation.adapters.FreelancersAdapter
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.DatabaseError
 
 class FreelancersFragment : Fragment() {
 
@@ -68,7 +68,7 @@ class FreelancersFragment : Fragment() {
                         val freelancer = freelancerSnapshot.getValue(Freelancers::class.java)
                         freelancersArrayList.add(freelancer!!)
                     }
-                    myAdapter.submitList(freelancersArrayList)
+                    myAdapter.submitList(freelancersArrayList.filter { it.cpf_cnpj!!.length <= 14 })
                     recyclerView.visibility = View.VISIBLE
                 }
             }
