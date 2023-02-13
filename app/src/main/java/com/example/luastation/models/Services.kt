@@ -8,5 +8,6 @@ data class Services(
     var days: String? = null,
     var desc: String? = null,
     var plataform: String? = null,
-    var creator: String? = null
+    var creator: String? = null,
+    var serviceType: String? = null
 )

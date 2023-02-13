@@ -71,6 +71,18 @@ class CriarProjeto2Activity : AppCompatActivity() {
             }
         }
 
+        val serviceType: String = when {
+            days.text.toString().toIntOrNull()!! <= 7 -> {
+                "meteoro"
+            }
+            days.text.toString().toIntOrNull() in 7..14 -> {
+                "estrela"
+            }
+            else -> {
+                "lua"
+            }
+        }
+
         val creatorId = firebaseAuth.currentUser?.uid
         val serviceName = name.text.toString()
         val servicePrice = "R$" + price.text.toString()
@@ -102,7 +114,8 @@ class CriarProjeto2Activity : AppCompatActivity() {
                 serviceDays,
                 serviceDesc,
                 servicePlataform,
-                creatorId
+                creatorId,
+                serviceType
             )
 
             dbRef.child(serviceId).setValue(service)

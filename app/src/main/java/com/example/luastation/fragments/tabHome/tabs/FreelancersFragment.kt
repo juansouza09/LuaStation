@@ -63,12 +63,13 @@ class FreelancersFragment : Fragment() {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val freelancersArrayList = mutableListOf<Freelancers>()
+                val list = freelancersArrayList.filter { it.cpf_cnpj!!.length <= 14 }
                 if (snapshot.exists()) {
                     for (freelancerSnapshot in snapshot.children) {
                         val freelancer = freelancerSnapshot.getValue(Freelancers::class.java)
                         freelancersArrayList.add(freelancer!!)
                     }
-                    myAdapter.submitList(freelancersArrayList.filter { it.cpf_cnpj!!.length <= 14 })
+                    myAdapter.submitList(list)
                     recyclerView.visibility = View.VISIBLE
                 }
             }
