@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.ActivityServicoDetalhesBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -16,6 +17,9 @@ class DetalhesActivity : AppCompatActivity() {
     private val binding by lazy { ActivityServicoDetalhesBinding.inflate(layoutInflater) }
     private val database by lazy {
         FirebaseDatabase.getInstance().getReference("Users").child(creator!!)
+    }
+    private val firebaseAuth by lazy {
+        FirebaseAuth.getInstance()
     }
 
     private var creator: String? = null
@@ -61,6 +65,7 @@ class DetalhesActivity : AppCompatActivity() {
             title = aTitle
             serviceId = aServiceId
         }
+        validateOwner(aCreator!!)
     }
 
     private fun setupListeners() {
@@ -104,6 +109,18 @@ class DetalhesActivity : AppCompatActivity() {
                     TODO("Not yet implemented")
                 }
             })
+        }
+    }
+
+    private fun validateOwner(creatorId: String) {
+        if (creatorId == firebaseAuth.currentUser!!.uid) {
+            setUi()
+        }
+    }
+
+    private fun setUi() {
+        with(binding) {
+            btnCanditadar
         }
     }
 }
