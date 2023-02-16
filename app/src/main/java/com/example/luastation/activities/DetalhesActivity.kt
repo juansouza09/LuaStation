@@ -2,9 +2,11 @@ package com.example.luastation.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.ActivityServicoDetalhesBinding
+import com.example.luastation.models.Services
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,6 +22,9 @@ class DetalhesActivity : AppCompatActivity() {
     }
     private val firebaseAuth by lazy {
         FirebaseAuth.getInstance()
+    }
+    private val database2 by lazy {
+        FirebaseDatabase.getInstance().getReference("Services").child(serviceId!!)
     }
 
     private var creator: String? = null
@@ -44,10 +49,10 @@ class DetalhesActivity : AppCompatActivity() {
         val aDesc = intent.getStringExtra("iDesc")
         val aImg = intent.getStringExtra("iImg")
         val aCreator = intent.getStringExtra("iCreator")
-        val aType = intent.getStringExtra("iType")
+        val aStatus = intent.getStringExtra("iStatus")
 
-        if (aType != "Em aberto") {
-            binding.btnCanditadar.text = aType
+        if (aStatus != "Em aberto") {
+            binding.btnCanditadar.text = aStatus
             binding.btnCanditadar.isClickable = false
         }
 
@@ -84,18 +89,6 @@ class DetalhesActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-
-        binding.btnCanditadar.let {
-            it.setOnClickListener {
-                Toast.makeText(this, "Boa sorte, Astronauta!", Toast.LENGTH_SHORT)
-                    .show()
-                val intent = Intent(this, EfetuarProjetoActivity::class.java)
-                intent.putExtra("eCreator", creator)
-                intent.putExtra("eId", serviceId)
-                intent.putExtra("eTitle", title)
-                startActivity(intent)
-            }
-        }
     }
 
     private fun getContratanteData() {
@@ -115,12 +108,33 @@ class DetalhesActivity : AppCompatActivity() {
     private fun validateOwner(creatorId: String) {
         if (creatorId == firebaseAuth.currentUser!!.uid) {
             setUi()
+        } else {
+            binding.btnCanditadar.let {
+                it.setOnClickListener {
+                    Toast.makeText(this, "Boa sorte, Astronauta!", Toast.LENGTH_SHORT)
+                        .show()
+                    val intent = Intent(this, EfetuarProjetoActivity::class.java)
+                    intent.putExtra("eCreator", creator)
+                    intent.putExtra("eId", serviceId)
+                    intent.putExtra("eTitle", title)
+                    startActivity(intent)
+                }
+            }
         }
     }
 
     private fun setUi() {
         with(binding) {
-            btnCanditadar
+            val status = intent.getStringExtra("iStatus")
+            btnCanditadar.isClickable = true
+            btnCanditadar.text = status
+            btnCanditadar.setOnClickListener {
+                when(status) {
+                    "Em aberto" -> btnCanditadar.text = "Em andamento"
+                    "Em andamento" -> btnCanditadar.text = "Concluído"
+                    "Concluído" -> btnCanditadar.text = "Concluído"
+                }
+            }
         }
     }
 }
