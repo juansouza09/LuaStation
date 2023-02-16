@@ -9,5 +9,6 @@ data class Services(
     var desc: String? = null,
     var plataform: String? = null,
     var creator: String? = null,
-    var serviceType: String? = null
+    var type: String? = null,
+    var status: String? = null
 )

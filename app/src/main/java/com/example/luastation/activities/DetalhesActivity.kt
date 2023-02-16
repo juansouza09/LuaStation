@@ -6,9 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.ActivityServicoDetalhesBinding
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.DatabaseError
 import com.squareup.picasso.Picasso
 
 class DetalhesActivity : AppCompatActivity() {
@@ -40,6 +40,12 @@ class DetalhesActivity : AppCompatActivity() {
         val aDesc = intent.getStringExtra("iDesc")
         val aImg = intent.getStringExtra("iImg")
         val aCreator = intent.getStringExtra("iCreator")
+        val aType = intent.getStringExtra("iType")
+
+        if (aType != "Em aberto") {
+            binding.btnCanditadar.text = aType
+            binding.btnCanditadar.isClickable = false
+        }
 
         binding.titleTextFreela.text = aTitle
         binding.priceTextFreela.text = aPrice

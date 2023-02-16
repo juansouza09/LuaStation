@@ -110,9 +110,9 @@ class PerfilFragment : Fragment() {
 
     private fun setUi(services: List<Services>) {
         with(binding) {
-            val serviceMoonCount = services.filter { it.serviceType == "lua" }.size
-            val serviceStarCount = services.size
-            val serviceMeteoroCount = services.filter { it.serviceType == "meteoro" }.size
+            val serviceMoonCount = services.filter { it.type == "lua" }.size
+            val serviceStarCount = services.filter { it.type == "estrela" }.size
+            val serviceMeteoroCount = services.filter { it.type == "meteoro" }.size
 
             itemCountLua.text = serviceMoonCount.toString()
             itemCountEstrela.text = serviceStarCount.toString()

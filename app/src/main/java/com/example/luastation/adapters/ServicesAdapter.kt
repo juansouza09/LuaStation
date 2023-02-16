@@ -90,6 +90,7 @@ class ServicesAdapter : ListAdapter<Services, ServicesAdapter.MyViewHolder>(DIFF
             val desc = service.desc
             val img = service.img
             val creator = service.creator
+            val status = service.status
 
             Picasso.get().load(service.img).into(binding.imgDificuldade)
             binding.titleText.text = service.name
@@ -132,6 +133,7 @@ class ServicesAdapter : ListAdapter<Services, ServicesAdapter.MyViewHolder>(DIFF
                     intent.putExtra("iDesc", desc)
                     intent.putExtra("iImg", img)
                     intent.putExtra("iCreator", creator)
+                    intent.putExtra("iStatus", status)
                     context.startActivity(intent)
                 }
             }

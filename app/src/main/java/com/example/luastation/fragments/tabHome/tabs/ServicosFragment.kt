@@ -67,7 +67,7 @@ class ServicosFragment : Fragment() {
                             val service = serviceSnapshot.getValue(Services::class.java)
                             servicesArrayList.add(service!!)
                         }
-                        myAdapter.submitList(servicesArrayList)
+                        myAdapter.submitList(servicesArrayList.filter { services -> services.status.toString() == SERVICE_STATUS })
                         binding.recyclerServicos.visibility = View.VISIBLE
                     }
                 }
@@ -81,5 +81,9 @@ class ServicosFragment : Fragment() {
                 }
             })
         }
+    }
+
+    companion object {
+        const val SERVICE_STATUS = "Em aberto"
     }
 }

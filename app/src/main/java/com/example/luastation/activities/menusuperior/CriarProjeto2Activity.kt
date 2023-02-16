@@ -115,7 +115,8 @@ class CriarProjeto2Activity : AppCompatActivity() {
                 serviceDesc,
                 servicePlataform,
                 creatorId,
-                serviceType
+                serviceType,
+                "Em aberto"
             )
 
             dbRef.child(serviceId).setValue(service)
