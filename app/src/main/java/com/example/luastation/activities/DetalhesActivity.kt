@@ -49,11 +49,12 @@ class DetalhesActivity : AppCompatActivity() {
         val aDesc = intent.getStringExtra("iDesc")
         val aImg = intent.getStringExtra("iImg")
         val aCreator = intent.getStringExtra("iCreator")
-        val aStatus = intent.getStringExtra("iStatus")
 
-        if (aStatus != "Em aberto") {
-            binding.btnCanditadar.text = aStatus
+        if (aCreator == firebaseAuth.currentUser!!.uid) {
             binding.btnCanditadar.isClickable = false
+            binding.btnCanditadar.setOnClickListener {
+
+            }
         }
 
         binding.titleTextFreela.text = aTitle
@@ -70,7 +71,6 @@ class DetalhesActivity : AppCompatActivity() {
             title = aTitle
             serviceId = aServiceId
         }
-        validateOwner(aCreator!!)
     }
 
     private fun setupListeners() {
@@ -102,39 +102,6 @@ class DetalhesActivity : AppCompatActivity() {
                     TODO("Not yet implemented")
                 }
             })
-        }
-    }
-
-    private fun validateOwner(creatorId: String) {
-        if (creatorId == firebaseAuth.currentUser!!.uid) {
-            setUi()
-        } else {
-            binding.btnCanditadar.let {
-                it.setOnClickListener {
-                    Toast.makeText(this, "Boa sorte, Astronauta!", Toast.LENGTH_SHORT)
-                        .show()
-                    val intent = Intent(this, EfetuarProjetoActivity::class.java)
-                    intent.putExtra("eCreator", creator)
-                    intent.putExtra("eId", serviceId)
-                    intent.putExtra("eTitle", title)
-                    startActivity(intent)
-                }
-            }
-        }
-    }
-
-    private fun setUi() {
-        with(binding) {
-            val status = intent.getStringExtra("iStatus")
-            btnCanditadar.isClickable = true
-            btnCanditadar.text = status
-            btnCanditadar.setOnClickListener {
-                when(status) {
-                    "Em aberto" -> btnCanditadar.text = "Em andamento"
-                    "Em andamento" -> btnCanditadar.text = "Concluído"
-                    "Concluído" -> btnCanditadar.text = "Concluído"
-                }
-            }
         }
     }
 }
