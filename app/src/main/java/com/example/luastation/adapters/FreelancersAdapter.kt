@@ -110,6 +110,7 @@ class FreelancersAdapter :
             intent.putExtra("iEmail", email)
             intent.putExtra("iDataNasc", dataNasc)
             intent.putExtra("iCpf_cnpj", cpf_cnpj)
+            intent.putExtra("iFreelancerID", id)
             context.startActivity(intent)
         }
     }

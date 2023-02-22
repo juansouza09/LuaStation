@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.ActivityServicoDetalhesBinding
-import com.example.luastation.models.Services
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,9 +21,6 @@ class DetalhesActivity : AppCompatActivity() {
     }
     private val firebaseAuth by lazy {
         FirebaseAuth.getInstance()
-    }
-    private val database2 by lazy {
-        FirebaseDatabase.getInstance().getReference("Services").child(serviceId!!)
     }
 
     private var creator: String? = null
@@ -51,9 +47,23 @@ class DetalhesActivity : AppCompatActivity() {
         val aCreator = intent.getStringExtra("iCreator")
 
         if (aCreator == firebaseAuth.currentUser!!.uid) {
-            binding.btnCanditadar.isClickable = false
             binding.btnCanditadar.setOnClickListener {
+                Toast.makeText(this, "Você é o dono desse projeto", Toast.LENGTH_SHORT).show()
+            }
+        }
 
+        if (aCreator != firebaseAuth.currentUser!!.uid) {
+            binding.btnCanditadar.let {
+                it.setOnClickListener {
+                    Toast.makeText(this, "Boa sorte, Astronauta!", Toast.LENGTH_SHORT)
+                        .show()
+                    Log.e("detalhes", "clicou e n é dono")
+                    val theIntent = Intent(this, EfetuarProjetoActivity::class.java)
+                    theIntent.putExtra("eCreator", creator)
+                    theIntent.putExtra("eId", serviceId)
+                    theIntent.putExtra("eTitle", title)
+                    startActivity(theIntent)
+                }
             }
         }
 

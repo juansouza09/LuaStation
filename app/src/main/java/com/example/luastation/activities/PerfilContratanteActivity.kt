@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.ActivityPerfilUsuarioBinding
+import com.example.luastation.models.Services
 import com.google.firebase.database.*
 
 class PerfilContratanteActivity : AppCompatActivity() {
@@ -58,6 +59,35 @@ class PerfilContratanteActivity : AppCompatActivity() {
                     TODO("Not yet implemented")
                 }
             })
+        }
+        database.child("Meus Projetos").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val freelasList = mutableListOf<Services>()
+                if (snapshot.exists()) {
+                    for (serviceSnapshot in snapshot.children) {
+                        val freela = serviceSnapshot.getValue(Services::class.java)
+                        freelasList.add(freela!!)
+                    }
+                    setUi(freelasList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    private fun setUi(services: List<Services>) {
+        with(binding) {
+            val serviceMoonCount = services.filter { it.type == "lua" }.size
+            val serviceStarCount = services.filter { it.type == "estrela" }.size
+            val serviceMeteoroCount = services.filter { it.type == "meteoro" }.size
+
+            itemCountLua.text = serviceMoonCount.toString()
+            itemCountEstrela.text = serviceStarCount.toString()
+            itemCountMeteoro.text = serviceMeteoroCount.toString()
         }
     }
 }

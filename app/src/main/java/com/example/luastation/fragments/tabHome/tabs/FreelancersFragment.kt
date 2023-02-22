@@ -68,7 +68,7 @@ class FreelancersFragment : Fragment() {
                         val freelancer = freelancerSnapshot.getValue(Freelancers::class.java)
                         freelancersArrayList.add(freelancer!!)
                     }
-                    myAdapter.submitList(freelancersArrayList.filter { freelancers -> freelancers.cpf_cnpj!!.length == CPF_LENGTH })
+                    myAdapter.submitList(freelancersArrayList)
                     recyclerView.visibility = View.VISIBLE
                 }
             }
@@ -81,9 +81,5 @@ class FreelancersFragment : Fragment() {
                 ).show()
             }
         })
-    }
-
-    companion object {
-        const val CPF_LENGTH = 14
     }
 }

@@ -2,7 +2,6 @@ package com.example.luastation.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,11 +25,7 @@ class PerfilFragment : Fragment() {
         FirebaseAuth.getInstance()
     }
     private val database by lazy {
-        FirebaseDatabase.getInstance().getReference("Users")
-    }
-
-    private val database2 by lazy {
-        FirebaseDatabase.getInstance().getReference("Users").child(firebaseAuth.currentUser!!.uid).child("Meus Projetos")
+        FirebaseDatabase.getInstance().getReference("Users").child(firebaseAuth.currentUser!!.uid)
     }
 
     override fun onCreateView(
@@ -66,11 +61,8 @@ class PerfilFragment : Fragment() {
     }
 
     private fun setInfo() {
-        val user = firebaseAuth.currentUser
-        val userReference = database.child(user!!.uid)
-
-        binding.perfilEmailText.text = user.email
-        userReference.addValueEventListener(object : ValueEventListener {
+        binding.perfilEmailText.text = firebaseAuth.currentUser!!.email
+        database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 binding.perfilNameText.text = snapshot.child("name").value.toString()
                 binding.textNameContratante.text = snapshot.child("name").value.toString()
@@ -83,7 +75,7 @@ class PerfilFragment : Fragment() {
             }
         })
 
-        database2.apply {
+        database.child("Meus Projetos").apply {
             addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val freelasList = mutableListOf<Services>()
@@ -93,7 +85,6 @@ class PerfilFragment : Fragment() {
                             freelasList.add(freela!!)
                         }
                         setUi(freelasList)
-                        Log.e("Freelas", freelasList.size.toString())
                     }
                 }
 
@@ -117,8 +108,6 @@ class PerfilFragment : Fragment() {
             itemCountLua.text = serviceMoonCount.toString()
             itemCountEstrela.text = serviceStarCount.toString()
             itemCountMeteoro.text = serviceMeteoroCount.toString()
-
-            Log.e("estrela", services.size.toString())
         }
     }
 }

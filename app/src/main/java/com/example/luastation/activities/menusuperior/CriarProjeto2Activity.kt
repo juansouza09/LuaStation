@@ -85,7 +85,7 @@ class CriarProjeto2Activity : AppCompatActivity() {
 
         val creatorId = firebaseAuth.currentUser?.uid
         val serviceName = name.text.toString()
-        val servicePrice = "R$" + price.text.toString()
+        val servicePrice = "R$ " + price.text.toString()
         val serviceDays = days.text.toString() + " dias"
         val serviceDesc = desc.text.toString()
         val servicePlataform = plataform.text.toString()
