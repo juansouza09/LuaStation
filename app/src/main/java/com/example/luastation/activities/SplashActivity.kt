@@ -17,7 +17,6 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         binding.buttonEntrar.let {
             it.setOnClickListener {
                 startActivity(Intent(this, LoginActivity::class.java))

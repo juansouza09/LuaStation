@@ -24,6 +24,7 @@
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/ic_favorite.xml" value="0.13" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/ic_favorite_off.xml" value="0.13" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/ic_heart.xml" value="0.13" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/purple_shape.xml" value="0.1" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/selector_favorite_item.xml" value="0.13" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/shape_branco.xml" value="0.1595" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/shape_notificacao.xml" value="0.1" />
@@ -35,7 +36,7 @@
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/cadastro_escolha_screen.xml" value="0.3052586575459598" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/cadastro_screen.xml" value="0.25" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/criar_projeto_2_screen.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/criar_projeto_screen.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/criar_projeto_screen.xml" value="0.22" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/efetuar_projeto_screen.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/error_signup_activity.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/fragment_fav_main.xml" value="0.19166666666666668" />

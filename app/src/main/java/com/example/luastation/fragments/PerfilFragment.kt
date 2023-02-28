@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.luastation.activities.login.LoginActivity
 import com.example.luastation.databinding.FragmentPerfilBinding
 import com.example.luastation.models.Services
@@ -15,6 +16,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class PerfilFragment : Fragment() {
 
@@ -39,7 +42,7 @@ class PerfilFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setInfo()
+        lifecycleScope.launch { setInfo() }
         setListeners()
     }
 
@@ -60,7 +63,7 @@ class PerfilFragment : Fragment() {
         }
     }
 
-    private fun setInfo() {
+    private suspend fun setInfo() = coroutineScope {
         binding.perfilEmailText.text = firebaseAuth.currentUser!!.email
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

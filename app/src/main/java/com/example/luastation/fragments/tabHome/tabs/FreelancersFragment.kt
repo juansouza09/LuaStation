@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.adapters.FreelancersAdapter
@@ -15,6 +16,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class FreelancersFragment : Fragment() {
 
@@ -39,7 +42,7 @@ class FreelancersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
-        getFreelancersData()
+        lifecycleScope.launch { getFreelancersData() }
         refreshFragment()
     }
 
@@ -54,12 +57,13 @@ class FreelancersFragment : Fragment() {
     private fun refreshFragment() {
         val swipe = binding.swipeToRefresh
         swipe.setOnRefreshListener {
-            getFreelancersData()
+            myAdapter.submitList(listOf())
+            lifecycleScope.launch { getFreelancersData() }
             swipe.isRefreshing = false
         }
     }
 
-    private fun getFreelancersData() {
+    private suspend fun getFreelancersData() = coroutineScope {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val freelancersArrayList = mutableListOf<Freelancers>()

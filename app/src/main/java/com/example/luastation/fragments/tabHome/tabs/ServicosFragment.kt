@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.luastation.adapters.ServicesAdapter
@@ -15,6 +16,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class ServicosFragment : Fragment() {
 
@@ -38,7 +41,7 @@ class ServicosFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getServiceData()
+        lifecycleScope.launch { getServiceData() }
         setupUi()
         refreshFragment()
     }
@@ -52,12 +55,13 @@ class ServicosFragment : Fragment() {
     private fun refreshFragment() {
         val swipe = binding.swipeToRefresh
         swipe.setOnRefreshListener {
-            getServiceData()
+            myAdapter.submitList(listOf())
+            lifecycleScope.launch { getServiceData() }
             swipe.isRefreshing = false
         }
     }
 
-    private fun getServiceData() {
+    private suspend fun getServiceData() = coroutineScope {
         database.apply {
             addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

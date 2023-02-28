@@ -11,11 +11,15 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import com.example.luastation.activities.HomeActivity
 import com.example.luastation.activities.login.LoginActivity
 import com.example.luastation.databinding.CadastroScreenBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class EtapaEmpresaActivity : AppCompatActivity() {
 
@@ -40,7 +44,7 @@ class EtapaEmpresaActivity : AppCompatActivity() {
         setMasks()
 
         binding.buttonProximo.setOnClickListener {
-            validateData()
+            lifecycleScope.launch { validateData() }
         }
 
         binding.btnCancelar.setOnClickListener {
@@ -57,7 +61,7 @@ class EtapaEmpresaActivity : AppCompatActivity() {
         DateInputMask(date).listen()
     }
 
-    private fun validateData() {
+    private suspend fun validateData() {
         email = binding.emailInput.editText?.text.toString().trim()
         password = binding.passwordInput.editText?.text.toString().trim()
         cnpj = binding.cnpjInput.editText?.text.toString().trim()
@@ -89,7 +93,7 @@ class EtapaEmpresaActivity : AppCompatActivity() {
         }
     }
 
-    private fun firebaseSignUp() {
+    private suspend fun firebaseSignUp() = coroutineScope {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {
                 val firebaseUser = firebaseAuth.currentUser!!
@@ -104,11 +108,15 @@ class EtapaEmpresaActivity : AppCompatActivity() {
                     .setValue(binding.cnpjInput.editText?.text.toString())
 
                 binding.progressBar.visibility = View.VISIBLE
-                startActivity(Intent(this, HomeActivity::class.java))
+                startActivity(Intent(this@EtapaEmpresaActivity, HomeActivity::class.java))
                 finish()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Cadastro não finalizado ${e.message}", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this@EtapaEmpresaActivity,
+                    "Cadastro não finalizado ${e.message}",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
     }

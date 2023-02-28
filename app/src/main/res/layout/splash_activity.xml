@@ -10,8 +10,8 @@
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/imageView2"
         app:layout_constraintBottom_toTopOf="@id/button_entrar"
+        app:layout_constraintTop_toBottomOf="@id/imageView2"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/astro" />
@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_app"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,14 +42,14 @@
 
     <Button
         android:id="@+id/button_entrar"
+        style="@style/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="20dp"
-        android:text="Boas-vindas!"
-        style="@style/buttonLogin"
         android:layout_marginBottom="40dp"
+        android:text="Boas-vindas!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -7,10 +7,13 @@ import android.text.method.LinkMovementMethod
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.coroutineScope
 import com.example.luastation.activities.HomeActivity
 import com.example.luastation.databinding.LoginScreenBinding
 import com.example.luastation.activities.cadastro.EscolhaActivity
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
@@ -31,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
         binding.hiperLink.movementMethod = LinkMovementMethod.getInstance()
 
         binding.buttonEntrar.setOnClickListener {
-            validateData()
+            lifecycle.coroutineScope.launch { validateData() }
         }
 
         binding.buttonCadastrar.setOnClickListener {
@@ -39,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateData() {
+    private suspend fun validateData() {
         email = binding.emailInput.editText?.text.toString().trim()
         password = binding.passwordInput.editText?.text.toString().trim()
 
@@ -52,19 +55,19 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun firebaseLogin() {
+    private suspend fun firebaseLogin() = coroutineScope {
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
                 val firebaseUser = firebaseAuth.currentUser
                 val email = firebaseUser!!.email
-                Toast.makeText(this, "Entrou como $email", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LoginActivity, "Entrou como $email", Toast.LENGTH_SHORT).show()
 
-                startActivity(Intent(this, HomeActivity::class.java))
+                startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                 finish()
             }
             .addOnFailureListener { e ->
                 Toast.makeText(
-                    this,
+                    this@LoginActivity,
                     "Login não efetuado, tente novamente ${e.message}",
                     Toast.LENGTH_SHORT
                 ).show()
