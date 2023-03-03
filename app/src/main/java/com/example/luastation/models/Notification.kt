@@ -4,6 +4,5 @@ data class Notification(
     var id: String? = null,
     var title: String? = null,
     var email: String? = null,
-    var description: String? = null,
-    var isActive: Boolean? = null
+    var description: String? = null
 )

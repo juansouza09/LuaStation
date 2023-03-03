@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luastation.R
 import com.example.luastation.activities.NotificationActivity
 import com.example.luastation.databinding.ItemNotificacaoBinding
 import com.example.luastation.models.Notification
@@ -44,13 +43,6 @@ class NotificationAdapter :
         val title = notification.title
         val desc = notification.description
         val email = notification.email
-        val isActive = notification.isActive
-
-        if (isActive != true) {
-            holder.binding.itemContainer.setImageResource(R.drawable.dark_purple_shape)
-        } else {
-            holder.binding.itemContainer.setImageResource(R.drawable.purple_shape)
-        }
 
         holder.binding.titleNotificationText.text = notification.title
 

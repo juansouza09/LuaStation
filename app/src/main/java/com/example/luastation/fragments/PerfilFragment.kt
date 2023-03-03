@@ -100,7 +100,7 @@ class PerfilFragment : Fragment() {
     }
 
     private fun setUi(services: List<Services?>) {
-        binding.run {
+        with(binding) {
             val serviceMoonCount = services.filter { it?.type == "lua" }.size
             val serviceStarCount = services.filter { it?.type == "estrela" }.size
             val serviceMeteoroCount = services.filter { it?.type == "meteoro" }.size

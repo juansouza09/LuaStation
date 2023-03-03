@@ -35,20 +35,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ic_back" />
 
-    <TextView
-        android:id="@+id/dados_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/poppins_medium"
-        android:gravity="center"
-        android:text="AVISO: Caso tenha gostado, \n entre em contato! ;)"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_screen" />
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/img_person"
         android:layout_width="110dp"
@@ -56,7 +42,7 @@
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dados_text"
+        app:layout_constraintTop_toBottomOf="@id/title_screen"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/astronaut_profile" />
@@ -77,43 +63,17 @@
 
     <TextView
         android:id="@+id/desc_notification"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="52dp"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center"
-        android:paddingHorizontal="20dp"
         android:text="Um astronauta se interessou \n em seu projeto!"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email_astronauta" />
-
-    <ImageButton
-        android:id="@+id/button_resolver"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/purple_shape"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/desc_notification"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/button_resolver_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Feito"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button_resolver"
-        app:layout_constraintEnd_toEndOf="@+id/button_resolver"
-        app:layout_constraintStart_toStartOf="@+id/button_resolver"
-        app:layout_constraintTop_toTopOf="@+id/button_resolver" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

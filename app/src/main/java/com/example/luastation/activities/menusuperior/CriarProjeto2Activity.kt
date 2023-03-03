@@ -114,7 +114,6 @@ class CriarProjeto2Activity : AppCompatActivity() {
                             PagamentoProjetoActivity::class.java
                         )
                     )
-                    finish()
                 }.addOnFailureListener {
                     Toast.makeText(
                         this@CriarProjeto2Activity,

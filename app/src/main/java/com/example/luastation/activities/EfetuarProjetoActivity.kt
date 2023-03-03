@@ -95,8 +95,7 @@ class EfetuarProjetoActivity : AppCompatActivity() {
             notificationId,
             title,
             email?.text.toString(),
-            desc?.text.toString(),
-            true
+            desc?.text.toString()
         )
 
         creatorId?.let { it ->
