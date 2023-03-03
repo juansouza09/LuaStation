@@ -2,7 +2,6 @@ package com.example.luastation.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -12,8 +11,7 @@ import com.example.luastation.R
 import com.example.luastation.databinding.ActivityHomeBinding
 import com.example.luastation.activities.login.LoginActivity
 import com.google.android.gms.ads.*
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity() {
@@ -27,6 +25,7 @@ class HomeActivity : AppCompatActivity() {
     private val navController: NavController by lazy { findNavController(R.id.navHostFragment) }
 
     private lateinit var mAdView: AdView
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
         checkUser()
         bottomNavigation()
         setupAd()
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
     }
 
     private fun setupAd() {
@@ -70,7 +70,6 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
-
 
 
     private fun checkUser() {
