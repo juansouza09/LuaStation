@@ -4,13 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.example.luastation.databinding.CriarProjeto2ScreenBinding
 import com.example.luastation.models.Services
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
 class CriarProjeto2Activity : AppCompatActivity() {
 
@@ -38,63 +35,63 @@ class CriarProjeto2Activity : AppCompatActivity() {
         }
 
         binding.buttonProximo.setOnClickListener {
-            lifecycleScope.launch { saveServiceData() }
+            saveServiceData()
         }
     }
 
-    private suspend fun saveServiceData() = coroutineScope {
-        val name = binding.nomeProjetoInput.editText!!
-        val price = binding.priceInput.editText!!
-        val days = binding.prazoInput.editText!!
-        val desc = binding.descInput.editText!!
-        val plataform = binding.plataformaInput.editText!!
-
-        val serviceImg: String = when {
-            days.text.toString().toIntOrNull()!! <= 7 -> {
-                meteoro
-            }
-            days.text.toString().toIntOrNull() in 7..14 -> {
-                estrela
-            }
-            else -> {
-                lua
-            }
-        }
-
-        val serviceType: String = when {
-            days.text.toString().toIntOrNull()!! <= 7 -> {
-                "meteoro"
-            }
-            days.text.toString().toIntOrNull() in 7..14 -> {
-                "estrela"
-            }
-            else -> {
-                "lua"
-            }
-        }
+    private fun saveServiceData() {
+        val name = binding.nomeProjetoInput.editText?.text
+        val price = binding.priceInput.editText?.text
+        val days = binding.prazoInput.editText?.text
+        val desc = binding.descInput.editText?.text
+        val plataform = binding.plataformaInput.editText?.text
 
         val creatorId = firebaseAuth.currentUser?.uid
-        val serviceName = name.text.toString()
-        val servicePrice = "R$ " + price.text.toString()
-        val serviceDays = days.text.toString() + " dias"
-        val serviceDesc = desc.text.toString()
-        val servicePlataform = plataform.text.toString()
+        val serviceName = name.toString()
+        val servicePrice = "R$ " + price.toString()
+        val serviceDays = days.toString() + " dias"
+        val serviceDesc = desc.toString()
+        val servicePlataform = plataform.toString()
 
         if (serviceName.isEmpty()) {
-            name.error = "Coloque o nome corretamente, por favor!"
-        } else if (servicePrice.isEmpty()) {
-            price.error = "Coloque o preço corretamente, por favor!"
-        } else if (serviceDays.isEmpty()) {
-            days.error = "Coloque o prazo corretamente, por favor!"
-        } else if (days.text.toString().toIntOrNull()!! > 30) {
-            days.error = "O prazo máximo é de 30 dias!"
-        } else if (serviceDesc.isEmpty()) {
-            desc.error = "Coloque a descrição corretamente, por favor!"
-        } else if (desc.text.length < 20) {
-            desc.error = "Coloque uma descrição maior, por favor!"
-        } else if (servicePlataform.isEmpty()) {
-            plataform.error = "Coloque a plataforma corretamente, por favor!"
+            binding.nomeProjetoInput.editText?.error = "Coloque o nome corretamente, por favor!"
+        } else if (price?.isEmpty() == true) {
+            binding.priceInput.editText?.error = "Coloque o preço corretamente, por favor!"
+        } else if (days.toString().isEmpty()) {
+            binding.prazoInput.editText?.error = "Coloque o prazo corretamente, por favor!"
+        } else if (days.toString().toInt() > 30) {
+            binding.prazoInput.editText?.error = "O prazo máximo é de 30 dias!"
+        } else if (desc?.isEmpty() == true) {
+            binding.descInput.editText?.error = "Coloque a descrição corretamente, por favor!"
+        } else if (desc?.length!! < 20) {
+            binding.descInput.editText?.error = "Coloque uma descrição maior, por favor!"
+        } else if (plataform?.length!! <= 2) {
+            binding.plataformaInput.editText?.error =
+                "Coloque a plataforma corretamente, por favor!"
         } else {
+            val serviceImg: String = when {
+                days.toString().toInt() <= 7 -> {
+                    meteoro
+                }
+                days.toString().toInt() in 7..14 -> {
+                    estrela
+                }
+                else -> {
+                    lua
+                }
+            }
+
+            val serviceType: String = when {
+                days.toString().toInt() <= 7 -> {
+                    "meteoro"
+                }
+                days.toString().toInt() in 7..14 -> {
+                    "estrela"
+                }
+                else -> {
+                    "lua"
+                }
+            }
             val serviceId = dbRef.push().key!!
             val service = Services(
                 serviceId,
@@ -138,6 +135,7 @@ class CriarProjeto2Activity : AppCompatActivity() {
                 }
         }
     }
+
     companion object {
         const val meteoro =
             "https://firebasestorage.googleapis.com/v0/b/lua-station.appspot.com/o/meteoro%201%20(2).png?alt=media&token=cb0ec932-e953-4bed-9ced-13e350205855"

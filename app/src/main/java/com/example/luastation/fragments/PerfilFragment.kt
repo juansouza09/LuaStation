@@ -2,13 +2,11 @@ package com.example.luastation.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.example.luastation.activities.login.LoginActivity
 import com.example.luastation.databinding.FragmentPerfilBinding
 import com.example.luastation.models.Services
@@ -17,8 +15,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
 class PerfilFragment : Fragment() {
 

@@ -11,14 +11,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import com.example.luastation.activities.HomeActivity
 import com.example.luastation.activities.login.LoginActivity
 import com.example.luastation.databinding.CadastroScreenBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
 class EtapaEmpresaActivity : AppCompatActivity() {
 
@@ -43,7 +40,7 @@ class EtapaEmpresaActivity : AppCompatActivity() {
         setMasks()
 
         binding.buttonProximo.setOnClickListener {
-            lifecycleScope.launch { validateData() }
+            if (validateData()) firebaseSignUp()
         }
 
         binding.btnCancelar.setOnClickListener {
@@ -60,59 +57,81 @@ class EtapaEmpresaActivity : AppCompatActivity() {
         DateInputMask(date).listen()
     }
 
-    private suspend fun validateData() {
+    private fun validateData(): Boolean {
         email = binding.emailInput.editText?.text.toString().trim()
         password = binding.passwordInput.editText?.text.toString().trim()
         cnpj = binding.cnpjInput.editText?.text.toString().trim()
         name = binding.nomeInput.editText?.text.toString().trim()
         dataNasc = binding.dataNascInput.editText?.text.toString().trim()
-        val year = binding.dataNascInput.editText?.text.toString().substring(6).toInt()
-        val mouth = binding.dataNascInput.editText?.text.toString().substring(3, 5).toInt()
+        var year: Int? = null
+        var mouth: Int? = null
+        if (binding.dataNascInput.editText?.text.toString().isNotEmpty()) {
+            year = binding.dataNascInput.editText?.text.toString().substring(6).toInt()
+        }
+        if (binding.dataNascInput.editText?.text.toString().isNotEmpty()) {
+            mouth = binding.dataNascInput.editText?.text.toString().substring(3, 5).toInt()
+        }
 
         val nameRegex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\$".toRegex()
 
         if (TextUtils.isEmpty(name)) {
             binding.nomeInput.error = "Por favor, insira o Nome!"
+            return false
         } else if (!nameRegex.matches(name)) {
             binding.nomeInput.error = "Por favor, insira o Nome!"
+            return false
         } else if (TextUtils.isEmpty(cnpj)) {
-            binding.cnpjInput.error = "Por favor, insira o dado!"
-        } else if (cnpj.length < 11) {
+            binding.cpfInput.error = "Por favor, insira o dado!"
+            return false
+        } else if (cnpj.length < 18) {
             binding.cnpjInput.error = "Por favor, insira o dado corretamente!"
+            return false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.emailInput.error = "E-mail inválido!"
+            return false
         } else if (TextUtils.isEmpty(dataNasc)) {
             binding.dataNascInput.error = "Por favor, insira a Data de Nascimento!"
+            return false
         } else if (dataNasc.length != 10) {
             binding.dataNascInput.error = "Por favor, insira a Data de Nascimento corretamente!"
+            return false
         } else if (TextUtils.isEmpty(password)) {
             binding.passwordInput.error = "Por favor, insira a senha!"
+            return false
         } else if (password.length < 5) {
-            binding.passwordInput.error = "A senha deve ter no mínimo 5 carácteres!"
-        } else if (year >= 2008) {
-            binding.dataNascInput.error = "A idade miníma é 16 anos!"
-        } else if (year < 1935) {
-            binding.dataNascInput.error = "Por favor, insira a Data de Nascimento corretamente!"
-        } else if (mouth > 12 || mouth < 1) {
-            binding.dataNascInput.error = "Por favor, insira a Data de Nascimento corretamente!"
-        } else {
-            firebaseSignUp()
+            binding.passwordInput.error = "A senha deve ter no mínimo 6 carácteres!"
+            return false
+        } else if (year != null) {
+            if (year >= 2008) {
+                binding.dataNascInput.error = "A idade miníma é 16 anos!"
+                return false
+            } else if (year < 1935) {
+                binding.dataNascInput.error = "Por favor, insira a Data de Nascimento corretamente!"
+                return false
+            } else if (mouth != null) {
+                return if (mouth > 12 || mouth < 1) {
+                    binding.dataNascInput.error =
+                        "Por favor, insira a Data de Nascimento corretamente!"
+                    false
+                } else true
+            }
         }
+        return true
     }
 
-    private suspend fun firebaseSignUp() = coroutineScope {
+    private fun firebaseSignUp() {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {
                 val firebaseUser = firebaseAuth.currentUser!!
                 val currentUserDb = database.child((firebaseUser.uid))
 
                 currentUserDb.child("id").setValue((firebaseUser.uid))
-                currentUserDb.child("name").setValue(binding.nomeInput.editText?.text.toString())
+                currentUserDb.child("name").setValue(name)
                 currentUserDb.child("dataNasc")
-                    .setValue(binding.dataNascInput.editText?.text.toString())
-                currentUserDb.child("email").setValue(binding.emailInput.editText?.text.toString())
+                    .setValue(dataNasc)
+                currentUserDb.child("email").setValue(email)
                 currentUserDb.child("cpf_cnpj")
-                    .setValue(binding.cnpjInput.editText?.text.toString())
+                    .setValue(cnpj)
 
                 binding.progressBar.visibility = View.VISIBLE
                 startActivity(Intent(this@EtapaEmpresaActivity, HomeActivity::class.java))

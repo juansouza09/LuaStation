@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/item_container"
-        android:layout_width="205dp"
+        android:layout_width="0dp"
         android:layout_height="235dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
