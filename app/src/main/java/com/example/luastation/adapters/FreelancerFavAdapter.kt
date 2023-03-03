@@ -41,7 +41,11 @@ class FreelancerFavAdapter :
 
             val firebaseUser = firebaseAuth.currentUser
 
-            dbRef.child((firebaseUser!!.uid)).child("FreelancerFav").child(id!!).removeValue()
+            if (firebaseUser != null) {
+                if (id != null) {
+                    dbRef.child((firebaseUser.uid)).child("FreelancerFav").child(id).removeValue()
+                }
+            }
         }
     }
 

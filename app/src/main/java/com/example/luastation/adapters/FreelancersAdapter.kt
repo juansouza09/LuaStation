@@ -46,8 +46,12 @@ class FreelancersAdapter :
             val firebaseUser = firebaseAuth.currentUser
             val freelancer = Freelancers(id, name, email, dataNasc, cpf_cnpj)
 
-            dbRef.child((firebaseUser!!.uid)).child("FreelancerFav").child(id!!)
-                .setValue(freelancer)
+            if (firebaseUser != null) {
+                if (id != null) {
+                    dbRef.child((firebaseUser.uid)).child("FreelancerFav").child(id)
+                        .setValue(freelancer)
+                }
+            }
         }
 
         fun desfavoritar(
@@ -58,7 +62,11 @@ class FreelancersAdapter :
 
             val firebaseUser = firebaseAuth.currentUser
 
-            dbRef.child((firebaseUser!!.uid)).child("FreelancerFav").child(id!!).removeValue()
+            if (firebaseUser != null) {
+                if (id != null) {
+                    dbRef.child((firebaseUser.uid)).child("FreelancerFav").child(id).removeValue()
+                }
+            }
         }
     }
 

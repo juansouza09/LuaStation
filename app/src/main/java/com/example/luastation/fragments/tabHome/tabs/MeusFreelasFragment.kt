@@ -28,8 +28,10 @@ class MeusFreelasFragment : Fragment() {
     var recyclerview: RecyclerView? = null
     var adapter: MeusFreelasAdapter? = null
     private val database by lazy {
-        FirebaseDatabase.getInstance().getReference("Users").child(firebaseAuth.currentUser!!.uid)
-            .child("Meus Projetos")
+        firebaseAuth.currentUser?.let {
+            FirebaseDatabase.getInstance().getReference("Users").child(it.uid)
+                .child("Meus Projetos")
+        }
     }
     private val firebaseAuth by lazy {
         FirebaseAuth.getInstance()
@@ -49,6 +51,11 @@ class MeusFreelasFragment : Fragment() {
         setRecyclerView()
         refreshFragment()
         lifecycleScope.launch { getFreelasData() }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun setRecyclerView() {
@@ -71,14 +78,14 @@ class MeusFreelasFragment : Fragment() {
 
 
     private suspend fun getFreelasData() = coroutineScope {
-        database.apply {
+        database?.apply {
             addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val freelasArrayList = mutableListOf<Services>()
+                    val freelasArrayList = mutableListOf<Services?>()
                     if (snapshot.exists()) {
                         for (serviceSnapshot in snapshot.children) {
                             val freela = serviceSnapshot.getValue(Services::class.java)
-                            freelasArrayList.add(freela!!)
+                            freelasArrayList.add(freela)
                         }
                         adapter?.submitList(freelasArrayList)
                     }

@@ -46,6 +46,11 @@ class FreelancersFavFragment : Fragment() {
         refreshFragment()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun initAdapter() {
         recyclerView = binding.recyclerFreelancers
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -64,19 +69,20 @@ class FreelancersFavFragment : Fragment() {
 
     private fun getFreelancersData() {
         val firebaseUser = firebaseAuth.currentUser
-        database = FirebaseDatabase.getInstance().getReference("Users").child((firebaseUser!!.uid))
-            .child("FreelancerFav")
+        if (firebaseUser != null) {
+            database = FirebaseDatabase.getInstance().getReference("Users").child((firebaseUser.uid))
+                .child("FreelancerFav")
+        }
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val freelancersArrayList = mutableListOf<Freelancers>()
-                freelancersArrayList.clear()
+                val freelancersArrayList = mutableListOf<Freelancers?>()
                 if (freelancersArrayList.isEmpty()) {
                     binding.recyclerFreelancers.visibility = View.GONE
                 }
                 if (snapshot.exists()) {
                     for (freelancerSnapshot in snapshot.children) {
                         val freelancer = freelancerSnapshot.getValue(Freelancers::class.java)
-                        freelancersArrayList.add(freelancer!!)
+                        freelancersArrayList.add(freelancer)
                     }
                     myAdapter.submitList(freelancersArrayList)
                     recyclerView.visibility = View.VISIBLE

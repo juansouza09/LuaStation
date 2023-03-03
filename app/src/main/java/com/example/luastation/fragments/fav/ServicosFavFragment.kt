@@ -45,6 +45,11 @@ class ServicosFavFragment : Fragment() {
         refreshFragment()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun initAdapter() {
         recyclerview = binding.recyclerServicos
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
@@ -56,6 +61,7 @@ class ServicosFavFragment : Fragment() {
     private fun refreshFragment() {
         val swipe = binding.swipeToRefresh
         swipe.setOnRefreshListener {
+            myAdapter.submitList(listOf())
             getServiceData()
             swipe.isRefreshing = false
         }
@@ -63,19 +69,20 @@ class ServicosFavFragment : Fragment() {
 
     private fun getServiceData() {
         val firebaseUser = firebaseAuth.currentUser
-        database = FirebaseDatabase.getInstance().getReference("Users").child((firebaseUser!!.uid))
-            .child("ServicosFav")
+        if (firebaseUser != null) {
+            database = FirebaseDatabase.getInstance().getReference("Users").child((firebaseUser.uid))
+                .child("ServicosFav")
+        }
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val servicesArrayList = mutableListOf<Services>()
-                servicesArrayList.clear()
+                val servicesArrayList = mutableListOf<Services?>()
                 if (servicesArrayList.isEmpty()) {
                     binding.recyclerServicos.visibility = View.GONE
                 }
                 if (snapshot.exists()) {
                     for (serviceSnapshot in snapshot.children) {
                         val service = serviceSnapshot.getValue(Services::class.java)
-                        servicesArrayList.add(service!!)
+                        servicesArrayList.add(service)
                     }
                     myAdapter.submitList(servicesArrayList)
                     recyclerview.visibility = View.VISIBLE

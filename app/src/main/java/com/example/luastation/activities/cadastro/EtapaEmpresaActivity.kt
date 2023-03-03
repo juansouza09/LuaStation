@@ -11,7 +11,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import com.example.luastation.activities.HomeActivity
 import com.example.luastation.activities.login.LoginActivity
@@ -67,6 +66,8 @@ class EtapaEmpresaActivity : AppCompatActivity() {
         cnpj = binding.cnpjInput.editText?.text.toString().trim()
         name = binding.nomeInput.editText?.text.toString().trim()
         dataNasc = binding.dataNascInput.editText?.text.toString().trim()
+        val year = binding.dataNascInput.editText?.text.toString().substring(6).toInt()
+        val mouth = binding.dataNascInput.editText?.text.toString().substring(3, 5).toInt()
 
         val nameRegex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\$".toRegex()
 
@@ -88,6 +89,12 @@ class EtapaEmpresaActivity : AppCompatActivity() {
             binding.passwordInput.error = "Por favor, insira a senha!"
         } else if (password.length < 5) {
             binding.passwordInput.error = "A senha deve ter no mínimo 5 carácteres!"
+        } else if (year >= 2008) {
+            binding.dataNascInput.error = "A idade miníma é 16 anos!"
+        } else if (year < 1935) {
+            binding.dataNascInput.error = "Por favor, insira a Data de Nascimento corretamente!"
+        } else if (mouth > 12 || mouth < 1) {
+            binding.dataNascInput.error = "Por favor, insira a Data de Nascimento corretamente!"
         } else {
             firebaseSignUp()
         }

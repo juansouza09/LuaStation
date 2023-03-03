@@ -46,6 +46,11 @@ class FreelancersFragment : Fragment() {
         refreshFragment()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun initAdapter() {
         recyclerView = binding.recyclerFreelancers
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -66,13 +71,13 @@ class FreelancersFragment : Fragment() {
     private suspend fun getFreelancersData() = coroutineScope {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val freelancersArrayList = mutableListOf<Freelancers>()
+                val freelancersArrayList = mutableListOf<Freelancers?>()
                 if (snapshot.exists()) {
                     for (freelancerSnapshot in snapshot.children) {
                         val freelancer = freelancerSnapshot.getValue(Freelancers::class.java)
-                        freelancersArrayList.add(freelancer!!)
+                        freelancersArrayList.add(freelancer)
                     }
-                    myAdapter.submitList(freelancersArrayList)
+                    myAdapter.submitList(freelancersArrayList.filterNotNull())
                     recyclerView.visibility = View.VISIBLE
                 }
             }

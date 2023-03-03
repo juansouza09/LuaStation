@@ -2,6 +2,7 @@ package com.example.luastation.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,10 @@ class PerfilFragment : Fragment() {
         FirebaseAuth.getInstance()
     }
     private val database by lazy {
-        FirebaseDatabase.getInstance().getReference("Users").child(firebaseAuth.currentUser!!.uid)
+        firebaseAuth.currentUser?.let {
+            FirebaseDatabase.getInstance().getReference("Users").child(
+                it.uid)
+        }
     }
 
     override fun onCreateView(
@@ -42,30 +46,27 @@ class PerfilFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launch { setInfo() }
+        setInfo()
         setListeners()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun setListeners() {
         binding.imgSair.setOnClickListener {
-            requireActivity().run {
-                checkUser()
-                firebaseAuth.signOut()
+            firebaseAuth.signOut()
+            if (firebaseAuth.currentUser == null) {
+                startActivity(Intent(requireContext(), LoginActivity::class.java))
             }
         }
     }
 
-    private fun checkUser() {
-        val firebaseUser = firebaseAuth.currentUser
-        if (firebaseUser != null) {
-            val intent = Intent(requireContext(), LoginActivity::class.java)
-            startActivity(intent)
-        }
-    }
-
-    private suspend fun setInfo() = coroutineScope {
+    private fun setInfo() {
         binding.perfilEmailText.text = firebaseAuth.currentUser!!.email
-        database.addValueEventListener(object : ValueEventListener {
+        database?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 binding.perfilNameText.text = snapshot.child("name").value.toString()
                 binding.textNameContratante.text = snapshot.child("name").value.toString()
@@ -78,14 +79,14 @@ class PerfilFragment : Fragment() {
             }
         })
 
-        database.child("Meus Projetos").apply {
+        database?.child("Meus Projetos")?.apply {
             addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val freelasList = mutableListOf<Services>()
+                    val freelasList = mutableListOf<Services?>()
                     if (snapshot.exists()) {
                         for (serviceSnapshot in snapshot.children) {
                             val freela = serviceSnapshot.getValue(Services::class.java)
-                            freelasList.add(freela!!)
+                            freelasList.add(freela)
                         }
                         setUi(freelasList)
                     }
@@ -102,12 +103,14 @@ class PerfilFragment : Fragment() {
         }
     }
 
-    private fun setUi(services: List<Services>) {
-        with(binding) {
-            val serviceMoonCount = services.filter { it.type == "lua" }.size
-            val serviceStarCount = services.filter { it.type == "estrela" }.size
-            val serviceMeteoroCount = services.filter { it.type == "meteoro" }.size
+    private fun setUi(services: List<Services?>) {
+        binding.run {
+            val serviceMoonCount = services.filter { it?.type == "lua" }.size
+            val serviceStarCount = services.filter { it?.type == "estrela" }.size
+            val serviceMeteoroCount = services.filter { it?.type == "meteoro" }.size
+            val userLevel = serviceMeteoroCount + serviceMoonCount + serviceStarCount
 
+            textLevel.text = userLevel.toString()
             itemCountLua.text = serviceMoonCount.toString()
             itemCountEstrela.text = serviceStarCount.toString()
             itemCountMeteoro.text = serviceMeteoroCount.toString()

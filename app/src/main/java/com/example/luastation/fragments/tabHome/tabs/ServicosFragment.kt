@@ -46,6 +46,11 @@ class ServicosFragment : Fragment() {
         refreshFragment()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun setupUi() {
         binding.recyclerServicos.layoutManager =
             LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
@@ -65,13 +70,13 @@ class ServicosFragment : Fragment() {
         database.apply {
             addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val servicesArrayList = mutableListOf<Services>()
+                    val servicesArrayList = mutableListOf<Services?>()
                     if (snapshot.exists()) {
                         for (serviceSnapshot in snapshot.children) {
                             val service = serviceSnapshot.getValue(Services::class.java)
-                            servicesArrayList.add(service!!)
+                            servicesArrayList.add(service)
                         }
-                        myAdapter.submitList(servicesArrayList)
+                        myAdapter.submitList(servicesArrayList.filterNotNull())
                         binding.recyclerServicos.visibility = View.VISIBLE
                     }
                 }

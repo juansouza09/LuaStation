@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.luastation.databinding.CriarProjeto2ScreenBinding
 import com.example.luastation.models.Services
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
@@ -17,21 +16,19 @@ class CriarProjeto2Activity : AppCompatActivity() {
 
     private val binding by lazy { CriarProjeto2ScreenBinding.inflate(layoutInflater) }
 
-    private lateinit var dbRef: DatabaseReference
-    private lateinit var dbRef2: DatabaseReference
+    private val dbRef by lazy {
+        FirebaseDatabase.getInstance().getReference("Services")
+    }
+    private val dbRef2 by lazy {
+        FirebaseDatabase.getInstance().getReference("Users")
+            .child(firebaseAuth.currentUser!!.uid).child("Meus Projetos")
+    }
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        getInstance()
         setupListeners()
-    }
-
-    private fun getInstance() {
-        dbRef = FirebaseDatabase.getInstance().getReference("Services")
-        dbRef2 = FirebaseDatabase.getInstance().getReference("Users")
-            .child(firebaseAuth.currentUser!!.uid).child("Meus Projetos")
     }
 
     private fun setupListeners() {
@@ -93,7 +90,7 @@ class CriarProjeto2Activity : AppCompatActivity() {
             days.error = "O prazo máximo é de 30 dias!"
         } else if (serviceDesc.isEmpty()) {
             desc.error = "Coloque a descrição corretamente, por favor!"
-        } else if (desc.text.length < 50) {
+        } else if (desc.text.length < 20) {
             desc.error = "Coloque uma descrição maior, por favor!"
         } else if (servicePlataform.isEmpty()) {
             plataform.error = "Coloque a plataforma corretamente, por favor!"

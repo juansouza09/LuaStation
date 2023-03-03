@@ -35,6 +35,19 @@
         app:lottie_rawRes="@raw/astronaut_profile" />
 
     <TextView
+        android:id="@+id/text_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="-5dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="1"
+        android:textColor="@color/roxo"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="@id/img_contratante"
+        app:layout_constraintStart_toEndOf="@id/img_contratante" />
+
+    <TextView
         android:id="@+id/text_name_contratante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

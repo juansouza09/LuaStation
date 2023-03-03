@@ -40,7 +40,11 @@ class FavoritosAdapter : ListAdapter<Services, FavoritosAdapter.MyViewHolder>(DI
 
             val firebaseUser = firebaseAuth.currentUser
 
-            dbRef.child((firebaseUser!!.uid)).child("ServicosFav").child(id!!).removeValue()
+            if (firebaseUser != null) {
+                if (id != null) {
+                    dbRef.child((firebaseUser.uid)).child("ServicosFav").child(id).removeValue()
+                }
+            }
         }
     }
 
@@ -75,6 +79,7 @@ class FavoritosAdapter : ListAdapter<Services, FavoritosAdapter.MyViewHolder>(DI
 
         holder.binding.icon.let {
             it.setOnClickListener {
+                holder.binding.icon.isChecked = false
                 if (!holder.binding.icon.isChecked) {
                     desfavoritar(id)
                     holder.binding.favoriteAnimation.visibility = View.GONE

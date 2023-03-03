@@ -17,7 +17,7 @@ class DetalhesActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityServicoDetalhesBinding.inflate(layoutInflater) }
     private val database by lazy {
-        FirebaseDatabase.getInstance().getReference("Users").child(creator!!)
+        creator?.let { FirebaseDatabase.getInstance().getReference("Users").child(it) }
     }
     private val firebaseAuth by lazy {
         FirebaseAuth.getInstance()
@@ -46,13 +46,13 @@ class DetalhesActivity : AppCompatActivity() {
         val aImg = intent.getStringExtra("iImg")
         val aCreator = intent.getStringExtra("iCreator")
 
-        if (aCreator == firebaseAuth.currentUser!!.uid) {
+        if (aCreator == firebaseAuth.currentUser?.uid) {
             binding.btnCanditadar.setOnClickListener {
                 Toast.makeText(this, "Você é o dono desse projeto", Toast.LENGTH_SHORT).show()
             }
         }
 
-        if (aCreator != firebaseAuth.currentUser!!.uid) {
+        if (aCreator != firebaseAuth.currentUser?.uid) {
             binding.btnCanditadar.let {
                 it.setOnClickListener {
                     Toast.makeText(this, "Boa sorte, Astronauta!", Toast.LENGTH_SHORT)
@@ -102,7 +102,7 @@ class DetalhesActivity : AppCompatActivity() {
     }
 
     private fun getContratanteData() {
-        database.apply {
+        database?.apply {
             addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     binding.textNameContratante.text = snapshot.child("name").value.toString()

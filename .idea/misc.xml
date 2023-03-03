@@ -18,6 +18,7 @@
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable-anydpi-v24/ic_notification.xml" value="0.13" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/button_cinza.xml" value="0.2895" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/button_login.xml" value="0.2895" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/dark_purple_shape.xml" value="0.174" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/ic_credito.xml" value="0.13" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/ic_edit.xml" value="0.2895" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/ic_favoritado.xml" value="0.13" />
@@ -28,8 +29,9 @@
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/selector_favorite_item.xml" value="0.13" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/shape_branco.xml" value="0.1595" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/shape_notificacao.xml" value="0.1" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/shape_opacity.xml" value="0.174" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_home.xml" value="0.2894736842105263" />
-        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_menu_seperior.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_menu_seperior.xml" value="0.16" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_perfil_usuario.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_servico_detalhes.xml" value="0.371875" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/cadastro_3_etapa_screen.xml" value="0.371875" />

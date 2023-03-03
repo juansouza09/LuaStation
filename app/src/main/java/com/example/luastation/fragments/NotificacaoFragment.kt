@@ -43,6 +43,11 @@ class NotificacaoFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myAdapter = NotificationAdapter()
@@ -60,11 +65,11 @@ class NotificacaoFragment : Fragment() {
     private suspend fun getNotificationData() = coroutineScope {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val notificationsArrayList = mutableListOf<Notification>()
+                val notificationsArrayList = mutableListOf<Notification?>()
                 if (snapshot.exists()) {
                     for (serviceSnapshot in snapshot.children) {
                         val notification = serviceSnapshot.getValue(Notification::class.java)
-                        notificationsArrayList.add(notification!!)
+                        notificationsArrayList.add(notification)
                     }
                     myAdapter.submitList(notificationsArrayList)
                     recyclerview.visibility = View.VISIBLE

@@ -48,7 +48,11 @@ class MeusFreelasAdapter : ListAdapter<Services, MeusFreelasAdapter.MyViewHolder
             val firebaseUser = firebaseAuth.currentUser
             val servico = Services(id, name, img, price, days, desc, plataform, creator)
 
-            dbRef.child((firebaseUser!!.uid)).child("ServicosFav").child(id!!).setValue(servico)
+            if (firebaseUser != null) {
+                if (id != null) {
+                    dbRef.child((firebaseUser.uid)).child("ServicosFav").child(id).setValue(servico)
+                }
+            }
         }
 
         fun desfavoritar(
@@ -59,7 +63,11 @@ class MeusFreelasAdapter : ListAdapter<Services, MeusFreelasAdapter.MyViewHolder
 
             val firebaseUser = firebaseAuth.currentUser
 
-            dbRef.child((firebaseUser!!.uid)).child("ServicosFav").child(id!!).removeValue()
+            if (firebaseUser != null) {
+                if (id != null) {
+                    dbRef.child((firebaseUser.uid)).child("ServicosFav").child(id).removeValue()
+                }
+            }
         }
     }
 

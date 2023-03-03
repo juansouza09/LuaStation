@@ -2,6 +2,7 @@ package com.example.luastation.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.luastation.databinding.EfetuarProjetoScreenBinding
@@ -30,7 +31,7 @@ class EfetuarProjetoActivity : AppCompatActivity() {
         setupListeners()
     }
 
-    fun dadosIntent() {
+    private fun dadosIntent() {
         val intent = intent
         val aCreator = intent.getStringExtra("eCreator")
         val aIdService = intent.getStringExtra("eId")
@@ -54,11 +55,35 @@ class EfetuarProjetoActivity : AppCompatActivity() {
 
         binding.buttonProximo.let {
             it.setOnClickListener {
-                saveInvite()
-                val intent = Intent(this@EfetuarProjetoActivity, HomeActivity::class.java)
-                startActivity(intent)
-                finish()
+                if (validateInputs()) {
+                    saveInvite()
+                    val intent = Intent(this@EfetuarProjetoActivity, HomeActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
+        }
+    }
+
+    private fun validateInputs(): Boolean {
+        val desc = binding.descInput.editText?.text.toString()
+        val email = binding.emailInviteInput.editText?.text.toString()
+        return if (email.isEmpty() && desc.isEmpty()
+        ) {
+            binding.emailInviteInput.error = "Adicione seu e-mail"
+            binding.descInput.error = "Adicione uma descrição"
+            false
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.emailInviteInput.error = "Adicione um e-mail válido"
+            return false
+        } else if (email.isEmpty()) {
+            binding.emailInviteInput.error = "Adicione seu e-mail"
+            false
+        } else if (desc.isEmpty()) {
+            binding.descInput.error = "Adicione uma descrição"
+            false
+        } else {
+            true
         }
     }
 
@@ -73,24 +98,26 @@ class EfetuarProjetoActivity : AppCompatActivity() {
             desc?.text.toString()
         )
 
-        dbReference
-            .child(creatorId!!)
-            .child(notificationId)
-            .setValue(notification)
-            .let {
-                it.addOnCompleteListener {
-                    binding.buttonProximo.isClickable = false
-                    startActivity(Intent(this@EfetuarProjetoActivity, HomeActivity::class.java))
-                    finish()
+        creatorId?.let { it ->
+            dbReference
+                .child(it)
+                .child(notificationId)
+                .setValue(notification)
+                .let {
+                    it.addOnCompleteListener {
+                        binding.buttonProximo.isClickable = false
+                        startActivity(Intent(this@EfetuarProjetoActivity, HomeActivity::class.java))
+                        finish()
+                    }
+                    it.addOnFailureListener {
+                        Toast.makeText(
+                            this@EfetuarProjetoActivity,
+                            "O projeto $title não foi armazenado!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        finish()
+                    }
                 }
-                it.addOnFailureListener {
-                    Toast.makeText(
-                        this@EfetuarProjetoActivity,
-                        "O projeto $title não foi armazenado!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    finish()
-                }
-            }
+        }
     }
 }

@@ -33,6 +33,11 @@ class FavMainFragment : Fragment() {
         addTabsToPageIndicator()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun animation() {
         binding.viewPagerHome.setPageTransformer(ZoomOutPageTransformer())
     }

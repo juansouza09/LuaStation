@@ -34,6 +34,11 @@ class HomeFragment : Fragment() {
         animation()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun listener() {
         binding.btnMenu.let {
             it.setOnClickListener {
