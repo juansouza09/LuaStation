@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:500462177220:android:a7fee864aca5753effb291",
         "android_client_info": {
-          "package_name": "com.example.luastation"
+          "package_name": "br.solutionsjs.luastation"
         }
       },
       "oauth_client": [
