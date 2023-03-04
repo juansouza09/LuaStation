@@ -3,6 +3,7 @@ package com.example.luastation.activities.menusuperior
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.luastation.activities.EquipeActivity
 import com.example.luastation.activities.HomeActivity
 import com.example.luastation.databinding.ActivityMenuSeperiorBinding
 import com.example.luastation.activities.login.LoginActivity
@@ -37,6 +38,13 @@ class MenuActivity : AppCompatActivity() {
         binding.linearPubMenu.let {
             it.setOnClickListener {
                 startActivity(Intent(this, CriarProjetoActivity::class.java))
+                finish()
+            }
+        }
+
+        binding.linearSobreMenu.let {
+            it.setOnClickListener {
+                startActivity(Intent(this, EquipeActivity::class.java))
                 finish()
             }
         }
