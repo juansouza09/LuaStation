@@ -77,7 +77,7 @@ class FreelancersFragment : Fragment() {
                         val freelancer = freelancerSnapshot.getValue(Freelancers::class.java)
                         freelancersArrayList.add(freelancer)
                     }
-                    myAdapter.submitList(freelancersArrayList.filterNotNull())
+                    myAdapter.submitList(freelancersArrayList.filterNotNull().filter { it.cpf_cnpj?.length == 14 })
                     recyclerView.visibility = View.VISIBLE
                 }
             }

@@ -19,12 +19,12 @@
 
     <TextView
         android:id="@+id/title_name_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/poppins_medium"
-        android:text=""
+        android:gravity="center"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@id/item_container"
@@ -33,16 +33,16 @@
 
     <TextView
         android:id="@+id/email_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="10dp"
         android:ellipsize="end"
         android:fontFamily="@font/poppins_medium"
-        android:text=""
+        android:gravity="center"
+        android:maxLines="1"
         android:textColor="@color/black"
         android:textSize="11sp"
-        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="@id/title_name_text"
         app:layout_constraintStart_toStartOf="@id/title_name_text"
         app:layout_constraintTop_toBottomOf="@id/title_name_text" />
@@ -52,12 +52,12 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="15dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/astronaut_profile"
         app:layout_constraintEnd_toEndOf="@+id/item_container"
         app:layout_constraintStart_toStartOf="@+id/item_container"
-        app:layout_constraintTop_toTopOf="@+id/item_container" />
+        app:layout_constraintTop_toTopOf="@+id/item_container"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/astronaut_profile" />
 
     <CheckBox
         android:id="@+id/icon"
@@ -65,8 +65,8 @@
         android:layout_height="55dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:checked="true"
         android:button="@drawable/selector_favorite_item"
+        android:checked="true"
         app:layout_constraintEnd_toEndOf="@+id/item_container"
         app:layout_constraintTop_toTopOf="@+id/item_container" />
 
@@ -75,20 +75,19 @@
         android:layout_width="52dp"
         android:layout_height="54dp"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@id/icon"
-        app:layout_constraintEnd_toEndOf="@id/icon"
-        app:layout_constraintTop_toTopOf="@id/icon"
         app:layout_constraintBottom_toBottomOf="@id/icon"
+        app:layout_constraintEnd_toEndOf="@id/icon"
+        app:layout_constraintStart_toStartOf="@id/icon"
+        app:layout_constraintTop_toTopOf="@id/icon"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/favorited"
-        />
+        app:lottie_rawRes="@raw/favorited" />
 
     <Button
         android:id="@+id/button_finalizar"
         style="@style/buttonLogin"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginVertical="13dp"
         android:fontFamily="@font/abeezee"
