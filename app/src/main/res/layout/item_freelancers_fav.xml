@@ -5,17 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
-    android:layout_marginVertical="5dp">
-
-    <ImageView
-        android:id="@+id/item_container"
-        android:layout_width="0dp"
-        android:layout_height="235dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/white_shape"
-        tools:ignore="ContentDescription" />
+    android:layout_marginVertical="5dp"
+    android:background="@drawable/white_shape">
 
     <TextView
         android:id="@+id/title_name_text"
@@ -25,10 +16,11 @@
         android:layout_marginTop="5dp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center"
+        android:text="User"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@id/item_container"
-        app:layout_constraintStart_toStartOf="@id/item_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_person" />
 
     <TextView
@@ -40,9 +32,10 @@
         android:ellipsize="end"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center"
-        android:maxLines="1"
+        android:maxLines="2"
         android:textColor="@color/black"
         android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@id/button_finalizar"
         app:layout_constraintEnd_toEndOf="@id/title_name_text"
         app:layout_constraintStart_toStartOf="@id/title_name_text"
         app:layout_constraintTop_toBottomOf="@id/title_name_text" />
@@ -52,9 +45,9 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="@+id/item_container"
-        app:layout_constraintStart_toStartOf="@+id/item_container"
-        app:layout_constraintTop_toTopOf="@+id/item_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/astronaut_profile" />
@@ -64,11 +57,10 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="5dp"
         android:button="@drawable/selector_favorite_item"
-        android:checked="true"
-        app:layout_constraintEnd_toEndOf="@+id/item_container"
-        app:layout_constraintTop_toTopOf="@+id/item_container" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/favorite_animation"
@@ -89,13 +81,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginVertical="13dp"
+        android:layout_marginVertical="10dp"
         android:fontFamily="@font/abeezee"
         android:text="@string/btn_ver_mais_text"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/item_container"
-        app:layout_constraintEnd_toEndOf="@id/item_container"
-        app:layout_constraintStart_toStartOf="@id/item_container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email_text"
         tools:ignore="TouchTargetSizeCheck" />
 

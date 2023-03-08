@@ -31,9 +31,9 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setupAd()
         checkUser()
         bottomNavigation()
-        setupAd()
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
     }
 
