@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pattern_dark"
-    tools:context="br.solutionsjs.luastation.activities.DetalhesActivity">
+    tools:context="com.solutions.luastation.activities.DetalhesActivity">
 
     <ImageView
         android:id="@+id/photo_bg"
