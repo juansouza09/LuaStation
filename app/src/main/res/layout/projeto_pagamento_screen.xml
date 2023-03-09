@@ -7,8 +7,6 @@
     android:background="@drawable/pattern_dark">
 
 
-
-
     <TextView
         android:id="@+id/h1"
         android:layout_width="wrap_content"

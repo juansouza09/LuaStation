@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.solutions.luastation.fragments.tabHome.HomeFragment"
+        android:name="br.solutionsjs.luastation.fragments.tabHome.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/favoritosFragment"
-        android:name="com.solutions.luastation.fragments.fav.FavMainFragment"
+        android:name="br.solutionsjs.luastation.fragments.fav.FavMainFragment"
         android:label="FavoritosFragment"
         tools:layout="@layout/fragment_fav_main" />
     <fragment
         android:id="@+id/perfilFragment"
-        android:name="com.solutions.luastation.fragments.PerfilFragment"
+        android:name="br.solutionsjs.luastation.fragments.PerfilFragment"
         android:label="PerfilFragment"
         tools:layout="@layout/fragment_perfil" />
     <fragment
         android:id="@+id/notificacaoFragment"
-        android:name="com.solutions.luastation.fragments.NotificacaoFragment"
+        android:name="br.solutionsjs.luastation.fragments.NotificacaoFragment"
         android:label="NotificacaoFragment"
         tools:layout="@layout/fragment_notificacoes" />
 </navigation>
