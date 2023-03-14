@@ -41,7 +41,9 @@ class EquipeAdapter :
         val job = member.job
         val img = member.imageUrl
         holder.binding.jobText.text = job
+        holder.binding.jobText.contentDescription = job
         holder.binding.titleNameText.text = name
+        holder.binding.titleNameText.contentDescription = name
         Picasso.get().load(img).into(holder.binding.imgPerson)
     }
 

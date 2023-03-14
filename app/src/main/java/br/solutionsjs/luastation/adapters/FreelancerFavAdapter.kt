@@ -69,6 +69,8 @@ class FreelancerFavAdapter :
 
         holder.binding.emailText.text = email
         holder.binding.titleNameText.text = name
+        holder.binding.emailText.contentDescription = email
+        holder.binding.titleNameText.contentDescription = name
 
         holder.binding.icon.let {
             it.setOnClickListener {

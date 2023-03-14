@@ -90,6 +90,8 @@ class FreelancersAdapter :
 
         holder.binding.emailText.text = email
         holder.binding.titleNameText.text = name
+        holder.binding.emailText.contentDescription = email
+        holder.binding.titleNameText.contentDescription = name
 
         holder.binding.icon.setOnClickListener {
             if (holder.binding.icon.isChecked) {

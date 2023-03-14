@@ -99,6 +99,11 @@ class MeusFreelasAdapter : ListAdapter<Services, MeusFreelasAdapter.MyViewHolder
         holder.binding.timeText.text = service.days
         holder.binding.plataformaText.text = service.plataform
         holder.binding.descriptionText.text = service.desc
+        holder.binding.titleText.contentDescription = service.name
+        holder.binding.priceText.contentDescription = service.price
+        holder.binding.timeText.contentDescription = service.days
+        holder.binding.plataformaText.contentDescription = service.plataform
+        holder.binding.descriptionText.contentDescription = service.desc
 
         holder.binding.icon.let {
             it.setOnClickListener {

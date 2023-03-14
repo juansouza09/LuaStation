@@ -105,6 +105,11 @@ class ServicesAdapter : ListAdapter<Services, ServicesAdapter.MyViewHolder>(DIFF
             binding.timeText.text = service.days
             binding.plataformaText.text = service.plataform
             binding.descriptionText.text = service.desc
+            binding.titleText.contentDescription = service.name
+            binding.priceText.contentDescription = service.price
+            binding.timeText.contentDescription = service.days
+            binding.plataformaText.contentDescription = service.plataform
+            binding.descriptionText.contentDescription = service.desc
 
             binding.icon.let {
                 it.setOnClickListener {

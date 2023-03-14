@@ -25,12 +25,22 @@
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/ic_favorite.xml" value="0.13" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/ic_favorite_off.xml" value="0.13" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/ic_heart.xml" value="0.13" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/ic_seguranca.xml" value="0.2605" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/purple_shape.xml" value="0.1" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/selector_favorite_item.xml" value="0.13" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/shape_branco.xml" value="0.1595" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/shape_notificacao.xml" value="0.1" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/drawable/shape_opacity.xml" value="0.174" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/font/abeezee.xml" value="0.1603336422613531" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/font/amaranth_bold.xml" value="0.1603336422613531" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/font/inter_bold.xml" value="0.2020389249304912" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/font/inter_semibold.xml" value="0.23428815733219324" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/font/poppins.xml" value="0.23428815733219324" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/font/poppins_bold.xml" value="0.23428815733219324" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/font/poppins_extrabold.xml" value="0.23428815733219324" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/font/poppins_light.xml" value="0.23428815733219324" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/font/poppins_medium.xml" value="0.23428815733219324" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/font/roboto_bold.xml" value="0.23428815733219324" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_equipe.xml" value="0.2188449848024316" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_menu_seperior.xml" value="0.25" />

@@ -45,6 +45,7 @@ class NotificationAdapter :
         val email = notification.email
 
         holder.binding.titleNotificationText.text = notification.title
+        holder.binding.titleNotificationText.contentDescription = notification.title
 
         holder.itemView.let {
             it.setOnClickListener {
