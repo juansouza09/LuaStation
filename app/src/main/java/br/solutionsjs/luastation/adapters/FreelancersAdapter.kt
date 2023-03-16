@@ -13,8 +13,7 @@ import br.solutionsjs.luastation.activities.PerfilFreelancerActivity
 import br.solutionsjs.luastation.databinding.ItemFreelancersBinding
 import br.solutionsjs.luastation.models.Freelancers
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class FreelancersAdapter :
     ListAdapter<Freelancers, FreelancersAdapter.MyViewHolder>(DIFF_CALLBACK) {

@@ -63,60 +63,69 @@ class EtapaEmpresaActivity : AppCompatActivity() {
         cnpj = binding.cnpjInput.editText?.text.toString().trim()
         name = binding.nomeInput.editText?.text.toString().trim()
         dataNasc = binding.dataNascInput.editText?.text.toString().trim()
-        var year: Int? = null
-        var mouth: Int? = null
-        if (binding.dataNascInput.editText?.text.toString().isNotEmpty()) {
-            year = binding.dataNascInput.editText?.text.toString().substring(6).toInt()
-        }
-        if (binding.dataNascInput.editText?.text.toString().isNotEmpty()) {
-            mouth = binding.dataNascInput.editText?.text.toString().substring(3, 5).toInt()
+
+        binding.cnpjInput.error = null
+        binding.emailInput.error = null
+        binding.passwordInput.error = null
+        binding.nomeInput.error = null
+        binding.dataNascInput.error = null
+
+        val year = dataNasc.takeIf { it.length == 10 }?.substring(6)?.toInt()
+        val month = dataNasc.takeIf { it.length == 10 }?.substring(3, 5)?.toInt()
+
+        fun isValidName(name: String): Boolean {
+            val nameRegex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\$".toRegex()
+            return !TextUtils.isEmpty(name) && nameRegex.matches(name)
         }
 
-        val nameRegex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\$".toRegex()
+        if (!isValidName(name)) {
+            binding.nomeInput.error = "Por favor, insira o Nome!"
+            return false
+        }
 
-        if (TextUtils.isEmpty(name)) {
-            binding.nomeInput.error = "Por favor, insira o Nome!"
-            return false
-        } else if (!nameRegex.matches(name)) {
-            binding.nomeInput.error = "Por favor, insira o Nome!"
-            return false
-        } else if (TextUtils.isEmpty(cnpj)) {
-            binding.cpfInput.error = "Por favor, insira o dado!"
-            return false
-        } else if (cnpj.length < 18) {
-            binding.cnpjInput.error = "Por favor, insira o dado corretamente!"
-            return false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.emailInput.error = "E-mail inválido!"
-            return false
-        } else if (TextUtils.isEmpty(dataNasc)) {
-            binding.dataNascInput.error = "Por favor, insira a Data de Nascimento!"
-            return false
-        } else if (dataNasc.length != 10) {
-            binding.dataNascInput.error = "Por favor, insira a Data de Nascimento corretamente!"
-            return false
-        } else if (TextUtils.isEmpty(password)) {
-            binding.passwordInput.error = "Por favor, insira a senha!"
-            return false
-        } else if (password.length < 5) {
-            binding.passwordInput.error = "A senha deve ter no mínimo 6 carácteres!"
-            return false
-        } else if (year != null) {
-            if (year >= 2008) {
-                binding.dataNascInput.error = "A idade miníma é 16 anos!"
+        when {
+            TextUtils.isEmpty(cnpj) -> {
+                binding.cnpjInput.error = "Por favor, insira o dado!"
                 return false
-            } else if (year < 1935) {
+            }
+            cnpj.length < 18 -> {
+                binding.cnpjInput.error = "Por favor, insira o dado corretamente!"
+                return false
+            }
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                binding.emailInput.error = "E-mail inválido!"
+                return false
+            }
+            TextUtils.isEmpty(dataNasc) -> {
+                binding.dataNascInput.error = "Por favor, insira a Data de Nascimento!"
+                return false
+            }
+            dataNasc.length != 10 -> {
                 binding.dataNascInput.error = "Por favor, insira a Data de Nascimento corretamente!"
                 return false
-            } else if (mouth != null) {
-                return if (mouth > 12 || mouth < 1) {
-                    binding.dataNascInput.error =
-                        "Por favor, insira a Data de Nascimento corretamente!"
-                    false
-                } else true
             }
+            TextUtils.isEmpty(password) -> {
+                binding.passwordInput.error = "Por favor, insira a senha!"
+                return false
+            }
+            password.length < 5 -> {
+                binding.passwordInput.error = "A senha deve ter no mínimo 6 carácteres!"
+                return false
+            }
+            year != null && year >= 2008 -> {
+                binding.dataNascInput.error = "A idade miníma é 16 anos!"
+                return false
+            }
+            year != null && year < 1935 -> {
+                binding.dataNascInput.error = "Por favor, insira a Data de Nascimento corretamente!"
+                return false
+            }
+            month != null && (month > 12 || month < 1) -> {
+                binding.dataNascInput.error = "Por favor, insira a Data de Nascimento corretamente!"
+                return false
+            }
+            else -> return true
         }
-        return true
     }
 
     private fun firebaseSignUp() {
