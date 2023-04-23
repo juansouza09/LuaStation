@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import br.solutionsjs.luastation.fragments.fav.FreelancersFavFragment
-import br.solutionsjs.luastation.fragments.fav.ServicosFavFragment
+import br.solutionsjs.luastation.fragments.fav.FavFreelancersFragment
+import br.solutionsjs.luastation.fragments.fav.FavServicesFragment
 
 class TabFragPageFavAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
@@ -15,8 +15,8 @@ class TabFragPageFavAdapter(fragmentManager: FragmentManager, lifecycle: Lifecyc
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> ServicosFavFragment()
-            1 -> FreelancersFavFragment()
+            0 -> FavServicesFragment()
+            1 -> FavFreelancersFragment()
             else -> Fragment()
         }
     }

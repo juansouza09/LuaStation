@@ -9,25 +9,23 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.coroutineScope
 import br.solutionsjs.luastation.activities.HomeActivity
-import br.solutionsjs.luastation.activities.cadastro.EscolhaActivity
-import br.solutionsjs.luastation.databinding.LoginScreenBinding
+import br.solutionsjs.luastation.activities.registration.AccountTypeActivity
+import br.solutionsjs.luastation.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: LoginScreenBinding
+    private val binding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
     private lateinit var firebaseAuth: FirebaseAuth
     private var email = ""
     private var password = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = LoginScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // init firebaseAuth
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
 
@@ -84,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun abrirCadastro() {
-        val cadastro = Intent(this, EscolhaActivity::class.java)
+        val cadastro = Intent(this, AccountTypeActivity::class.java)
         startActivity(cadastro)
         finish()
     }

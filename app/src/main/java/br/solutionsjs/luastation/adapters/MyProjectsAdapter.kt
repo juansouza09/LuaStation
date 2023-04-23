@@ -17,7 +17,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
-class ServicesAdapter : ListAdapter<Services, ServicesAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class MyProjectsAdapter : ListAdapter<Services, MyProjectsAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private lateinit var dbRef: DatabaseReference
@@ -83,71 +83,67 @@ class ServicesAdapter : ListAdapter<Services, ServicesAdapter.MyViewHolder>(DIFF
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val service = getItem(position)
-        holder.bind(service)
-    }
 
-    inner class MyViewHolder(val binding: ServiceItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        val id = service.id
+        val name = service.name
+        val price = service.price
+        val days = service.days
+        val plataform = service.plataform
+        val desc = service.desc
+        val img = service.img
+        val creator = service.creator
 
-        fun bind(service: Services) {
-            val id = service.id
-            val name = service.name
-            val price = service.price
-            val days = service.days
-            val plataform = service.plataform
-            val desc = service.desc
-            val img = service.img
-            val creator = service.creator
+        Picasso.get().load(service.img).into(holder.binding.imgDificuldade)
+        holder.binding.titleText.text = service.name
+        holder.binding.priceText.text = service.price
+        holder.binding.timeText.text = service.days
+        holder.binding.plataformaText.text = service.plataform
+        holder.binding.descriptionText.text = service.desc
+        holder.binding.titleText.contentDescription = service.name
+        holder.binding.priceText.contentDescription = service.price
+        holder.binding.timeText.contentDescription = service.days
+        holder.binding.plataformaText.contentDescription = service.plataform
+        holder.binding.descriptionText.contentDescription = service.desc
 
-            Picasso.get().load(service.img).into(binding.imgDificuldade)
-            binding.titleText.text = service.name
-            binding.priceText.text = service.price
-            binding.timeText.text = service.days
-            binding.plataformaText.text = service.plataform
-            binding.descriptionText.text = service.desc
-            binding.titleText.contentDescription = service.name
-            binding.priceText.contentDescription = service.price
-            binding.timeText.contentDescription = service.days
-            binding.plataformaText.contentDescription = service.plataform
-            binding.descriptionText.contentDescription = service.desc
-
-            binding.icon.let {
-                it.setOnClickListener {
-                    if (binding.icon.isChecked) {
-                        binding.favoriteAnimation.visibility = View.VISIBLE
-                        favorite(id, name, img, price, days, desc, plataform, creator)
-                        Toast.makeText(
-                            itemView.context,
-                            "Favoritado com sucesso!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        desfavoritar(id)
-                        Toast.makeText(
-                            itemView.context,
-                            "Desfavoritado com sucesso!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        binding.favoriteAnimation.visibility = View.GONE
-                    }
-                }
-            }
-
-            itemView.let {
-                it.setOnClickListener {
-                    val context: Context = itemView.context
-                    val intent = Intent(context, ServiceDetailsActivity::class.java)
-                    intent.putExtra("iId", id)
-                    intent.putExtra("iTitle", name)
-                    intent.putExtra("iPrice", price)
-                    intent.putExtra("iDays", days)
-                    intent.putExtra("iPlataform", plataform)
-                    intent.putExtra("iDesc", desc)
-                    intent.putExtra("iImg", img)
-                    intent.putExtra("iCreator", creator)
-                    context.startActivity(intent)
+        holder.binding.icon.let {
+            it.setOnClickListener {
+                if (holder.binding.icon.isChecked) {
+                    holder.binding.favoriteAnimation.visibility = View.VISIBLE
+                    favorite(id, name, img, price, days, desc, plataform, creator)
+                    Toast.makeText(
+                        holder.itemView.context,
+                        "Favoritado com sucesso!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    desfavoritar(id)
+                    Toast.makeText(
+                        holder.itemView.context,
+                        "Desfavoritado com sucesso!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    holder.binding.favoriteAnimation.visibility = View.GONE
                 }
             }
         }
+
+        holder.itemView.let {
+            it.setOnClickListener {
+                val context: Context = holder.itemView.context
+                val intent = Intent(context, ServiceDetailsActivity::class.java)
+                intent.putExtra("iId", id)
+                intent.putExtra("iTitle", name)
+                intent.putExtra("iPrice", price)
+                intent.putExtra("iDays", days)
+                intent.putExtra("iPlataform", plataform)
+                intent.putExtra("iDesc", desc)
+                intent.putExtra("iImg", img)
+                intent.putExtra("iCreator", creator)
+                context.startActivity(intent)
+            }
+        }
     }
+
+    inner class MyViewHolder(val binding: ServiceItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import br.solutionsjs.luastation.activities.menusuperior.MenuActivity
+import br.solutionsjs.luastation.activities.menu.MenuActivity
 import br.solutionsjs.luastation.adapters.TabFragPageAdapter
 import br.solutionsjs.luastation.databinding.FragmentHomeBinding
 import br.solutionsjs.luastation.utils.ZoomOutPageTransformer

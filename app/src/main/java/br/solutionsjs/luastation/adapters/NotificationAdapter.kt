@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import br.solutionsjs.luastation.activities.NotificationActivity
-import br.solutionsjs.luastation.databinding.ItemNotificacaoBinding
+import br.solutionsjs.luastation.activities.NotificationDetailsActivity
+import br.solutionsjs.luastation.databinding.NotificationItemBinding
 import br.solutionsjs.luastation.models.Notification
 
 class NotificationAdapter :
@@ -28,7 +28,7 @@ class NotificationAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
-            ItemNotificacaoBinding.inflate(
+            NotificationItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -50,7 +50,7 @@ class NotificationAdapter :
         holder.itemView.let {
             it.setOnClickListener {
                 val context: Context = holder.itemView.context
-                val intent = Intent(context, NotificationActivity::class.java)
+                val intent = Intent(context, NotificationDetailsActivity::class.java)
                 intent.putExtra("iId", id)
                 intent.putExtra("iTitle", title)
                 intent.putExtra("iDesc", desc)
@@ -60,6 +60,6 @@ class NotificationAdapter :
         }
     }
 
-    inner class MyViewHolder(val binding: ItemNotificacaoBinding) :
+    inner class MyViewHolder(val binding: NotificationItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 }

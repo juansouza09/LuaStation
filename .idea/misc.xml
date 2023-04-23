@@ -44,6 +44,7 @@
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_equipe.xml" value="0.2188449848024316" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_menu_seperior.xml" value="0.25" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_notification_detail.xml" value="0.3052586575459598" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_perfil_usuario.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/activity_servico_detalhes.xml" value="0.371875" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/cadastro_3_etapa_screen.xml" value="0.371875" />
@@ -51,13 +52,14 @@
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/cadastro_screen.xml" value="0.18" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/criar_projeto_2_screen.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/criar_projeto_screen.xml" value="0.22" />
-        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/efetuar_projeto_screen.xml" value="0.1" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/efetuar_projeto_screen.xml" value="0.25" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/error_signup_activity.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/fragment_fav_main.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/fragment_freelancers.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/fragment_freelancers_fav.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/fragment_home.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/fragment_meus_freelas.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/fragment_my_projects.xml" value="0.3052586575459598" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/fragment_notificacoes.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/fragment_perfil.xml" value="0.25" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/fragment_servicos.xml" value="0.19166666666666668" />
@@ -66,7 +68,7 @@
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/item_equipe.xml" value="0.3052586575459598" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/item_freelancers.xml" value="0.33" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/item_freelancers_fav.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/item_freelas.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/item_freelas.xml" value="0.33" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/item_notificacao.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/item_servicos.xml" value="0.33" />
         <entry key="..\:/Users/Juan/StudioProjects/LuaStation/app/src/main/res/layout/item_servicos_fav.xml" value="0.25" />

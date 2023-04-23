@@ -17,12 +17,12 @@
         tools:layout="@layout/fragment_fav_main" />
     <fragment
         android:id="@+id/perfilFragment"
-        android:name="br.solutionsjs.luastation.fragments.PerfilFragment"
+        android:name="br.solutionsjs.luastation.fragments.ProfileFragment"
         android:label="PerfilFragment"
-        tools:layout="@layout/fragment_perfil" />
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/notificacaoFragment"
-        android:name="br.solutionsjs.luastation.fragments.NotificacaoFragment"
+        android:name="br.solutionsjs.luastation.fragments.NotificationFragment"
         android:label="NotificacaoFragment"
-        tools:layout="@layout/fragment_notificacoes" />
+        tools:layout="@layout/fragment_notifications" />
 </navigation>
