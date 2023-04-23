@@ -1,6 +1,7 @@
 <h1 align="center">Lua Station</h1>
 
 <p align="center">
+  <a href="https://play.google.com/store/apps/details?id=br.solutionsjs.luastation"><img alt="PlayStore" src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white"/></a>
   <a href="https://wa.me/+5511980461548"><img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a>
   <a href="https://www.linkedin.com/in/juansouza9/"><img alt="Linkedin" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
   <a href="mailto:juuanpablo2004@gmail.com"><img alt="Gmail" src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
