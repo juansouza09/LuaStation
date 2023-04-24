@@ -22,7 +22,7 @@
 </p>
 
 ## Download
-Download the <a href="https://www.mediafire.com/file/2sly9mlr2cargr6/luastation.apk/file">APK directly</a>. You can see <a href="https://www.google.com/search?q=como+instalar+um+apk+no+android">here</a> how to install an APK  on your android device.
+<a href="https://play.google.com/store/apps/details?id=br.solutionsjs.luastation"><img alt="PlayStore" src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white"/></a>
 
 ## Used technologies and open source libraries
 
@@ -31,7 +31,6 @@ Download the <a href="https://www.mediafire.com/file/2sly9mlr2cargr6/luastation.
 
 - Jetpack
   - Lifecycle: Observe Android lifecycles and handle UI states after lifecycle changes.
-  - ViewModel: Manages the UI-related data holder and lifecycle. Allows data to survive configuration changes such as screen rotations.
   - ViewBinding: Binds XML components in Kotlin through a class that guarantees type safety and other advantages.
   - Material Design Components: Modular and customizable Material Design UI components for Android.
   - ViewPager2: Show previews or snippets in a slide-out format.
@@ -40,9 +39,7 @@ Download the <a href="https://www.mediafire.com/file/2sly9mlr2cargr6/luastation.
 - Libraries
   - [Retrofit2 & OkHttp3](https://github.com/square/retrofit): To perform requests following the HTTP standard.
   - [Picasso](https://github.com/square/picasso): For loading images.
-  - [Timber](https://github.com/JakeWharton/timber): For friendlier logging that makes debugging easier.
   - [Lottie](https://github.com/airbnb/lottie-android): For loading animations.
   - [Firebase Database](firebase.google.com/docs/database): To save user data.
   - [Firebase Auth](https://firebase.google.com/docs/auth): To authenticate the user account.
-  - [Mockito](https://github.com/mockito/mockito-kotlin): To do unit tests
 
