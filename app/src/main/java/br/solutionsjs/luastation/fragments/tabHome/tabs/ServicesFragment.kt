@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -96,11 +97,12 @@ class ServicesFragment : Fragment() {
     }
 
     private fun refreshFragment() {
-        val swipe = binding.swipeToRefresh
-        swipe.setOnRefreshListener {
-            myAdapter.submitList(listOf())
-            lifecycleScope.launch { getServiceData() }
-            swipe.isRefreshing = false
+        with(binding.swipeToRefresh) {
+            setOnRefreshListener {
+                myAdapter.submitList(listOf())
+                lifecycleScope.launch { getServiceData() }
+                isRefreshing = false
+            }
         }
     }
 
@@ -115,7 +117,7 @@ class ServicesFragment : Fragment() {
                             servicesArrayList.add(service)
                         }
                         myAdapter.submitList(servicesArrayList.filterNotNull())
-                        binding.recyclerServicos.visibility = View.VISIBLE
+                        binding.recyclerServicos.isVisible = true
                     }
                 }
 

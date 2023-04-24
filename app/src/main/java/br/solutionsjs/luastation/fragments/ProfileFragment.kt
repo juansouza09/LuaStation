@@ -79,13 +79,13 @@ class ProfileFragment : Fragment() {
         database?.child("Meus Projetos")?.apply {
             addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val freelasList = mutableListOf<Services?>()
+                    val profileProjectsList = mutableListOf<Services?>()
                     if (snapshot.exists()) {
                         for (serviceSnapshot in snapshot.children) {
-                            val freela = serviceSnapshot.getValue(Services::class.java)
-                            freelasList.add(freela)
+                            val profileProject = serviceSnapshot.getValue(Services::class.java)
+                            profileProjectsList.add(profileProject)
                         }
-                        setUi(freelasList)
+                        setUi(profileProjectsList)
                     }
                 }
 
@@ -102,15 +102,15 @@ class ProfileFragment : Fragment() {
 
     private fun setUi(services: List<Services?>) {
         with(binding) {
-            val serviceMoonCount = services.filter { it?.type == "lua" }.size
-            val serviceStarCount = services.filter { it?.type == "estrela" }.size
-            val serviceMeteoroCount = services.filter { it?.type == "meteoro" }.size
-            val userLevel = serviceMeteoroCount + serviceMoonCount + serviceStarCount
+            val moonServiceCount = services.filter { it?.type == "lua" }.size
+            val starServiceCount = services.filter { it?.type == "estrela" }.size
+            val meteorServiceCount = services.filter { it?.type == "meteoro" }.size
+            val userLevel = meteorServiceCount + moonServiceCount + starServiceCount
 
             textLevel.text = userLevel.toString()
-            itemCountLua.text = serviceMoonCount.toString()
-            itemCountEstrela.text = serviceStarCount.toString()
-            itemCountMeteoro.text = serviceMeteoroCount.toString()
+            itemCountLua.text = moonServiceCount.toString()
+            itemCountEstrela.text = starServiceCount.toString()
+            itemCountMeteoro.text = meteorServiceCount.toString()
         }
     }
 }

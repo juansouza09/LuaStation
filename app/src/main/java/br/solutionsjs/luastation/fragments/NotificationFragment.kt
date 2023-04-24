@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +24,6 @@ class NotificationFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recyclerview: RecyclerView
 
     private val database by lazy {
         FirebaseDatabase
@@ -56,10 +56,9 @@ class NotificationFragment : Fragment() {
     }
 
     private fun setupUi() {
-        recyclerview = binding.recyclerServicos
-        recyclerview.layoutManager =
+        binding.recyclerServicos.layoutManager =
             LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
-        recyclerview.adapter = myAdapter
+        binding.recyclerServicos.adapter = myAdapter
     }
 
     private suspend fun getNotificationData() = coroutineScope {
@@ -72,7 +71,7 @@ class NotificationFragment : Fragment() {
                         notificationsArrayList.add(notification)
                     }
                     myAdapter.submitList(notificationsArrayList)
-                    recyclerview.visibility = View.VISIBLE
+                    binding.recyclerServicos.isVisible = true
                 }
             }
 

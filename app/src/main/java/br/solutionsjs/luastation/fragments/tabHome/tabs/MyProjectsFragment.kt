@@ -26,8 +26,7 @@ class MyProjectsFragment : Fragment() {
     private var _binding: FragmentMyProjectsBinding? = null
     private val binding get() = _binding!!
 
-    var recyclerview: RecyclerView? = null
-    var adapter: MyProjectsAdapter? = null
+    val adapter = MyProjectsAdapter()
     private val database by lazy {
         firebaseAuth.currentUser?.let {
             FirebaseDatabase.getInstance().getReference("Users").child(it.uid)
@@ -52,7 +51,7 @@ class MyProjectsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setRecyclerView()
         refreshFragment()
-        lifecycleScope.launch { getFreelasData() }
+        lifecycleScope.launch { getProjectsData() }
         setupAd()
     }
 
@@ -96,34 +95,33 @@ class MyProjectsFragment : Fragment() {
     }
 
     private fun setRecyclerView() {
-        recyclerview = binding.recyclerFreelas
-        recyclerview!!.setHasFixedSize(true)
-        recyclerview!!.layoutManager =
+        binding.recyclerFreelas.setHasFixedSize(true)
+        binding.recyclerFreelas.layoutManager =
             LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
-        adapter = MyProjectsAdapter()
-        recyclerview!!.adapter = adapter
+        binding.recyclerFreelas.adapter = adapter
     }
 
     private fun refreshFragment() {
-        val swipe = binding.swipeToRefresh
-        swipe.setOnRefreshListener {
-            adapter?.submitList(listOf())
-            lifecycleScope.launch { getFreelasData() }
-            swipe.isRefreshing = false
+        with(binding.swipeToRefresh) {
+            setOnRefreshListener {
+                adapter.submitList(listOf())
+                lifecycleScope.launch { getProjectsData() }
+                isRefreshing = false
+            }
         }
     }
 
-    private suspend fun getFreelasData() = coroutineScope {
+    private suspend fun getProjectsData() = coroutineScope {
         database?.apply {
             addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val freelasArrayList = mutableListOf<Services?>()
+                    val projectsArrayList = mutableListOf<Services?>()
                     if (snapshot.exists()) {
                         for (serviceSnapshot in snapshot.children) {
-                            val freela = serviceSnapshot.getValue(Services::class.java)
-                            freelasArrayList.add(freela)
+                            val project = serviceSnapshot.getValue(Services::class.java)
+                            projectsArrayList.add(project)
                         }
-                        adapter?.submitList(freelasArrayList)
+                        adapter.submitList(projectsArrayList)
                     }
                 }
 

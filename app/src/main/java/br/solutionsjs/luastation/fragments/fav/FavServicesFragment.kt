@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import br.solutionsjs.luastation.adapters.FavServicesAdapter
 import br.solutionsjs.luastation.databinding.FragmentFavServicesBinding
 import br.solutionsjs.luastation.models.Services
@@ -21,7 +21,6 @@ class FavServicesFragment : Fragment() {
     private lateinit var database: DatabaseReference
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
 
-    private lateinit var recyclerview: RecyclerView
     private lateinit var myAdapter: FavServicesAdapter
 
     override fun onCreateView(
@@ -46,19 +45,19 @@ class FavServicesFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        recyclerview = binding.recyclerServicos
-        recyclerview.layoutManager = LinearLayoutManager(requireContext())
-        recyclerview.setHasFixedSize(true)
+        binding.recyclerServicos.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerServicos.setHasFixedSize(true)
         myAdapter = FavServicesAdapter()
-        recyclerview.adapter = myAdapter
+        binding.recyclerServicos.adapter = myAdapter
     }
 
     private fun refreshFragment() {
-        val swipe = binding.swipeToRefresh
-        swipe.setOnRefreshListener {
-            myAdapter.submitList(listOf())
-            getServiceData()
-            swipe.isRefreshing = false
+        with(binding.swipeToRefresh) {
+            setOnRefreshListener {
+                myAdapter.submitList(listOf())
+                getServiceData()
+                isRefreshing = false
+            }
         }
     }
 
@@ -73,7 +72,7 @@ class FavServicesFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val servicesArrayList = mutableListOf<Services?>()
                 if (servicesArrayList.isEmpty()) {
-                    binding.recyclerServicos.visibility = View.GONE
+                    binding.recyclerServicos.isVisible = false
                 }
                 if (snapshot.exists()) {
                     for (serviceSnapshot in snapshot.children) {
@@ -81,12 +80,12 @@ class FavServicesFragment : Fragment() {
                         servicesArrayList.add(service)
                     }
                     myAdapter.submitList(servicesArrayList)
-                    recyclerview.visibility = View.VISIBLE
+                    binding.recyclerServicos.isVisible = true
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                binding.recyclerServicos.visibility = View.GONE
+                binding.recyclerServicos.isVisible = false
             }
         })
     }

@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import br.solutionsjs.luastation.adapters.FreelancersAdapter
 import br.solutionsjs.luastation.databinding.FragmentFreelancersBinding
 import br.solutionsjs.luastation.models.Freelancers
-import com.google.android.gms.ads.* // ktlint-disable no-wildcard-imports
+import com.google.android.gms.ads.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -25,7 +25,6 @@ class FreelancersFragment : Fragment() {
     private var _binding: FragmentFreelancersBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var recyclerView: RecyclerView
     private val database by lazy {
         FirebaseDatabase.getInstance().getReference("Users")
     }
@@ -89,19 +88,19 @@ class FreelancersFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        recyclerView = binding.recyclerFreelancers
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        recyclerView.setHasFixedSize(true)
+        binding.recyclerFreelancers.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.recyclerFreelancers.setHasFixedSize(true)
         myAdapter = FreelancersAdapter()
-        recyclerView.adapter = myAdapter
+        binding.recyclerFreelancers.adapter = myAdapter
     }
 
     private fun refreshFragment() {
-        val swipe = binding.swipeToRefresh
-        swipe.setOnRefreshListener {
-            myAdapter.submitList(listOf())
-            lifecycleScope.launch { getFreelancersData() }
-            swipe.isRefreshing = false
+        with(binding.swipeToRefresh) {
+            setOnRefreshListener {
+                myAdapter.submitList(listOf())
+                lifecycleScope.launch { getFreelancersData() }
+                isRefreshing = false
+            }
         }
     }
 
@@ -117,7 +116,7 @@ class FreelancersFragment : Fragment() {
                     myAdapter.submitList(
                         freelancersArrayList.filterNotNull().filter { it.cpf_cnpj?.length == 14 }
                     )
-                    recyclerView.visibility = View.VISIBLE
+                    binding.recyclerFreelancers.isVisible = true
                 }
             }
 

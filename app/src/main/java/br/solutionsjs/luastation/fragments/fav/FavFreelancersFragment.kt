@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import br.solutionsjs.luastation.adapters.FavFreelancersAdapter
 import br.solutionsjs.luastation.databinding.FragmentFavFreelancersBinding
 import br.solutionsjs.luastation.models.Freelancers
@@ -23,7 +23,6 @@ class FavFreelancersFragment : Fragment() {
         FirebaseAuth.getInstance()
     }
 
-    private lateinit var recyclerView: RecyclerView
     private lateinit var myAdapter: FavFreelancersAdapter
 
     override fun onCreateView(
@@ -48,11 +47,10 @@ class FavFreelancersFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        recyclerView = binding.recyclerFreelancers
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        recyclerView.setHasFixedSize(true)
+        binding.recyclerFreelancers.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.recyclerFreelancers.setHasFixedSize(true)
         myAdapter = FavFreelancersAdapter()
-        recyclerView.adapter = myAdapter
+        binding.recyclerFreelancers.adapter = myAdapter
     }
 
     private fun refreshFragment() {
@@ -74,7 +72,7 @@ class FavFreelancersFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val freelancersArrayList = mutableListOf<Freelancers?>()
                 if (freelancersArrayList.isEmpty()) {
-                    binding.recyclerFreelancers.visibility = View.GONE
+                    binding.recyclerFreelancers.isVisible = false
                 }
                 if (snapshot.exists()) {
                     for (freelancerSnapshot in snapshot.children) {
@@ -82,12 +80,12 @@ class FavFreelancersFragment : Fragment() {
                         freelancersArrayList.add(freelancer)
                     }
                     myAdapter.submitList(freelancersArrayList)
-                    recyclerView.visibility = View.VISIBLE
+                    binding.recyclerFreelancers.isVisible = true
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                binding.recyclerFreelancers.visibility = View.GONE
+                binding.recyclerFreelancers.isVisible = false
             }
         })
     }
