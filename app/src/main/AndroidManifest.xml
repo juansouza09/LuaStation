@@ -20,83 +20,83 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.HomeActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.HomeActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.login.LoginActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.login.LoginActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.registration.AccountTypeActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.registration.AccountTypeActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.registration.CompanyRegistrationActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.registration.CompanyRegistrationActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.registration.AccountValidationActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.registration.AccountValidationActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.menu.MenuActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.menu.MenuActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.menu.SecurityActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.menu.SecurityActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.menu.CreateProjectFirstStepActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.menu.CreateProjectFirstStepActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.menu.CreateProjectSecondStepActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.menu.CreateProjectSecondStepActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.menu.ProjectPaymentActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.menu.ProjectPaymentActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.menu.ProjectPublishedActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.menu.ProjectPublishedActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.ServiceDetailsActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.ServiceDetailsActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.CompanyProfileActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.CompanyProfileActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.AccountRegistrationErrorActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.registration.AccountRegistrationErrorActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.ApplyProjectActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.ApplyProjectActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.NotificationDetailsActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.NotificationDetailsActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.FreelancerProfileActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.FreelancerProfileActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.registration.FreelancerRegistrationActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.registration.FreelancerRegistrationActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.TeamActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.TeamActivity"
             android:exported="true" />
 
         <activity
-            android:name="br.solutionsjs.luastation.activities.SplashActivity"
+            android:name="br.solutionsjs.luastation.ui.activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
