@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -21,7 +20,7 @@ class FreelancersFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
 
-    private val myAdapter = FreelancersAdapter()
+    private lateinit var myAdapter: FreelancersAdapter
     private lateinit var mAdView: AdView
 
     override fun onCreateView(
@@ -35,13 +34,12 @@ class FreelancersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpRV()
-        setUpAds()
         viewModel.getFreelancers()
         viewModel.freelancers.observe(viewLifecycleOwner) { freelancers ->
-            binding.recyclerFreelancers.isVisible = true
             myAdapter.submitList(freelancers)
         }
+        setUpRV()
+        setUpAds()
     }
 
     override fun onDestroyView() {
@@ -84,7 +82,8 @@ class FreelancersFragment : Fragment() {
     }
 
     private fun setUpRV() {
-        binding.recyclerFreelancers.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.recyclerFreelancers.adapter = myAdapter
+        binding.rvFreelancers.layoutManager = GridLayoutManager(requireContext(), 2)
+        myAdapter = FreelancersAdapter()
+        binding.rvFreelancers.adapter = myAdapter
     }
 }

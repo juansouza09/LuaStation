@@ -9,18 +9,22 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class HomeRepositoryImpl : HomeRepository {
-    private val database by lazy {
-        FirebaseDatabase.getInstance()
-    }
-
     private val firebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
 
+    private val database by lazy {
+        FirebaseDatabase.getInstance()
+    }
+
+    private val usersPath = "Users"
+    private val myProjectsPath = "Meus Projetos"
+    private val servicesPath = "Services"
+
     override fun getFreelancers(): List<Freelancers?> {
         val freelancersList: MutableList<Freelancers?> = mutableListOf()
 
-        database.getReference("Users").addValueEventListener(object : ValueEventListener {
+        database.getReference(usersPath).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val freelancersArrayList = mutableListOf<Freelancers?>()
                 if (snapshot.exists()) {
@@ -44,8 +48,8 @@ class HomeRepositoryImpl : HomeRepository {
         val projectsList: MutableList<Services?> = mutableListOf()
 
         firebaseAuth.currentUser?.uid?.let {
-            database.getReference("Users").child(it)
-                .child("Meus Projetos").addValueEventListener(object : ValueEventListener {
+            database.getReference(usersPath).child(it)
+                .child(myProjectsPath).addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val servicesArrayList = mutableListOf<Services?>()
                         if (snapshot.exists()) {
@@ -67,7 +71,7 @@ class HomeRepositoryImpl : HomeRepository {
     override fun getServices(): List<Services?> {
         val servicesList: MutableList<Services?> = mutableListOf()
 
-        database.getReference("Services").addValueEventListener(object : ValueEventListener {
+        database.getReference(servicesPath).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val servicesArrayList = mutableListOf<Services?>()
                 if (snapshot.exists()) {

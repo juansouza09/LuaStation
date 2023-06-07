@@ -5,14 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.solutionsjs.luastation.databinding.FragmentFavServicesBinding
+import br.solutionsjs.luastation.domain.FavoriteViewModel
 import br.solutionsjs.luastation.ui.adapters.FavServicesAdapter
 
 class FavServicesFragment : Fragment() {
 
     private var _binding: FragmentFavServicesBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: FavoriteViewModel by viewModels()
 
     private lateinit var myAdapter: FavServicesAdapter
 
@@ -27,7 +31,11 @@ class FavServicesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initAdapter()
+        viewModel.getFavoriteServices()
+        viewModel.favoriteServices.observe(viewLifecycleOwner) { favoriteServices ->
+            myAdapter.submitList(favoriteServices)
+        }
+        setUpRV()
     }
 
     override fun onDestroyView() {
@@ -35,9 +43,9 @@ class FavServicesFragment : Fragment() {
         _binding = null
     }
 
-    private fun initAdapter() {
-        binding.recyclerServicos.layoutManager = LinearLayoutManager(requireContext())
+    private fun setUpRV() {
+        binding.rvServices.layoutManager = LinearLayoutManager(requireContext())
         myAdapter = FavServicesAdapter()
-        binding.recyclerServicos.adapter = myAdapter
+        binding.rvServices.adapter = myAdapter
     }
 }

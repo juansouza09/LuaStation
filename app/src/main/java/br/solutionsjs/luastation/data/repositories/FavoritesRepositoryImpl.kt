@@ -9,22 +9,26 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class FavoritesRepositoryImpl : FavoritesRepository {
-    private val database by lazy {
-        FirebaseDatabase.getInstance()
-    }
-
     private val firebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
 
     val firebaseUser = firebaseAuth.currentUser
 
+    private val database by lazy {
+        FirebaseDatabase.getInstance()
+    }
+
+    private val usersPath = "Users"
+    private val favoriteFreelancersPath = "ServicosFav"
+    private val favoriteServicesPath = "ServicosFav"
+
     override fun getFavoriteFreelancers(): List<Freelancers?> {
         val favoriteFreelancersList: MutableList<Freelancers?> = mutableListOf()
 
         if (firebaseUser != null) {
-            database.getReference("Users").child((firebaseUser.uid))
-                .child("FreelancerFav").addValueEventListener(object : ValueEventListener {
+            database.getReference(usersPath).child((firebaseUser.uid))
+                .child(favoriteFreelancersPath).addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val favoriteFreelancersArrayList = mutableListOf<Freelancers?>()
                         if (snapshot.exists()) {
@@ -50,8 +54,8 @@ class FavoritesRepositoryImpl : FavoritesRepository {
         val favoriteServicesList: MutableList<Services?> = mutableListOf()
 
         if (firebaseUser != null) {
-            database.getReference("Users").child((firebaseUser.uid))
-                .child("ServicosFav").addValueEventListener(object : ValueEventListener {
+            database.getReference(usersPath).child((firebaseUser.uid))
+                .child(favoriteServicesPath).addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val favoriteServicesArrayList = mutableListOf<Services?>()
                         if (snapshot.exists()) {

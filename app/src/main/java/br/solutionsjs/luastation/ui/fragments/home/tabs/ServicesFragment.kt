@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +19,7 @@ class ServicesFragment : Fragment() {
     private var _binding: FragmentServicesBinding? = null
     private val binding get() = _binding!!
 
-    private val myAdapter = ServicesAdapter()
+    private lateinit var myAdapter: ServicesAdapter
 
     private lateinit var mAdView: AdView
 
@@ -39,7 +38,6 @@ class ServicesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getServices()
         viewModel.services.observe(viewLifecycleOwner) { services ->
-            binding.recyclerServicos.isVisible = true
             myAdapter.submitList(services)
         }
         setUpRV()
@@ -86,8 +84,9 @@ class ServicesFragment : Fragment() {
     }
 
     private fun setUpRV() {
-        binding.recyclerServicos.layoutManager =
+        binding.rvServices.layoutManager =
             LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
-        binding.recyclerServicos.adapter = myAdapter
+        myAdapter = ServicesAdapter()
+        binding.rvServices.adapter = myAdapter
     }
 }

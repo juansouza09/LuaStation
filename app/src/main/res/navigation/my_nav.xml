@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/notificacaoFragment"
-        android:name="br.solutionsjs.luastation.ui.fragments.NotificationFragment"
+        android:name="br.solutionsjs.luastation.ui.fragments.NotificationsFragment"
         android:label="NotificacaoFragment"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

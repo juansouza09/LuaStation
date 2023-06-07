@@ -27,7 +27,7 @@ class FavMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        animation()
+        binding.viewPagerHome.apply { setPageTransformer(ZoomOutPageTransformer()) }
         setTabs()
         addTabsToPageIndicator()
     }
@@ -35,10 +35,6 @@ class FavMainFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun animation() {
-        binding.viewPagerHome.setPageTransformer(ZoomOutPageTransformer())
     }
 
     private fun setTabs() {

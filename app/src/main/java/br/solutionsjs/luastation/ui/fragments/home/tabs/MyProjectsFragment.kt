@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +19,7 @@ class MyProjectsFragment : Fragment() {
     private var _binding: FragmentMyProjectsBinding? = null
     private val binding get() = _binding!!
 
-    private val myAdapter = MyProjectsAdapter()
+    private lateinit var myAdapter: MyProjectsAdapter
     private lateinit var mAdView: AdView
     private val viewModel: HomeViewModel by viewModels()
 
@@ -37,7 +36,6 @@ class MyProjectsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getMyProjects()
         viewModel.myProjects.observe(viewLifecycleOwner) { myProjects ->
-            binding.recyclerFreelas.isVisible = true
             myAdapter.submitList(myProjects)
         }
         setUpRV()
@@ -84,8 +82,9 @@ class MyProjectsFragment : Fragment() {
     }
 
     private fun setUpRV() {
-        binding.recyclerFreelas.layoutManager =
+        binding.rvMyProjects.layoutManager =
             LinearLayoutManager(this.requireContext(), RecyclerView.VERTICAL, false)
-        binding.recyclerFreelas.adapter = myAdapter
+        myAdapter = MyProjectsAdapter()
+        binding.rvMyProjects.adapter = myAdapter
     }
 }

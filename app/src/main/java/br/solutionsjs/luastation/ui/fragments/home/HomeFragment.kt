@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import br.solutionsjs.luastation.databinding.FragmentHomeBinding
 import br.solutionsjs.luastation.ui.activities.menu.MenuActivity
 import br.solutionsjs.luastation.ui.adapters.TabFragPageAdapter
-import br.solutionsjs.luastation.databinding.FragmentHomeBinding
 import br.solutionsjs.luastation.utils.ZoomOutPageTransformer
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
         setTabs()
         addTabsToPageIndicator()
         listener()
-        animation()
+        binding.viewPagerHome.apply { setPageTransformer(ZoomOutPageTransformer()) }
     }
 
     override fun onDestroyView() {
@@ -46,12 +46,6 @@ class HomeFragment : Fragment() {
                     startActivity(Intent(this, MenuActivity::class.java))
                 }
             }
-        }
-    }
-
-    private fun animation() {
-        binding.viewPagerHome.apply {
-            setPageTransformer(ZoomOutPageTransformer())
         }
     }
 
