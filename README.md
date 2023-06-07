@@ -35,6 +35,8 @@
   - Material Design Components: Modular and customizable Material Design UI components for Android.
   - ViewPager2: Show previews or snippets in a slide-out format.
   - Custom Views: Custom views made from scratch using XML.
+  - View Model
+  - Live Data
   
 - Libraries
   - [Retrofit2 & OkHttp3](https://github.com/square/retrofit): To perform requests following the HTTP standard.
