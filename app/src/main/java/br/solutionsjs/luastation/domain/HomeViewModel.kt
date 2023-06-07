@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.solutionsjs.luastation.data.models.Freelancers
 import br.solutionsjs.luastation.data.models.Services
-import br.solutionsjs.luastation.data.repository.HomeRepository
-import br.solutionsjs.luastation.data.repository.HomeRepositoryImpl
+import br.solutionsjs.luastation.data.repositories.HomeRepository
+import br.solutionsjs.luastation.data.repositories.HomeRepositoryImpl
 
 class HomeViewModel() : ViewModel() {
     private val repository: HomeRepository

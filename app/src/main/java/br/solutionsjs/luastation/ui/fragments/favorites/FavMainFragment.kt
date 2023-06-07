@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import br.solutionsjs.luastation.ui.adapters.TabFragPageFavAdapter
 import br.solutionsjs.luastation.databinding.FragmentFavMainBinding
+import br.solutionsjs.luastation.ui.adapters.TabFragPageFavAdapter
 import br.solutionsjs.luastation.utils.ZoomOutPageTransformer
 import com.google.android.material.tabs.TabLayoutMediator
 

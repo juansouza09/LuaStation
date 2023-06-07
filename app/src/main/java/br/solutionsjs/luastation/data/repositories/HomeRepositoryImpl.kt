@@ -1,6 +1,5 @@
-package br.solutionsjs.luastation.data.repository
+package br.solutionsjs.luastation.data.repositories
 
-import android.util.Log
 import br.solutionsjs.luastation.data.models.Freelancers
 import br.solutionsjs.luastation.data.models.Services
 import com.google.firebase.auth.FirebaseAuth
